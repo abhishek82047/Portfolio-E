@@ -1,0 +1,2328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Enough Editor | Graphics Designer & Web Creator</title>
+<!-- Favicon -->
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<meta name="description" content="Enough Editor by Abhishek Rajput. Professional Graphics Designer and Web Creator specializing in high-converting YouTube thumbnails, gaming logos, Shopify stores, and modern website designs.">
+<meta name="keywords" content="Enough Editor, Abhishek Rajput, Graphics Designer, Web Creator, YouTube Thumbnails, Gaming Logos, Shopify Store Design, Website Design, UI/UX Design, Freelance Designer India">
+<meta name="author" content="Abhishek Rajput (Enough Editor)">
+<meta property="og:title" content="Enough Editor | Graphics Designer & Web Creator">
+<meta property="og:description" content="Professional Graphics Designer and Web Creator specializing in high-converting YouTube thumbnails, gaming logos, Shopify stores, and modern website designs.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Enough Editor | Graphics Designer & Web Creator">
+<meta name="twitter:description" content="High-converting YouTube thumbnails, gaming logos, Shopify stores, and modern website designs.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+
+/* ============================================================
+   ROOT & RESET
+============================================================ */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#04040a;
+  --surface:#0c0c16;
+  --accent:#ff7300;
+  --accent2:#ff8c00;
+  --gold:#ffc846;
+  --text:#f2f0ea;
+  --muted:#a1a1aa;
+  --glass:rgba(255,255,255,0.03);
+  --glass-b:rgba(255,255,255,0.07);
+}
+html{
+  font-size: 14px;
+  scroll-behavior:smooth;
+}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'DM Sans',sans-serif;
+  overflow-x:hidden;
+  cursor:none;
+}
+
+/* ============================================================
+   CUSTOM CURSOR
+============================================================ */
+#cur{position:fixed;width:10px;height:10px;background:var(--accent);border-radius:50%;
+  pointer-events:none;z-index:200000;transform:translate(-50%,-50%);transition:width .15s,height .15s,background .2s}
+#cur-ring{position:fixed;width:36px;height:36px;border:1.5px solid rgba(255,58,31,.5);
+  border-radius:50%;pointer-events:none;z-index:199999;transform:translate(-50%,-50%);
+  transition:all .22s cubic-bezier(.2,.8,.3,1)}
+
+/* ============================================================
+   NOISE TEXTURE
+============================================================ */
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* ============================================================
+   NAV
+============================================================ */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:700;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1.3rem 3.5rem;
+  transition:background .4s,border-color .4s,backdrop-filter .4s;
+  border-bottom:1px solid transparent;
+}
+nav.scrolled{
+  background:rgba(4,4,10,.85);
+  border-color:var(--glass-b);
+  backdrop-filter:blur(24px);
+}
+.logo{
+  font-family:'Bebas Neue',sans-serif;font-size:1.45rem;letter-spacing:.1em;
+  text-decoration:none;color:var(--text);
+}
+.logo span{color:var(--accent)}
+.nav-links{display:flex;gap:2rem;list-style:none;align-items:center}
+.nav-links a{
+  font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.16em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;transition:color .2s;
+}
+.nav-links a:hover{color:var(--text)}
+.nav-hire{
+  background:var(--accent);color:#fff!important;
+  padding:.48rem 1.3rem;border-radius:2px;
+  font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  text-decoration:none;transition:background .2s,transform .2s,box-shadow .2s;
+  box-shadow:0 0 0 0 rgba(255,58,31,0);
+}
+.nav-hire:hover{background:#ff1f00;transform:translateY(-1px);box-shadow:0 8px 30px rgba(255,58,31,.4)}
+
+/* ============================================================
+   HERO
+============================================================ */
+#hero{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  padding:8rem 3.5rem 9rem;
+}
+
+.orb{position:absolute;border-radius:50%;filter:blur(120px);pointer-events:none;animation:orbFloat 10s ease-in-out infinite}
+.orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(255,58,31,.18),transparent 70%);top:-15%;left:-10%;animation-delay:0s}
+.orb2{width:500px;height:500px;background:radial-gradient(circle,rgba(255,140,0,.12),transparent 70%);bottom:-10%;right:-8%;animation-delay:-5s}
+.orb3{width:300px;height:300px;background:radial-gradient(circle,rgba(100,60,255,.1),transparent 70%);top:40%;left:60%;animation-delay:-3s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(30px,-30px) scale(1.05)}}
+
+.grid-bg{
+  position:absolute;inset:0;
+  background-image:
+    linear-gradient(rgba(255,58,31,.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,58,31,.04) 1px,transparent 1px);
+  background-size:60px 60px;
+  transform:perspective(600px) rotateX(15deg) scale(1.1);
+  transform-origin:bottom center;
+  pointer-events:none;opacity:.7;
+  animation:gridPulse 6s ease-in-out infinite;
+}
+@keyframes gridPulse{0%,100%{opacity:.5}50%{opacity:.9}}
+
+.hero-scene{
+  position:relative;perspective:1200px;
+  display:flex;flex-direction:column;align-items:center;
+  z-index:2;text-align:center;max-width:900px;
+}
+.hero-tag{
+  font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--accent);
+  margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .2s forwards;
+  display:flex;align-items:center;gap:.8rem;
+}
+.hero-tag::before,.hero-tag::after{content:'';display:block;width:30px;height:1px;background:var(--accent)}
+
+.hero-name{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(4rem,11vw,10rem);
+  line-height:.92;letter-spacing:.04em;
+  color:var(--text);
+  opacity:0;animation:fadeUp .9s .4s forwards;
+  transform-style:preserve-3d;
+}
+.hero-name .stroke{
+  -webkit-text-stroke:2px var(--text);
+  color:transparent;
+  display:block;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;
+  background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.hero-sub {
+  font-family: 'Syne', sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-top: 1.4rem;
+  opacity: 0;
+  animation: fadeUp .8s .6s forwards;
+}
+.hero-sub span { color: var(--accent); }
+
+.hero-desc {
+  font-size: .95rem;
+  line-height: 1.8;
+  color: var(--muted);
+  max-width: 480px;
+  margin-top: 1.8rem;
+  opacity: 0;
+  animation: fadeUp .8s .8s forwards;
+}
+
+.hero-btns{
+  display:flex;gap:1rem;margin-top:2.8rem;
+  opacity:0;animation:fadeUp .8s 1s forwards;
+}
+.btn-primary{
+  background:var(--accent);color:#fff;padding:.85rem 2.2rem;
+  font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  border-radius:3px;transition:all .25s;box-shadow:0 4px 30px rgba(255,58,31,.3);
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+}
+.btn-primary:hover{background:#ff1f00;transform:translateY(-3px) scale(1.02);box-shadow:0 12px 40px rgba(255,58,31,.45)}
+.btn-outline{
+  border:1.5px solid var(--glass-b);color:var(--text);
+  padding:.85rem 2.2rem;
+  font-family:'Syne',sans-serif;font-size:.8rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;text-decoration:none;
+  border-radius:3px;transition:all .25s;backdrop-filter:blur(8px);
+  background:var(--glass);
+  display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-3px)}
+
+.hero-float-cards{
+  display:flex;gap:1.2rem;margin-top:4rem;
+  opacity:0;animation:fadeUp .8s 1.2s forwards;
+}
+.float-card{
+  background:var(--glass);border:1px solid var(--glass-b);
+  border-radius:12px;padding:1rem 1.4rem;
+  backdrop-filter:blur(16px);
+  font-family:'Syne',sans-serif;
+  transition:transform .3s;
+  transform-style:preserve-3d;
+}
+.float-card:hover{transform:translateY(-6px) rotateX(6deg)}
+.float-card .num{
+  font-family:'Bebas Neue',sans-serif;font-size:2.2rem;
+  color:var(--accent);line-height:1;
+}
+.float-card .label{font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-top:.2rem}
+
+.scroll-indicator{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  opacity:0;animation:fadeUp .6s 1.8s forwards;
+  font-family:'Syne',sans-serif;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);
+  z-index:5;
+  pointer-events:none;
+}
+.scroll-line{width:1px;height:50px;background:linear-gradient(var(--accent),transparent);animation:scrollLine 2s ease-in-out infinite}
+@keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+
+/* ============================================================
+   SECTION COMMON
+============================================================ */
+section{padding:8rem 3.5rem;position:relative}
+.section-label{
+  font-family:'Syne',sans-serif;font-size:.68rem;font-weight:700;
+  letter-spacing:.3em;text-transform:uppercase;color:var(--accent);
+  display:flex;align-items:center;gap:.8rem;margin-bottom:1.2rem;
+}
+.section-label::before{content:'';display:block;width:24px;height:1px;background:var(--accent)}
+.section-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2.8rem,6vw,5.5rem);
+  letter-spacing:.04em;line-height:.95;
+  margin-bottom:3.5rem;
+}
+.section-title em{
+  font-style:normal;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+
+/* ============================================================
+   ABOUT / PROFILE
+============================================================ */
+#about{
+  display:grid;grid-template-columns:1fr 1fr;gap:6rem;
+  align-items:center;max-width:1200px;margin:0 auto;
+}
+.about-visual{position:relative;perspective:1000px}
+.profile-3d-wrap{
+  transform-style:preserve-3d;
+  transform:rotateY(-8deg) rotateX(4deg);
+  transition:transform .5s ease;
+}
+.profile-3d-wrap:hover{transform:rotateY(0deg) rotateX(0deg)}
+.profile-img-box{
+  position:relative;border-radius:16px;overflow:hidden;
+  aspect-ratio:4/5;background:var(--surface);
+  border:1px solid var(--glass-b);
+  box-shadow:30px 30px 80px rgba(0,0,0,.6),-2px -2px 0 1px rgba(255,58,31,.2);
+}
+.profile-img-box img{width:100%;height:100%;object-fit:cover;display:block}
+
+.badge-float{
+  position:absolute;background:var(--accent);color:#fff;
+  border-radius:8px;padding:.7rem 1rem;
+  font-family:'Syne',sans-serif;font-size:.7rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;
+  box-shadow:0 8px 30px rgba(255,58,31,.4);
+  animation:badgeFloat 4s ease-in-out infinite;
+}
+.badge-float.b1{bottom:-1.5rem;right:-2rem;animation-delay:0s}
+.badge-float.b2{top:-1rem;left:-2rem;background:var(--surface);border:1px solid var(--glass-b);color:var(--text);box-shadow:0 8px 30px rgba(0,0,0,.4);animation-delay:-2s}
+.badge-float .b-num{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;display:block;line-height:1}
+.badge-float .b-txt{font-size:.6rem;opacity:.75}
+@keyframes badgeFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+
+.about-text .section-title{margin-bottom:1.5rem}
+.about-bio{color:var(--muted);line-height:1.9;font-size:.95rem;margin-bottom:2rem}
+.about-bio strong{color:var(--text);font-weight:400}
+.skills-grid{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:2.5rem}
+.skill-tag{
+  background:var(--glass);border:1px solid var(--glass-b);
+  padding:.4rem 1rem;border-radius:40px;
+  font-family:'Syne',sans-serif;font-size:.7rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--text);
+  transition:all .2s;
+}
+.skill-tag:hover{border-color:var(--accent);color:var(--accent);background:rgba(255,58,31,.06)}
+
+/* ============================================================
+   HORIZONTAL SCROLL SECTIONS (Thumbnails, Logos, Shorts)
+============================================================ */
+.h-scroll-wrapper {
+  position: relative;
+  background: var(--surface);
+  border-bottom: 1px solid var(--glass-b);
+}
+#gaming-logos-wrapper { background: var(--bg); }
+
+.sticky-container {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding-top: max(90px, 15vh);
+}
+.sticky-header {
+  padding: 0 max(3.5rem, calc((100vw - 1200px) / 2));
+  width: 100%;
+  margin: 0 auto 2.5rem;
+}
+.h-scroll-track {
+  display: flex;
+  gap: 2.5rem;
+  width: max-content;
+  will-change: transform;
+  transform-origin: center center;
+}
+.h-scroll-track[data-dir="forward"], 
+.h-scroll-track[data-dir="reverse"] {
+  padding: 0 max(3.5rem, calc((100vw - 1200px) / 2));
+}
+
+/* ============================================================
+   SCROLL TOGGLE UI & OFF MODE
+============================================================ */
+.sticky-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.scroll-toggle {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface); padding: 8px 16px;
+  border-radius: 30px; border: 1px solid var(--glass-b);
+}
+.toggle-label {
+  font-size: 0.85rem; color: var(--muted);
+  font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+}
+.switch { position: relative; display: inline-block; width: 44px; height: 24px; }
+.switch input { opacity: 0; width: 0; height: 0; }
+.slider {
+  position: absolute; cursor: pointer; top: 0; left: 0; right: 0; bottom: 0;
+  background-color: var(--glass-b); transition: .4s; border-radius: 24px;
+}
+.slider:before {
+  position: absolute; content: ""; height: 18px; width: 18px;
+  left: 3px; bottom: 3px; background-color: var(--muted); transition: .4s; border-radius: 50%;
+}
+input:checked + .slider { background-color: rgba(255, 58, 31, 0.1); border: 1px solid rgba(255, 58, 31, 0.4); }
+input:checked + .slider:before { transform: translateX(18px); background-color: var(--accent); }
+
+/* OFF MODE STYLES */
+.h-scroll-wrapper.scroll-off { height: auto !important; padding: 6rem 0; }
+.h-scroll-wrapper.scroll-off .sticky-container { position: relative !important; height: auto !important; overflow: visible !important; }
+.h-scroll-wrapper.scroll-off .sticky-header { margin-bottom: 3rem; }
+.h-scroll-wrapper.scroll-off .h-scroll-track {
+  overflow-x: auto; padding-bottom: 2rem;
+  scroll-snap-type: x mandatory; transform: none !important; width: 100vw;
+}
+.h-scroll-wrapper.scroll-off .work-slide,
+.h-scroll-wrapper.scroll-off .logo-slide,
+.h-scroll-wrapper.scroll-off .short-slide { scroll-snap-align: center; }
+.h-scroll-wrapper.scroll-off .h-scroll-track::-webkit-scrollbar { height: 6px; }
+.h-scroll-wrapper.scroll-off .h-scroll-track::-webkit-scrollbar-track { background: var(--surface); }
+.h-scroll-wrapper.scroll-off .h-scroll-track::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+
+@media(max-width: 900px){
+  .sticky-header { padding: 0 1.5rem; flex-direction: column; align-items: flex-start; }
+  .h-scroll-track[data-dir="forward"], 
+  .h-scroll-track[data-dir="reverse"] { padding: 0 1.5rem; gap: 1.5rem; }
+}
+
+.work-slide { width: 30rem; flex-shrink: 0; }
+.work-slide .p-card { aspect-ratio: 16/10; height: auto; }
+
+.logo-slide { width: 22rem; flex-shrink: 0; }
+.logo-slide .p-card { aspect-ratio: 1; height: auto; }
+
+.short-slide { width: 22rem; flex-shrink: 0; }
+.short-slide .p-card { aspect-ratio: 9/16; height: auto; }
+
+.p-card{
+  position:relative;border-radius:14px;overflow:hidden;
+  background:var(--bg);border:1px solid var(--glass-b);
+  cursor:pointer;transition:transform .4s cubic-bezier(.2,.8,.3,1),box-shadow .4s;
+  transform-style:preserve-3d;
+  will-change:transform;
+}
+.p-card:hover{
+  transform:translateY(-12px) rotateX(6deg) rotateY(-3deg) scale(1.02);
+  box-shadow:0 30px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,58,31,.2),
+             inset 0 1px 0 rgba(255,255,255,.06);
+  z-index:10;
+}
+.p-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s}
+.p-card:hover img{transform:scale(1.05)}
+.p-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(4,4,10,.92) 0%,transparent 50%);
+  opacity:0;transition:opacity .3s;
+  display:flex;flex-direction:column;justify-content:flex-end;padding:1.2rem;
+}
+.p-card:hover .p-card-overlay{opacity:1}
+.p-card-title{font-family:'Syne',sans-serif;font-size:.85rem;font-weight:700;color:#fff;margin-bottom:.2rem}
+.p-card-type{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.p-card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,transparent 60%);
+  pointer-events:none;
+}
+
+/* ============================================================
+   MARQUEE STRIP
+============================================================ */
+.marquee-strip{
+  width:100%;overflow:hidden;
+  border-top:1px solid var(--glass-b);
+  border-bottom:1px solid var(--glass-b);
+  padding:1rem 0;background:var(--bg);
+  display:flex;align-items:center;
+}
+.marquee-track{
+  display:flex;gap:2.5rem;white-space:nowrap;
+  animation:marquee 20s linear infinite;
+}
+.marquee-track .m-item{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.1rem;letter-spacing:.1em;
+  color:var(--muted);display:flex;align-items:center;gap:.8rem;
+}
+.marquee-track .m-item span{color:var(--accent);font-size:1rem}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ============================================================
+   SERVICES — MODERN PREMIUM REDESIGN
+============================================================ */
+#services{
+  position:relative;overflow:hidden;
+}
+#services::before{
+  content:'';position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 60% 50% at 20% 50%, rgba(255,115,0,.06) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 80% 50%, rgba(255,58,31,.05) 0%, transparent 60%);
+}
+.services-inner-wrap{max-width:1200px;margin:0 auto;position:relative;z-index:1;}
+.services-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:3.5rem;flex-wrap:wrap;gap:1rem;
+}
+.services-header-left .section-title{margin-bottom:.5rem}
+.services-count{
+  font-family:'Bebas Neue',sans-serif;font-size:5rem;line-height:1;
+  color:rgba(255,255,255,.04);letter-spacing:.02em;
+  user-select:none;pointer-events:none;
+}
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;
+}
+.s-card{
+  background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%);
+  border:1px solid rgba(255,255,255,.08);
+  border-top-color:rgba(255,255,255,.14);
+  border-radius:20px;padding:1.8rem 1.8rem 1.6rem;
+  transition:all .35s cubic-bezier(.2,.8,.3,1);
+  position:relative;overflow:hidden;cursor:default;
+  backdrop-filter:blur(8px);
+}
+/* Number watermark */
+.s-card::before{
+  content:attr(data-num);
+  position:absolute;top:-0.5rem;right:1.2rem;
+  font-family:'Bebas Neue',sans-serif;font-size:5.5rem;
+  color:rgba(255,255,255,.03);line-height:1;
+  pointer-events:none;letter-spacing:.02em;
+  transition:color .35s;
+}
+/* Gradient glow on hover */
+.s-card::after{
+  content:'';
+  position:absolute;inset:0;border-radius:20px;
+  background:radial-gradient(circle at 30% 30%,rgba(255,115,0,.1),transparent 65%);
+  opacity:0;transition:opacity .35s;
+}
+.s-card:hover{
+  border-color:rgba(255,115,0,.3);
+  border-top-color:rgba(255,255,255,.2);
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:
+    0 24px 60px rgba(0,0,0,.4),
+    0 0 0 1px rgba(255,115,0,.15),
+    inset 0 1px 0 rgba(255,255,255,.1);
+}
+.s-card:hover::after{opacity:1}
+.s-card:hover::before{color:rgba(255,115,0,.06)}
+
+/* Icon box */
+.s-icon{
+  width:44px;height:44px;
+  background:linear-gradient(135deg,rgba(255,115,0,.2),rgba(255,58,31,.1));
+  border:1px solid rgba(255,115,0,.25);
+  border-radius:12px;display:flex;align-items:center;justify-content:center;
+  margin-bottom:1.3rem;
+  transition:all .3s;
+  box-shadow:0 4px 16px rgba(255,115,0,.12),inset 0 1px 0 rgba(255,255,255,.1);
+}
+.s-card:hover .s-icon{
+  background:linear-gradient(135deg,rgba(255,115,0,.3),rgba(255,58,31,.18));
+  border-color:rgba(255,115,0,.5);
+  box-shadow:0 6px 20px rgba(255,115,0,.25),inset 0 1px 0 rgba(255,255,255,.15);
+  transform:scale(1.08) rotate(-3deg);
+}
+.s-icon svg{width:20px;height:20px;stroke:var(--accent);fill:none;stroke-width:1.8}
+
+.s-title{
+  font-family:'Syne',sans-serif;font-size:1.05rem;font-weight:800;
+  color:rgba(255,255,255,.95);margin-bottom:.55rem;
+  letter-spacing:.01em;
+}
+.s-desc{
+  font-size:.83rem;color:var(--muted);line-height:1.8;
+  font-weight:400;
+}
+.s-tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:1.1rem}
+.s-tag{
+  font-family:'Syne',sans-serif;font-size:.58rem;font-weight:700;
+  letter-spacing:.12em;text-transform:uppercase;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  padding:.22rem .65rem;border-radius:100px;color:rgba(255,255,255,.45);
+  transition:all .2s;
+}
+.s-card:hover .s-tag{
+  border-color:rgba(255,115,0,.3);
+  color:rgba(255,115,0,.8);
+  background:rgba(255,115,0,.06);
+}
+
+/* ============================================================
+   CONTACT MODAL
+============================================================ */
+.modal-overlay {
+  position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(4,4,10,0.85); backdrop-filter: blur(8px);
+  z-index: 10000; display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: 0.3s cubic-bezier(0.2,0.8,0.3,1);
+}
+.modal-overlay.active { opacity: 1; pointer-events: auto; }
+.modal-content {
+  background: var(--surface); padding: 2.5rem; border-radius: 20px;
+  border: 1px solid var(--glass-b); max-width: 420px; width: 90%;
+  transform: translateY(30px) scale(0.95); transition: 0.4s cubic-bezier(0.2,0.8,0.3,1);
+  position: relative; box-shadow: 0 40px 100px rgba(0,0,0,0.5);
+}
+.modal-overlay.active .modal-content { transform: translateY(0) scale(1); }
+.modal-close {
+  position: absolute; top: 1.2rem; right: 1.2rem;
+  background: var(--glass); border: 1px solid var(--glass-b); color: var(--muted); cursor: pointer;
+  width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.2rem; transition: 0.2s;
+}
+.modal-close:hover { color: var(--text); background: var(--glass-b); }
+.modal-title { font-family: 'Syne', sans-serif; font-size: 1.6rem; margin-bottom: 0.5rem; }
+.modal-desc { color: var(--muted); font-size: 0.95rem; margin-bottom: 2rem; line-height: 1.5; }
+.modal-options { display: flex; flex-direction: column; gap: 0.8rem; }
+.modal-btn {
+  background: var(--bg); border: 1px solid var(--glass-b); padding: 1.2rem;
+  border-radius: 12px; color: var(--text); cursor: pointer; font-family: 'DM Sans', sans-serif;
+  font-size: 1rem; font-weight: 600; transition: 0.2s; text-align: left;
+  display: flex; align-items: center; gap: 1rem;
+}
+.modal-btn:hover { border-color: var(--accent); background: rgba(255, 115, 0, 0.05); transform: translateY(-2px); }
+.modal-btn svg { flex-shrink: 0; }
+
+#websites{background:var(--bg);padding:8rem 3.5rem;overflow:hidden;}
+.websites-inner{max-width:1200px;margin:0 auto}
+.websites-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:1rem;}
+.w-card{
+  position:relative;border-radius:16px;overflow:hidden;
+  border:1px solid var(--glass-b);background:var(--surface);
+  aspect-ratio:16/10;transition:transform .4s cubic-bezier(.2,.8,.3,1),box-shadow .4s;
+  transform-style:preserve-3d;
+}
+.w-card:hover{transform:translateY(-10px) rotateX(4deg);box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,140,0,.2);}
+.w-card img{width:100%;height:100%;object-fit:cover;display:block}
+.w-card .w-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;background:linear-gradient(135deg,var(--surface),#10101e);}
+.w-card .w-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,10,.95) 0%,rgba(4,4,10,.3) 40%,transparent 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;}
+.w-label{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:.3rem;}
+.w-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;color:#fff}
+.w-platform{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:20px;font-family:'Syne',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.6rem;width:fit-content;}
+.browser-bar{background:#1a1a28;padding:.5rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--glass-b);flex-shrink:0;}
+.browser-dot{width:8px;height:8px;border-radius:50%}
+.bd1{background:#ff5f56}.bd2{background:#ffbd2e}.bd3{background:#27c93f}
+.browser-url{flex:1;background:rgba(255,255,255,.06);border-radius:4px;padding:.22rem .8rem;font-size:.6rem;color:var(--muted);font-family:'DM Sans',sans-serif;letter-spacing:.02em;}
+.w-card-inner{display:flex;flex-direction:column;height:100%}
+.w-card-inner .w-screen{flex:1;overflow:hidden;position:relative}
+
+#hire{padding:10rem 3.5rem;position:relative;overflow:hidden;text-align:center;}
+.hire-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(255,58,31,.08),transparent);animation:hirePulse 6s ease-in-out infinite;}
+@keyframes hirePulse{0%,100%{opacity:.6}50%{opacity:1}}
+.hire-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,58,31,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,58,31,.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;}
+.hire-inner{position:relative;z-index:1;max-width:800px;margin:0 auto}
+.hire-avail{display:inline-flex;align-items:center;gap:.6rem;background:rgba(39,201,63,.1);border:1px solid rgba(39,201,63,.2);padding:.4rem 1rem;border-radius:40px;font-family:'Syne',sans-serif;font-size:.65rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#27c93f;margin-bottom:2rem;}
+.hire-avail::before{content:'';width:6px;height:6px;border-radius:50%;background:#27c93f;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(39,201,63,.4)}50%{box-shadow:0 0 0 8px rgba(39,201,63,0)}}
+.hire-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3rem,8vw,7rem);letter-spacing:.04em;line-height:.92;margin-bottom:1.5rem;}
+.hire-title .line2{display:block;background:linear-gradient(135deg,var(--accent),var(--accent2),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hire-sub{font-size:.95rem;color:var(--muted);line-height:1.8;max-width:520px;margin:0 auto 3rem;}
+.hire-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap}
+.hire-contact-row{display:flex;gap:2rem;justify-content:center;flex-wrap:wrap;margin-top:3rem;padding-top:3rem;border-top:1px solid var(--glass-b);}
+.contact-item{display:flex;align-items:center;gap:.8rem;font-family:'Syne',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.08em;color:var(--muted);text-decoration:none;transition:color .2s;}
+.contact-item:hover{color:var(--text)}
+.contact-item svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2}
+
+footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.12em;color:var(--muted);}
+.footer-logo span{color:var(--accent)}
+.footer-copy{font-size:.75rem;color:var(--muted);font-family:'Syne',sans-serif;letter-spacing:.06em}
+.footer-social{display:flex;gap:1rem}
+.footer-social a{width:34px;height:34px;border-radius:8px;background:var(--glass);border:1px solid var(--glass-b);display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.footer-social a:hover{background:rgba(255,58,31,.12);border-color:rgba(255,58,31,.3)}
+.footer-social a svg{width:14px;height:14px;stroke:var(--muted);fill:none;stroke-width:2;transition:stroke .2s}
+.footer-social a:hover svg{stroke:var(--accent)}
+
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-left{opacity:0;transform:translateX(-50px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.3,1)}
+.reveal-left.visible{opacity:1;transform:translateX(0)}
+.reveal-right{opacity:0;transform:translateX(50px);transition:opacity .8s,transform .8s cubic-bezier(.2,.8,.3,1)}
+.reveal-right.visible{opacity:1;transform:translateX(0)}
+.delay-1{transition-delay:.1s}.delay-2{transition-delay:.2s}.delay-3{transition-delay:.3s}.delay-4{transition-delay:.4s}.delay-5{transition-delay:.5s}
+
+/* ============================================================
+   HAMBURGER MENU
+============================================================ */
+.nav-hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  background:none;border:none;cursor:pointer;padding:4px;z-index:800;
+}
+.nav-hamburger span{
+  display:block;width:24px;height:2px;background:var(--text);
+  border-radius:2px;transition:all .3s;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+.mobile-menu{
+  display:none;position:fixed;top:0;left:0;right:0;bottom:0;
+  background:rgba(4,4,10,.97);backdrop-filter:blur(20px);
+  z-index:750;flex-direction:column;align-items:center;justify-content:center;
+  gap:2.5rem;opacity:0;transition:opacity .3s;
+}
+.mobile-menu.open{display:flex;opacity:1}
+.mobile-menu a{
+  font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.1em;
+  color:var(--text);text-decoration:none;transition:color .2s;
+}
+.mobile-menu a:hover,.mobile-menu a:active{color:var(--accent)}
+.mobile-menu .mob-hire{
+  background:var(--accent);color:#fff!important;padding:.6rem 2.5rem;
+  border-radius:4px;font-size:2rem;
+}
+.mob-close{
+  position:absolute;top:1.5rem;right:1.5rem;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);
+  border-radius:50%;width:44px;height:44px;
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text);cursor:pointer;transition:all .2s;
+}
+.mob-close:hover{background:rgba(255,115,0,.15);border-color:rgba(255,115,0,.4);color:var(--accent);}
+
+/* ============================================================
+   RESPONSIVE – TABLET 900px
+============================================================ */
+@media(max-width:900px){
+  #cur,#cur-ring{display:none}
+  body{cursor:auto}
+  nav{padding:1rem 1.5rem}
+  .nav-links{display:none}
+  .nav-hamburger{display:flex}
+  section{padding:5rem 1.5rem}
+  #hero{padding:6rem 1.5rem 3rem;}
+  #about{grid-template-columns:1fr;gap:3rem}
+  .services-grid{grid-template-columns:1fr}
+  .websites-grid{grid-template-columns:1fr}
+  .hero-float-cards{flex-wrap:wrap;justify-content:center;gap:.8rem}
+  .float-card{min-width:120px;padding:1rem 1.2rem}
+  #hire{padding:6rem 1.5rem}
+  footer{padding:2rem 1.5rem;flex-direction:column;align-items:center;text-align:center}
+  .hero-char{width:180px;right:0;top:12%;opacity:0.55;}
+  .hire-char{display:none}
+  .scroll-toggle{scale:.85;transform-origin:right}
+}
+
+/* ============================================================
+   RESPONSIVE – MOBILE 600px
+============================================================ */
+@media(max-width:600px){
+  html{font-size:13px}
+  #hero{padding:5rem 1.2rem 7rem;align-items:center}
+  .scroll-indicator{display:none}
+  .hero-scene{align-items:center;text-align:center;max-width:100%}
+  .hero-tag{font-size:.62rem;letter-spacing:.2em}
+  .hero-name{font-size:clamp(3.5rem,17vw,6rem)}
+  .hero-btns{flex-direction:column;width:100%;gap:.8rem;align-items:center}
+  .btn-primary,.btn-outline{text-align:center;width:90%;max-width:320px;justify-content:center}
+  .hero-float-cards{display:grid;grid-template-columns:1fr 1fr;gap:.7rem;width:100%}
+  .float-card{padding:.9rem 1rem}
+  .float-card .num{font-size:1.5rem}
+  .hero-char{display:none}
+
+  .sticky-header{padding:.8rem 1.2rem}
+  .section-title{font-size:clamp(1.6rem,9vw,3rem)}
+  .p-card{border-radius:10px}
+  .work-slide,.logo-slide{min-width:260px}
+  .short-slide{min-width:150px}
+
+  .about-stats{grid-template-columns:1fr 1fr}
+  .s-card{padding:1.6rem}
+  .websites-grid{grid-template-columns:1fr}
+  .w-card{aspect-ratio:16/9}
+
+  #hire{padding:4rem 1.2rem}
+  .hire-title{font-size:clamp(2.5rem,13vw,5rem)}
+  .hire-btns{flex-direction:column;align-items:center}
+  .btn-primary,.btn-outline{width:90%;max-width:320px}
+  .hire-contact-row{gap:1.2rem}
+  .contact-item{font-size:.7rem}
+
+  footer{padding:1.5rem 1.2rem;gap:.8rem}
+  .footer-social{gap:.8rem}
+
+  /* Modal full screen */
+  .modal-content{width:95%;padding:2rem 1.2rem}
+  .gallery-content{padding:1.5rem !important;}
+  .gallery-grid{grid-template-columns:1fr 1fr;gap:.8rem}
+}
+/* Gallery Modal */
+.gallery-content {
+  max-width: 1400px !important; width: 95% !important; max-height: 90vh; overflow-y: auto; padding: 3rem !important;
+}
+.gallery-content::-webkit-scrollbar { width: 8px; }
+.gallery-content::-webkit-scrollbar-track { background: var(--bg); border-radius: 4px; }
+.gallery-content::-webkit-scrollbar-thumb { background: var(--glass-b); border-radius: 4px; }
+.gallery-content::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+.gallery-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 1.5rem;
+}
+.gallery-item {
+  border-radius: 12px; overflow: hidden; border: 1px solid var(--glass-b);
+  aspect-ratio: 16/9; position: relative; transition: transform 0.3s, box-shadow 0.3s;
+}
+.gallery-item:hover {
+  transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,115,0,0.3); z-index: 2;
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.4s;
+}
+.gallery-item:hover img { transform: scale(1.05); }
+
+/* Floating Characters */
+.float-char {
+  position: absolute; pointer-events: none;
+  animation: floatAnim 4s ease-in-out infinite;
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+  z-index: 10;
+}
+.hero-char {
+  top: 10%; right: 10%; width: 320px;
+}
+.hire-char {
+  bottom: 80%; right: 5%; width: 220px; animation-duration: 5s;
+}
+@keyframes floatAnim {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-25px) rotate(2deg); }
+}
+
+@media (max-width: 1024px) {
+  .hero-char { width: 220px; right: 5%; top: 5%; opacity: 0.5; }
+  .hire-char { width: 150px; right: 0; bottom: 90%; }
+}
+
+/* ============================================================
+   HIRE TOAST — LIQUID GLASS
+============================================================ */
+.hire-toast{
+  position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(140px);
+  z-index:9995;display:flex;align-items:center;gap:1.1rem;
+  /* Liquid glass layers */
+  background:
+    linear-gradient(135deg,rgba(255,255,255,.13) 0%,rgba(255,255,255,.04) 40%,rgba(255,115,0,.06) 100%);
+  backdrop-filter:blur(40px) saturate(1.8) brightness(1.1);
+  -webkit-backdrop-filter:blur(40px) saturate(1.8) brightness(1.1);
+  border:1px solid rgba(255,255,255,.22);
+  border-top-color:rgba(255,255,255,.38);
+  border-bottom-color:rgba(255,255,255,.08);
+  border-radius:100px;
+  padding:.7rem 1rem .7rem .7rem;
+  box-shadow:
+    0 8px 32px rgba(0,0,0,.45),
+    0 2px 8px rgba(0,0,0,.3),
+    inset 0 1px 0 rgba(255,255,255,.25),
+    inset 0 -1px 0 rgba(0,0,0,.15),
+    0 0 0 1px rgba(255,115,0,.12),
+    0 0 40px rgba(255,115,0,.08);
+  transition:transform .65s cubic-bezier(.2,.8,.3,1),opacity .5s;
+  opacity:0;min-width:320px;cursor:default;
+  position:fixed;
+}
+/* Iridescent shimmer overlay */
+.hire-toast::before{
+  content:'';
+  position:absolute;inset:0;border-radius:100px;pointer-events:none;
+  background:linear-gradient(105deg,
+    rgba(255,255,255,.18) 0%,
+    rgba(255,255,255,0) 30%,
+    rgba(255,115,0,.06) 60%,
+    rgba(255,255,255,.1) 100%);
+  opacity:.7;
+}
+/* Top specular highlight */
+.hire-toast::after{
+  content:'';
+  position:absolute;top:0;left:10%;right:10%;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.6),transparent);
+  border-radius:100px;
+  pointer-events:none;
+}
+.hire-toast.show{transform:translateX(-50%) translateY(0);opacity:1}
+.hire-toast.hide{transform:translateX(-50%) translateY(160px);opacity:0;pointer-events:none}
+
+.toast-avatar-wrap{position:relative;flex-shrink:0;}
+.toast-avatar{
+  width:46px;height:46px;border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),#ffb347);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:#fff;
+  overflow:hidden;
+  border:1.5px solid rgba(255,255,255,.3);
+  box-shadow:0 4px 16px rgba(255,115,0,.35),inset 0 1px 0 rgba(255,255,255,.3);
+}
+.toast-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
+.online-dot{
+  position:absolute;bottom:1px;right:1px;
+  width:11px;height:11px;border-radius:50%;
+  background:#22c55e;
+  border:2px solid rgba(255,255,255,.2);
+  box-shadow:0 0 6px rgba(34,197,94,.6);
+  animation:pulseDot 2s ease-in-out infinite;
+}
+@keyframes pulseDot{
+  0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}
+  50%{box-shadow:0 0 0 5px rgba(34,197,94,0)}
+}
+.toast-text{
+  flex:1;position:relative;
+  font-family:'Syne',sans-serif;font-size:.86rem;font-weight:700;
+  color:rgba(255,255,255,.95);letter-spacing:.01em;line-height:1.3;
+}
+.toast-text span{color:var(--accent)}
+.toast-status{
+  display:block;font-size:.65rem;font-weight:500;
+  color:#4ade80;letter-spacing:.04em;margin-top:.1rem;
+}
+.toast-btn{
+  background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(255,255,255,.85));
+  color:rgba(0,0,0,.85);
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.7rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.52rem 1.1rem;border-radius:100px;
+  flex-shrink:0;transition:all .22s;white-space:nowrap;
+  border:none;cursor:pointer;
+  box-shadow:0 2px 12px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.8);
+}
+.toast-btn:hover{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#fff;
+  box-shadow:0 4px 20px rgba(255,115,0,.45),inset 0 1px 0 rgba(255,255,255,.2);
+  transform:scale(1.05);
+}
+.toast-close{
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.18);
+  color:rgba(255,255,255,.6);cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;transition:all .2s;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.15);
+}
+.toast-close:hover{background:rgba(255,80,80,.25);border-color:rgba(255,80,80,.4);color:#ff6b6b;}
+@media(max-width:600px){
+  .hire-toast{
+    left:.8rem;right:.8rem;
+    transform:translateX(0) translateY(140px);
+    min-width:0;bottom:1.2rem;
+    padding:.6rem .85rem .6rem .65rem;
+    gap:.7rem;
+    border-radius:20px;
+  }
+  .hire-toast.show{transform:translateX(0) translateY(0);opacity:1}
+  .hire-toast.hide{transform:translateX(0) translateY(160px);opacity:0}
+  .toast-text{font-size:.78rem}
+  .toast-btn{font-size:.64rem;padding:.4rem .85rem;}
+  .toast-avatar{width:40px;height:40px}
+}
+
+/* ============================================================
+   PILL CARDS SHOWCASE
+============================================================ */
+.pills-section{
+  padding:7rem 0 5rem;overflow:hidden;
+  background:var(--bg);position:relative;
+}
+.pills-section .pills-header{
+  text-align:center;margin-bottom:3.5rem;padding:0 2rem;
+}
+.pills-track{
+  display:flex;gap:1.5rem;align-items:stretch;
+  padding:0 4rem;justify-content:center;
+  flex-wrap:nowrap;height:580px;
+  max-width:100%;width:100%;
+}
+.pill-card{
+  flex:0 0 140px;border-radius:100px;
+  overflow:hidden;position:relative;
+  transition:flex .55s cubic-bezier(.2,.8,.3,1),box-shadow .4s;
+  cursor:pointer;border:1px solid rgba(255,255,255,.06);
+  background:var(--surface);
+}
+.pill-card:hover, .pill-card.active{
+  flex:0 0 480px;
+  box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,115,0,.2);
+}
+.pill-card img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .55s cubic-bezier(.2,.8,.3,1),filter .4s;
+  filter:brightness(.45) saturate(.8);
+}
+.pill-card:hover img{
+  transform:scale(1.06);filter:brightness(.75) saturate(1.1);
+}
+.pill-label{
+  position:absolute;inset:0;display:flex;align-items:flex-end;
+  padding:1.5rem 1.2rem;
+  background:linear-gradient(to top,rgba(4,4,10,.9) 0%,rgba(4,4,10,.3) 40%,transparent 70%);
+  transition:opacity .3s;
+}
+.pill-label-text{
+  font-family:'Syne',sans-serif;font-weight:800;
+  font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.9);white-space:nowrap;
+  writing-mode:vertical-rl;text-orientation:mixed;
+  transform:rotate(180deg);
+  transition:all .4s cubic-bezier(.2,.8,.3,1);
+  opacity:.85;
+}
+.pill-card:hover .pill-label-text, .pill-card.active .pill-label-text{
+  writing-mode:horizontal-tb;transform:none;
+  font-size:.85rem;opacity:1;color:#fff;
+}
+.pill-label-sub{
+  font-family:'DM Sans',sans-serif;font-size:.72rem;
+  color:var(--muted);margin-top:.3rem;display:none;
+  letter-spacing:.05em;
+}
+.pill-card:hover .pill-label-sub, .pill-card.active .pill-label-sub{display:block}
+.pill-cta{
+  position:absolute;top:1.2rem;right:1.2rem;
+  background:var(--accent);color:#fff;
+  font-family:'Syne',sans-serif;font-weight:700;font-size:.65rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.35rem .9rem;border-radius:100px;
+  opacity:0;transform:translateY(-8px);
+  transition:opacity .3s .1s,transform .3s .1s;
+  border:none;cursor:pointer;
+}
+.pill-card:hover .pill-cta, .pill-card.active .pill-cta{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .pills-track{height:340px;gap:.7rem;padding:0 1rem}
+  .pill-card{flex:0 0 64px}
+  .pill-card:hover,.pill-card.active{flex:0 0 240px}
+}
+
+/* ---- MOBILE pill layout ---- */
+@media(max-width:600px){
+  .pills-section{padding:4rem 0 0}
+  .pills-track{
+    height:240px;gap:.5rem;
+    padding:0 .8rem 0;
+    justify-content:flex-start;
+    overflow-x:auto;overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+  }
+  .pills-track::-webkit-scrollbar{display:none}
+  .pill-card{flex:0 0 56px;border-radius:60px}
+  .pill-card.active{flex:0 0 200px}
+  .pill-card:hover{flex:0 0 56px}
+  .pill-card.active:hover{flex:0 0 200px}
+  .pill-cta{display:none!important}
+  .pill-label-sub{display:none}
+  .pill-card.active .pill-label-sub{display:none}
+
+  /* Cancel sticky-hover text flip on mobile — only .active should expand text */
+  .pill-card:hover .pill-label-text{
+    writing-mode:vertical-rl;
+    text-orientation:mixed;
+    transform:rotate(180deg);
+    font-size:.8rem;
+    opacity:.85;
+    color:rgba(255,255,255,.9);
+  }
+  .pill-card:hover .pill-label-sub{display:none}
+  .pill-card:hover .pill-cta{opacity:0!important;transform:translateY(-8px)!important}
+
+  /* Only .active flips text horizontal */
+  .pill-card.active .pill-label-text{
+    writing-mode:horizontal-tb;
+    transform:none;
+    font-size:.85rem;
+    opacity:1;
+    color:#fff;
+  }
+}
+
+/* ---- Mobile detail panel (shows below pills on tap) ---- */
+.pill-detail-panel{
+  overflow:hidden;
+  max-height:0;
+  opacity:0;
+  padding:0 1rem;
+  transition:max-height .45s cubic-bezier(.2,.8,.3,1), opacity .3s ease;
+  pointer-events:none;
+}
+.pill-detail-panel.open{
+  max-height:400px;opacity:1;pointer-events:auto;
+}
+.pill-detail-inner{
+  background:var(--surface);border:1px solid rgba(255,115,0,.2);
+  border-radius:16px;padding:1.4rem 1.2rem;
+  margin:.8rem 0 2rem;
+  display:flex;flex-direction:column;gap:.6rem;
+}
+.pdp-title{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:1.1rem;
+  color:#fff;
+}
+.pdp-desc{
+  font-family:'DM Sans',sans-serif;font-size:.88rem;
+  color:var(--muted);line-height:1.6;
+}
+.pdp-tags{
+  display:flex;flex-wrap:wrap;gap:.4rem;
+}
+.pdp-tag{
+  font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.28rem .7rem;border-radius:100px;
+  border:1px solid rgba(255,115,0,.35);color:var(--accent);
+  background:rgba(255,115,0,.08);
+}
+.pdp-hire{
+  margin-top:.4rem;
+  background:var(--accent);color:#fff;
+  font-family:'Syne',sans-serif;font-weight:800;font-size:.85rem;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:.7rem 1.4rem;border-radius:100px;
+  border:none;cursor:pointer;width:fit-content;
+  transition:all .2s;
+}
+.pdp-hire:hover{background:#fff;color:var(--bg)}
+
+/* Modal buttons centered on mobile */
+@media(max-width:600px){
+  .modal-btn{justify-content:center;text-align:center;}
+  .modal-content{padding:2rem 1rem;}
+}
+
+/* ============================================================
+   LIGHTBOX / FULLSCREEN IMAGE VIEWER
+============================================================ */
+#lightbox{
+  position:fixed;inset:0;z-index:99999;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(2,2,8,.96);backdrop-filter:blur(24px);
+  opacity:0;pointer-events:none;
+  transition:opacity .35s cubic-bezier(.2,.8,.3,1);
+}
+#lightbox.open{
+  opacity:1;pointer-events:auto;
+}
+.lb-img-wrap{
+  position:relative;
+  display:flex;align-items:center;justify-content:center;
+  max-width:92vw;max-height:88vh;
+  transform:scale(.88);opacity:0;
+  transition:transform .4s cubic-bezier(.2,.8,.3,1),opacity .35s;
+}
+#lightbox.open .lb-img-wrap{
+  transform:scale(1);opacity:1;
+}
+.lb-img-wrap img{
+  max-width:92vw;max-height:82vh;
+  object-fit:contain;border-radius:12px;
+  box-shadow:0 30px 100px rgba(0,0,0,.7),0 0 0 1px rgba(255,115,0,.15);
+  display:block;
+  transition:opacity .2s;
+}
+.lb-img-wrap.switching img{opacity:0;}
+
+/* Close button */
+.lb-close{
+  position:fixed;top:1.2rem;right:1.2rem;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.14);
+  color:#fff;font-size:1.3rem;line-height:1;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .2s;z-index:2;
+  backdrop-filter:blur(8px);
+}
+.lb-close:hover{background:rgba(255,80,80,.2);border-color:rgba(255,80,80,.4);color:#ff6060;transform:rotate(90deg) scale(1.1)}
+
+/* Prev / Next arrows */
+.lb-arrow{
+  position:fixed;top:50%;transform:translateY(-50%);
+  width:50px;height:50px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  color:#fff;font-size:1.4rem;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;transition:all .22s;backdrop-filter:blur(8px);
+  z-index:2;user-select:none;
+}
+.lb-arrow:hover{background:rgba(255,115,0,.2);border-color:rgba(255,115,0,.45);color:var(--accent);transform:translateY(-50%) scale(1.1)}
+.lb-prev{left:1.2rem}
+.lb-next{right:1.2rem}
+@media(max-width:600px){
+  .lb-prev{left:.4rem}.lb-next{right:.4rem}
+  .lb-arrow{width:40px;height:40px;font-size:1.1rem}
+}
+
+/* Counter + label */
+.lb-meta{
+  position:fixed;bottom:1.4rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.35rem;
+  z-index:2;pointer-events:none;
+}
+.lb-counter{
+  font-family:'Syne',sans-serif;font-size:.72rem;font-weight:700;
+  letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.45);
+}
+.lb-label{
+  font-family:'Syne',sans-serif;font-size:.65rem;font-weight:600;
+  letter-spacing:.14em;text-transform:uppercase;color:var(--accent);
+  background:rgba(255,115,0,.1);border:1px solid rgba(255,115,0,.25);
+  padding:.22rem .8rem;border-radius:100px;
+}
+
+/* Download hint */
+.lb-hint{
+  position:fixed;top:1.2rem;left:50%;transform:translateX(-50%);
+  font-family:'Syne',sans-serif;font-size:.62rem;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);
+  pointer-events:none;z-index:2;
+}
+</style>
+</head>
+<body>
+
+<!-- CUSTOM CURSOR -->
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
+  <button class="lb-arrow lb-prev" onclick="lbPrev()" aria-label="Previous">&#8592;</button>
+  <div class="lb-img-wrap" id="lbImgWrap">
+    <img id="lbMainImg" src="" alt="Portfolio Image">
+  </div>
+  <button class="lb-arrow lb-next" onclick="lbNext()" aria-label="Next">&#8594;</button>
+  <div class="lb-meta">
+    <span class="lb-label" id="lbLabel"></span>
+    <span class="lb-counter" id="lbCounter"></span>
+  </div>
+  <div class="lb-hint">← Swipe or use arrow keys →</div>
+</div>
+
+<!-- HIRE TOAST -->
+<div class="hire-toast" id="hireToast">
+  <div class="toast-avatar-wrap">
+    <div class="toast-avatar">
+      <img src="assets/avatar.png" alt="Abhishek Rajput" onerror="this.style.display='none';this.parentElement.innerHTML='EE'">
+    </div>
+    <span class="online-dot"></span>
+  </div>
+  <div class="toast-text">
+    <span>Abhishek</span> is available for hire
+    <em class="toast-status">● Online — Ready to work</em>
+  </div>
+  <button class="toast-btn" onclick="openModal('email');dismissToast()">Hire Me</button>
+  <button class="toast-close" onclick="dismissToast()" aria-label="Close">&#x2715;</button>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="logo">Enough<span>.</span>Editor</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#thumbnails-wrapper">Work</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#websites">Websites</a></li>
+    <li><a href="#hire" class="nav-hire">Hire Me</a></li>
+  </ul>
+  <button class="nav-hamburger" id="hamburger" aria-label="Open Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mob-close" id="mobClose" aria-label="Close Menu">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="width:28px;height:28px;">
+      <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+    </svg>
+  </button>
+  <a href="#about" class="mob-link">About</a>
+  <a href="#thumbnails-wrapper" class="mob-link">Work</a>
+  <a href="#services" class="mob-link">Services</a>
+  <a href="#websites" class="mob-link">Websites</a>
+  <a href="#hire" class="mob-hire">Hire Me</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="grid-bg"></div>
+  <img src="assets/characters/hero_char.png" alt="3D floating character graphic" class="float-char hero-char reveal">
+  <div class="orb orb1"></div>
+  <div class="orb orb2"></div>
+  <div class="orb orb3"></div>
+
+  <div class="hero-scene">
+    <div class="hero-tag">Graphics Designer &amp; Web Creator</div>
+    <h1 class="hero-name">Enough<br><span class="stroke">Editor</span></h1>
+    <div class="hero-sub">Abhishek <span>Rajput</span></div>
+    <p class="hero-desc">Crafting visual stories through stunning thumbnails, gaming logos, and modern websites that convert. Every pixel has a purpose.</p>
+    <div class="hero-btns">
+      <a href="#thumbnails-wrapper" class="btn-primary">View My Work</a>
+      <a href="#hire" class="btn-outline">Hire Me Now</a>
+    </div>
+    <div class="hero-float-cards">
+      <div class="float-card"><div class="num">50+</div><div class="label">Thumbnails Made</div></div>
+      <div class="float-card"><div class="num">10+</div><div class="label">Gaming Logos</div></div>
+      <div class="float-card"><div class="num">5+</div><div class="label">Websites Built</div></div>
+      <div class="float-card"><div class="num">100%</div><div class="label">Client Satisfaction</div></div>
+    </div>
+  </div>
+  <div class="scroll-indicator">Scroll<div class="scroll-line"></div></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-strip">
+  <div class="marquee-track" id="marquee">
+    <div class="m-item"><span>★</span> Thumbnail Design</div>
+    <div class="m-item"><span>★</span> Gaming Logos</div>
+    <div class="m-item"><span>★</span> Short Thumbnails</div>
+    <div class="m-item"><span>★</span> Website Design</div>
+    <div class="m-item"><span>★</span> Shopify Stores</div>
+    <div class="m-item"><span>★</span> Brand Identity</div>
+    <div class="m-item"><span>★</span> Motion Graphics</div>
+    <div class="m-item"><span>★</span> Thumbnail Design</div>
+    <div class="m-item"><span>★</span> Gaming Logos</div>
+    <div class="m-item"><span>★</span> Short Thumbnails</div>
+    <div class="m-item"><span>★</span> Website Design</div>
+    <div class="m-item"><span>★</span> Shopify Stores</div>
+    <div class="m-item"><span>★</span> Brand Identity</div>
+    <div class="m-item"><span>★</span> Motion Graphics</div>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section>
+<div id="about">
+  <div class="about-visual reveal-left">
+    <div class="profile-3d-wrap" id="profile3d">
+      <div class="profile-img-box"><img src="../Profile Pic/profile-pic.png" alt="Abhishek Rajput"></div>
+      <div class="badge-float b2"><span class="b-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:1em;height:1em;vertical-align:middle"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/></svg></span><span class="b-txt">Available for hire</span></div>
+    </div>
+  </div>
+  <div class="about-text reveal-right">
+    <div class="section-label">About Me</div>
+    <h2 class="section-title">The Man<br>Behind <em>The Design</em></h2>
+    <p class="about-bio">Hey, I'm <strong>Abhishek Rajput</strong> — a passionate graphics designer and web creator operating as <strong>Enough Editor</strong>. I specialise in high-converting thumbnails, bold gaming logos, and modern websites that make people stop scrolling.<br><br>From <strong>YouTube thumbnails</strong> that spike CTR to <strong>Shopify stores</strong> for bakeries, cafes, salons, and jewellery brands — I bring every brand's vision to life with sharp visuals and clean code.</p>
+    <div class="skills-grid">
+      <span class="skill-tag">Thumbnail Design</span><span class="skill-tag">Gaming Logo</span><span class="skill-tag">Short Thumbnails</span>
+      <span class="skill-tag">Web Design</span><span class="skill-tag">Shopify</span><span class="skill-tag">Photoshop</span>
+      <span class="skill-tag">Illustrator</span><span class="skill-tag">Figma</span><span class="skill-tag">Motion Graphics</span><span class="skill-tag">Brand Identity</span>
+    </div>
+    <a href="#hire" class="btn-primary">Let's Work Together</a>
+  </div>
+</div>
+</section>
+
+<!-- ============================================================
+   WORK: HORIZONTAL SCROLL SECTIONS
+============================================================ -->
+
+<!-- 1. THUMBNAILS (Swipes Right to Left -> Forward) -->
+<div class="h-scroll-wrapper" id="thumbnails-wrapper" style="height: 800vh;">
+  <div class="sticky-container">
+    <div class="sticky-header">
+      <div>
+        <div class="section-label reveal">Thumbnails</div>
+        <h2 class="section-title reveal" style="margin-bottom:0">YouTube <em>Thumbnails</em></h2>
+      </div>
+      <div class="scroll-toggle reveal">
+        <span class="toggle-label">Auto Scroll</span>
+        <label class="switch">
+          <input type="checkbox" checked class="scroll-checkbox" data-target="thumbnails-wrapper">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <div class="h-scroll-track" data-dir="forward">
+      <div class="work-slide"><div class="p-card"><img src="../Thumbnail/1. kaur is live.jpg" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
+      <div class="work-slide"><div class="p-card"><img src="../Thumbnail/ANYAA.jpg" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
+      <div class="work-slide"><div class="p-card"><img src="../Thumbnail/Cheery.jpg" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
+      <div class="work-slide"><div class="p-card"><img src="../Thumbnail/GOD SCRPY SMILE TN.png" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
+      <div class="work-slide"><div class="p-card"><img src="../Thumbnail/SHODEN Thumbnail.jpg" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
+      <div class="work-slide"><div class="p-card"><img src="../Thumbnail/cc venom.png" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
+      <div class="work-slide"><div class="p-card"><img src="../Thumbnail/fff buy now wait 2025 PT.jpg" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
+      <div class="work-slide"><div class="p-card"><img src="../Thumbnail/madness of iphone 11.jpg" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
+      <div class="work-slide"><div class="p-card"><img src="../Thumbnail/unlimited client.png" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
+      <div class="work-slide"><div class="p-card"><img src="../Thumbnail/without cc crypto.jpg" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
+      
+      <!-- VIEW ALL CARD -->
+      <div class="work-slide">
+        <div class="p-card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--surface); cursor:pointer; height:100%; border:1px dashed var(--glass-b);" onclick="openGallery('thumbnails')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="width:48px;height:48px;margin-bottom:1rem;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:2.5rem; letter-spacing:0.04em; color:#fff;">View All</div>
+          <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.75rem; letter-spacing:0.1em; color:var(--muted); text-transform:uppercase; margin-top:0.2rem;">Complete Collection</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 2. GAMING LOGOS (Swipes Left to Right -> Reverse) -->
+<div class="h-scroll-wrapper" id="gaming-logos-wrapper" style="height: 800vh;">
+  <div class="sticky-container">
+    <div class="sticky-header">
+      <div>
+        <div class="section-label reveal">Logos</div>
+        <h2 class="section-title reveal" style="margin-bottom:0">Gaming <em>Logos</em></h2>
+      </div>
+      <div class="scroll-toggle reveal">
+        <span class="toggle-label">Auto Scroll</span>
+        <label class="switch">
+          <input type="checkbox" checked class="scroll-checkbox" data-target="gaming-logos-wrapper">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <!-- DOM order reversed for "Left to Right" entrance effect -->
+    <div class="h-scroll-track" data-dir="reverse">
+      <!-- VIEW ALL CARD (left side for reverse scroll) -->
+      <div class="logo-slide">
+        <div class="p-card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--surface); cursor:pointer; height:100%; border:1px dashed var(--glass-b);" onclick="openGallery('logos')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="width:48px;height:48px;margin-bottom:1rem;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:2.5rem; letter-spacing:0.04em; color:#fff;">View All</div>
+          <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.75rem; letter-spacing:0.1em; color:var(--muted); text-transform:uppercase; margin-top:0.2rem;">Complete Collection</div>
+        </div>
+      </div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/20240125_145311.png" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1706886604792.png" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1689302987456.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1689302980897.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1689302835102.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1689302833475.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1689302716997.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1689302715220.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1689302711323.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1689302707911.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1684789547326.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1679112389233.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1678816557550.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+      <div class="logo-slide"><div class="p-card"><img src="../Gaming Logo/1676826926175.jpg" alt="Custom gaming logo design and esports channel art"><div class="p-card-overlay"><div class="p-card-type">Gaming Logo</div><div class="p-card-title">Logo Design</div></div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- 3. SHORT THUMBNAILS (Swipes Right to Left -> Forward) -->
+<div class="h-scroll-wrapper" id="short-thumbnails-wrapper" style="height: 800vh;">
+  <div class="sticky-container">
+    <div class="sticky-header">
+      <div>
+        <div class="section-label reveal">Shorts</div>
+        <h2 class="section-title reveal" style="margin-bottom:0">Short <em>Thumbnails</em></h2>
+      </div>
+      <div class="scroll-toggle reveal">
+        <span class="toggle-label">Auto Scroll</span>
+        <label class="switch">
+          <input type="checkbox" checked class="scroll-checkbox" data-target="short-thumbnails-wrapper">
+          <span class="slider round"></span>
+        </label>
+      </div>
+    </div>
+    <div class="h-scroll-track" data-dir="forward">
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/1.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/3.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/4.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/5.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/6.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/7.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/8.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/13.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/14.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/15.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/16.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+
+      <div class="short-slide"><div class="p-card"><img src="../Short Thumbnails/19.jpg" alt="YouTube Shorts and Instagram Reels vertical thumbnail design"><div class="p-card-overlay"><div class="p-card-type">Short Thumbnail</div><div class="p-card-title">Vertical Design</div></div></div></div>
+      <div class="short-slide">
+        <div class="p-card" style="display:flex; flex-direction:column; align-items:center; justify-content:center; background:var(--surface); cursor:pointer; height:100%; border:1px dashed var(--glass-b);" onclick="openGallery('shorts')">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="2" style="width:48px;height:48px;margin-bottom:1rem;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+          <div style="font-family:'Bebas Neue',sans-serif; font-size:2.5rem; letter-spacing:0.04em; color:#fff;">View All</div>
+          <div style="font-family:'Syne',sans-serif; font-weight:700; font-size:0.75rem; letter-spacing:0.1em; color:var(--muted); text-transform:uppercase; margin-top:0.2rem;">Complete Collection</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section id="services" style="background:var(--surface)">
+<div class="services-inner-wrap">
+  <div class="section-label reveal">What I Do</div>
+  <h2 class="section-title reveal">My <em>Services</em></h2>
+  <div class="services-grid">
+
+    <div class="s-card reveal delay-1" data-num="01">
+      <div class="s-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
+      <div class="s-title">Thumbnail Design</div>
+      <p class="s-desc">Eye-catching YouTube thumbnails that boost your CTR and stop viewers mid-scroll. Bold, high-contrast, strategy-driven.</p>
+      <div class="s-tags"><span class="s-tag">YouTube</span><span class="s-tag">CTR Optimised</span><span class="s-tag">Photoshop</span></div>
+    </div>
+
+    <div class="s-card reveal delay-2" data-num="02">
+      <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
+      <div class="s-title">Gaming Logo Design</div>
+      <p class="s-desc">Fierce, unique gaming logos and mascots that make your channel or team stand out in the competitive gaming space.</p>
+      <div class="s-tags"><span class="s-tag">Esports</span><span class="s-tag">Channel Art</span><span class="s-tag">Illustrator</span></div>
+    </div>
+
+    <div class="s-card reveal delay-3" data-num="03">
+      <div class="s-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 12h6M12 9v6"/></svg></div>
+      <div class="s-title">Short / Reel Thumbnails</div>
+      <p class="s-desc">Vertical thumbnails optimised for YouTube Shorts, Instagram Reels, and TikTok — designed to maximise views.</p>
+      <div class="s-tags"><span class="s-tag">Shorts</span><span class="s-tag">Reels</span><span class="s-tag">9:16 Format</span></div>
+    </div>
+
+    <div class="s-card reveal delay-1" data-num="04">
+      <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <div class="s-title">Website Design</div>
+      <p class="s-desc">Modern, fast, and conversion-focused websites for local businesses — bakeries, cafes, salons, jewellery stores and more.</p>
+      <div class="s-tags"><span class="s-tag">HTML/CSS</span><span class="s-tag">Responsive</span><span class="s-tag">Figma</span></div>
+    </div>
+
+    <div class="s-card reveal delay-2" data-num="05">
+      <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
+      <div class="s-title">Shopify Store Design</div>
+      <p class="s-desc">Beautiful, brand-aligned Shopify stores built for e-commerce success — jewellery, beauty, food, and retail businesses.</p>
+      <div class="s-tags"><span class="s-tag">Shopify</span><span class="s-tag">E-commerce</span><span class="s-tag">Liquid</span></div>
+    </div>
+
+    <div class="s-card reveal delay-3" data-num="06">
+      <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
+      <div class="s-title">Brand Identity</div>
+      <p class="s-desc">Complete visual identity systems — logos, colour palettes, typography, and brand guidelines that make your business unforgettable.</p>
+      <div class="s-tags"><span class="s-tag">Logo</span><span class="s-tag">Brand Kit</span><span class="s-tag">Style Guide</span></div>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<!-- PILL CARDS SHOWCASE -->
+<section class="pills-section">
+  <div class="pills-header">
+    <div class="section-label reveal">My Work</div>
+    <h2 class="section-title reveal">Services I <em>Specialise</em> In</h2>
+  </div>
+  <div class="pills-track">
+    <div class="pill-card" onclick="openModal('email')">
+      <img src="../Thumbnail/1. kaur is live.jpg" alt="YouTube thumbnail design portfolio">
+      <div class="pill-label">
+        <div>
+          <div class="pill-label-text">YouTube Thumbnails</div>
+          <div class="pill-label-sub">High-CTR designs that stop the scroll</div>
+        </div>
+      </div>
+      <button class="pill-cta" onclick="event.stopPropagation();openContactDirect('YouTube Thumbnails')">Hire Me</button>
+    </div>
+    <div class="pill-card" onclick="openModal('email')">
+      <img src="../Gaming Logo/20240125_145311.png" alt="Gaming logo design portfolio">
+      <div class="pill-label">
+        <div>
+          <div class="pill-label-text">Gaming Logos</div>
+          <div class="pill-label-sub">Fierce esports branding & mascots</div>
+        </div>
+      </div>
+      <button class="pill-cta" onclick="event.stopPropagation();openContactDirect('Gaming Logos')">Hire Me</button>
+    </div>
+    <div class="pill-card" onclick="openModal('email')">
+      <img src="../Short Thumbnails/8.jpg" alt="YouTube Shorts thumbnail design">
+      <div class="pill-label">
+        <div>
+          <div class="pill-label-text">Short Thumbnails</div>
+          <div class="pill-label-sub">Vertical 9:16 designs for Shorts & Reels</div>
+        </div>
+      </div>
+      <button class="pill-cta" onclick="event.stopPropagation();openContactDirect('Short Thumbnails')">Hire Me</button>
+    </div>
+    <div class="pill-card" onclick="openModal('email')">
+      <img src="assets/website_pill.png" alt="Website design portfolio">
+      <div class="pill-label">
+        <div>
+          <div class="pill-label-text">Website Design</div>
+          <div class="pill-label-sub">Fast, modern & conversion-focused</div>
+        </div>
+      </div>
+      <button class="pill-cta" onclick="event.stopPropagation();openContactDirect('Website Design')">Hire Me</button>
+    </div>
+    <div class="pill-card" onclick="openModal('email')">
+      <img src="assets/shopify_pill.png" alt="Shopify store design">
+      <div class="pill-label">
+        <div>
+          <div class="pill-label-text">Shopify Stores</div>
+          <div class="pill-label-sub">Beautiful e-commerce storefronts</div>
+        </div>
+      </div>
+      <button class="pill-cta" onclick="event.stopPropagation();openContactDirect('Shopify Stores')">Hire Me</button>
+    </div>
+    <div class="pill-card" onclick="openModal('email')">
+      <img src="assets/brand_pill.png" alt="Brand identity design">
+      <div class="pill-label">
+        <div>
+          <div class="pill-label-text">Brand Identity</div>
+          <div class="pill-label-sub">Complete visual identity systems</div>
+        </div>
+      </div>
+      <button class="pill-cta" onclick="event.stopPropagation();openContactDirect('Brand Identity')">Hire Me</button>
+    </div>
+  </div>
+  <!-- Mobile Detail Panel - shown below pills on tap -->
+  <div class="pill-detail-panel" id="pillDetailPanel">
+    <div class="pill-detail-inner">
+      <div class="pdp-title" id="pdpTitle"></div>
+      <div class="pdp-desc" id="pdpDesc"></div>
+      <div class="pdp-tags" id="pdpTags"></div>
+      <button class="pdp-hire" onclick="openContactDirect(currentPillService)">Contact Me</button>
+    </div>
+  </div>
+</section>
+
+<!-- WEBSITE DESIGNS SHOWCASE -->
+<section id="websites">
+<div class="websites-inner">
+  <div class="section-label reveal">Web Design</div>
+  <h2 class="section-title reveal">Websites I <em>Designed</em></h2>
+  <div class="websites-grid">
+    <div class="w-card reveal delay-1">
+      <div class="w-card-inner">
+        <div class="browser-bar">
+          <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
+          <div class="browser-url">www.sweetbakery.com</div>
+        </div>
+        <div class="w-screen">
+          <div class="w-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+            <span style="font-family:'Syne',sans-serif;font-size:.65rem;letter-spacing:.08em;color:var(--muted)">screenshots/bakery.jpg</span>
+          </div>
+        </div>
+      </div>
+      <div class="w-overlay">
+        <div class="w-label">Client Project</div><div class="w-name">Bakery Website</div><div class="w-platform">🍞 HTML / CSS / JS</div>
+      </div>
+    </div>
+    <div class="w-card reveal delay-2">
+      <div class="w-card-inner">
+        <div class="browser-bar">
+          <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
+          <div class="browser-url">www.cafemocha.com</div>
+        </div>
+        <div class="w-screen">
+          <div class="w-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+            <span style="font-family:'Syne',sans-serif;font-size:.65rem;letter-spacing:.08em;color:var(--muted)">screenshots/cafe.jpg</span>
+          </div>
+        </div>
+      </div>
+      <div class="w-overlay">
+        <div class="w-label">Client Project</div><div class="w-name">Cafe Website</div><div class="w-platform">☕ HTML / CSS / JS</div>
+      </div>
+    </div>
+    <div class="w-card reveal delay-3">
+      <div class="w-card-inner">
+        <div class="browser-bar">
+          <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
+          <div class="browser-url">www.glamoursalon.com</div>
+        </div>
+        <div class="w-screen">
+          <div class="w-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+            <span style="font-family:'Syne',sans-serif;font-size:.65rem;letter-spacing:.08em;color:var(--muted)">screenshots/salon.jpg</span>
+          </div>
+        </div>
+      </div>
+      <div class="w-overlay">
+        <div class="w-label">Client Project</div><div class="w-name">Salon Website</div><div class="w-platform">💇 HTML / CSS / JS</div>
+      </div>
+    </div>
+    <div class="w-card reveal delay-4">
+      <div class="w-card-inner">
+        <div class="browser-bar">
+          <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
+          <div class="browser-url">luxejewels.myshopify.com</div>
+        </div>
+        <div class="w-screen">
+          <div class="w-placeholder">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+            <span style="font-family:'Syne',sans-serif;font-size:.65rem;letter-spacing:.08em;color:var(--muted)">screenshots/jewellery.jpg</span>
+          </div>
+        </div>
+      </div>
+      <div class="w-overlay">
+        <div class="w-label">Shopify Store</div><div class="w-name">Jewellery Store</div><div class="w-platform">💎 Shopify</div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- HIRE ME -->
+<section id="hire">
+  <div class="hire-bg"></div>
+  <div class="hire-grid"></div>
+  <div class="hire-inner" style="position:relative;">
+    <img src="assets/characters/hire_char.png" alt="3D rocket character" class="float-char hire-char reveal delay-2">
+    <div class="hire-avail">Available for new projects</div>
+    <h2 class="hire-title reveal">Let's Create<span class="line2">Something Epic</span></h2>
+    <p class="hire-sub reveal">Whether you need a fire thumbnail, a gaming logo that slaps, or a full website build — I'm your guy. Let's make something your audience won't forget.</p>
+    <div class="hire-btns reveal">
+      <a href="javascript:void(0)" onclick="openModal('email')" class="btn-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px;"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Email Me</a>
+      <a href="javascript:void(0)" onclick="openModal('wa')" class="btn-outline"><svg viewBox="0 0 24 24" fill="currentColor" style="width:16px;height:16px;"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg> WhatsApp</a>
+    </div>
+    <div class="hire-contact-row reveal">
+      <a href="javascript:void(0)" onclick="openModal('email')" class="contact-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>enougheditor31@gmail.com</a>
+      <a href="https://www.instagram.com/enougheditor?igsh=ZXF5cmZpZmJmMDM3" class="contact-item" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@EnoughEditor</a>
+      <a href="https://www.behance.net/enougheditor" class="contact-item" target="_blank"><svg viewBox="0 0 24 24" fill="var(--accent)" stroke="none"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.912 4.964 5.105 0 3.193-.057 2.146-.057 2.146h-7.661c.148 2.378 1.849 2.502 3.125 2.502 1.258 0 2.228-.403 2.656-1.158h2.172zm-7.663-3.324h5.201c-.131-2.457-1.89-2.529-2.592-2.529-1.258 0-2.441.564-2.609 2.529zm-7.618-9.06v14.384h-4.323v-14.384h4.323zm-5.122-3.616h6.55v2.859h-6.55v-2.859zm12.392 3.616v5.823c0 2.529 1.442 3.42 2.946 3.42 1.378 0 2.247-.456 2.654-1.07v1.07h4.095v-9.243h-4.095v5.185c-.321.464-1.026.963-1.83.963-1.096 0-1.428-.845-1.428-1.928v-4.22h-2.342z"/></svg>Behance</a>
+      <a href="https://www.linkedin.com/in/enougheditor" class="contact-item" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Enough<span>.</span>Editor</div>
+  <div class="footer-copy">© 2025 Enough Editor · All Rights Reserved</div>
+  <div class="footer-social">
+    <a href="https://www.instagram.com/enougheditor?igsh=ZXF5cmZpZmJmMDM3" target="_blank"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+    <a href="https://www.behance.net/enougheditor" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.912 4.964 5.105 0 3.193-.057 2.146-.057 2.146h-7.661c.148 2.378 1.849 2.502 3.125 2.502 1.258 0 2.228-.403 2.656-1.158h2.172zm-7.663-3.324h5.201c-.131-2.457-1.89-2.529-2.592-2.529-1.258 0-2.441.564-2.609 2.529zm-7.618-9.06v14.384h-4.323v-14.384h4.323zm-5.122-3.616h6.55v2.859h-6.55v-2.859zm12.392 3.616v5.823c0 2.529 1.442 3.42 2.946 3.42 1.378 0 2.247-.456 2.654-1.07v1.07h4.095v-9.243h-4.095v5.185c-.321.464-1.026.963-1.83.963-1.096 0-1.428-.845-1.428-1.928v-4.22h-2.342z"/></svg></a>
+    <a href="javascript:void(0)" onclick="openModal('wa')"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+  </div>
+</footer>
+
+<!-- CONTACT MODAL -->
+<div class="modal-overlay" id="contactModal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h3 class="modal-title">What do you need?</h3>
+    <p class="modal-desc">Select a service and I'll generate a quick message for you.</p>
+    <div class="modal-options">
+      <button class="modal-btn" onclick="sendContact('YouTube Thumbnails')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;stroke:var(--accent);"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg> YouTube Thumbnails</button>
+      <button class="modal-btn" onclick="sendContact('Website Design')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;stroke:var(--accent);"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg> Website Design</button>
+      <button class="modal-btn" onclick="sendContact('Short Thumbnails')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;stroke:var(--accent);"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg> Short Thumbnails</button>
+      <button class="modal-btn" onclick="sendContact('Other Work')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:20px;height:20px;stroke:var(--accent);"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> Other Work</button>
+    </div>
+  </div>
+</div>
+
+<!-- GALLERY MODAL -->
+<div class="modal-overlay" id="galleryModal" style="z-index: 10005;">
+  <div class="modal-content gallery-content">
+    <button class="modal-close" onclick="closeGallery()">×</button>
+    <div style="margin-bottom: 2.5rem; text-align: center;">
+      <h3 class="modal-title" style="font-family:'Bebas Neue',sans-serif; font-size:3.5rem; letter-spacing:0.04em; margin-bottom:0.5rem; color:#fff;">All <span style="color:var(--accent)">Thumbnails</span></h3>
+      <p class="gallery-label" style="color:var(--muted); font-family:'Syne',sans-serif; letter-spacing:0.1em; font-size:0.85rem; text-transform:uppercase;">Complete Collection</p>
+    </div>
+    <div class="gallery-grid"></div>
+  </div>
+</div>
+
+<!-- ============================================================
+   JAVASCRIPT
+============================================================ -->
+<script>
+// ---- SCROLL TO TOP ON REFRESH ----
+if (history.scrollRestoration) {
+  history.scrollRestoration = 'manual';
+}
+window.scrollTo(0, 0);
+
+// ---- CUSTOM CURSOR ----
+const cur = document.getElementById('cur');
+const curRing = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+function animateRing(){rx+=(mx-rx)*.15;ry+=(my-ry)*.15;curRing.style.left=rx+'px';curRing.style.top=ry+'px';requestAnimationFrame(animateRing)}
+animateRing();
+document.querySelectorAll('a,button,.p-card,.w-card,.s-card').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.style.width='20px';cur.style.height='20px';cur.style.background='rgba(255,58,31,.4)';curRing.style.width='60px';curRing.style.height='60px';curRing.style.borderColor='rgba(255,58,31,.8)'});
+  el.addEventListener('mouseleave',()=>{cur.style.width='10px';cur.style.height='10px';cur.style.background='var(--accent)';curRing.style.width='36px';curRing.style.height='36px';curRing.style.borderColor='rgba(255,58,31,.5)'});
+});
+
+// ---- NAV SCROLL ----
+const nav = document.getElementById('nav');
+window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40)});
+
+// ---- SCROLL REVEAL ----
+const reveals = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+},{threshold:.12});
+reveals.forEach(el=>io.observe(el));
+
+// ---- 3D TILT on PROFILE ----
+const wrap = document.getElementById('profile3d');
+if(wrap){
+  wrap.parentElement.addEventListener('mousemove',e=>{
+    const r=wrap.parentElement.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-.5)*20;
+    const y=((e.clientY-r.top)/r.height-.5)*-20;
+    wrap.style.transform=`rotateY(${x}deg) rotateX(${y}deg)`;
+  });
+  wrap.parentElement.addEventListener('mouseleave',()=>{
+    wrap.style.transform='rotateY(-8deg) rotateX(4deg)';
+  });
+}
+
+// ---- 3D TILT on PORTFOLIO CARDS ----
+document.querySelectorAll('.p-card,.w-card').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=((e.clientX-r.left)/r.width-.5)*18;
+    const y=((e.clientY-r.top)/r.height-.5)*-18;
+    card.style.transform=`translateY(-12px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.transform='';
+  });
+});
+
+// ---- PARALLAX ORBS ----
+window.addEventListener('scroll',()=>{
+  const y=scrollY;
+  document.querySelector('.orb1').style.transform=`translate(${y*.02}px,${-y*.03}px)`;
+  document.querySelector('.orb2').style.transform=`translate(${-y*.015}px,${y*.02}px)`;
+});
+
+// ---- SMOOTH ANCHOR ----
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const t=document.querySelector(a.getAttribute('href'));
+    if(t)t.scrollIntoView({behavior:'smooth',block:'start'});
+  });
+});
+
+// ---- MULTI-TRACK HORIZONTAL SCROLL & UNIQUE EFFECTS ----
+const hScrollWrappers = document.querySelectorAll('.h-scroll-wrapper');
+let scrollData = [];
+
+hScrollWrappers.forEach((wrapper) => {
+  const track = wrapper.querySelector('.h-scroll-track');
+  const dir = track.getAttribute('data-dir') || 'forward';
+  scrollData.push({ wrapper, track, dir, current: 0, target: 0 });
+});
+
+window.addEventListener('scroll', () => {
+  scrollData.forEach(data => {
+    const rect = data.wrapper.getBoundingClientRect();
+    const scrollDistance = data.wrapper.offsetHeight - window.innerHeight;
+    let progress = -rect.top / scrollDistance;
+    progress = Math.max(0, Math.min(1, progress));
+    data.target = progress;
+  });
+});
+
+function animateScroll() {
+  scrollData.forEach(data => {
+    if(data.wrapper.classList.contains('scroll-off')) {
+      // Clear JS inline styles so CSS can take over native scrolling
+      if(data.track) {
+        data.track.style.transform = '';
+        const slides = data.track.children;
+        for(let i=0; i<slides.length; i++) {
+           slides[i].style.transform = '';
+        }
+      }
+      return;
+    }
+
+    const diff = data.target - data.current;
+    data.current += diff * 0.08;
+    
+    if(data.track) {
+      const maxTranslate = data.track.scrollWidth - window.innerWidth;
+      if(maxTranslate > 0) {
+        
+        let pxVelocity = diff * maxTranslate;
+        
+        // 1. Move the track itself horizontally normally
+        let targetTranslateX = 0;
+        if(data.dir === 'forward') {
+          targetTranslateX = -data.current * maxTranslate;
+        } else {
+          targetTranslateX = -maxTranslate + (data.current * maxTranslate);
+        }
+        data.track.style.transform = `translateX(${targetTranslateX}px)`;
+        
+        // 2. Apply unique visual effects to the child slides based on section
+        const slides = data.track.children;
+        const id = data.wrapper.id;
+        
+        if (id === 'thumbnails-wrapper') {
+          // Effect 1: Motion Blur Skew & Stretch
+          let skew = pxVelocity * 0.018; 
+          if(skew > 15) skew = 15; if(skew < -15) skew = -15;
+          let scale = 1 - (Math.abs(pxVelocity) * 0.00015);
+          if(scale < 0.92) scale = 0.92;
+          
+          let applySkew = data.dir === 'forward' ? skew : -skew;
+          for(let i=0; i<slides.length; i++) {
+             slides[i].style.transform = `skewX(${applySkew}deg) scale(${scale})`;
+          }
+        } 
+        else if (id === 'gaming-logos-wrapper') {
+          // Effect 2: 3D Coverflow (Y-Axis Swing)
+          let rotY = pxVelocity * 0.08;
+          if(rotY > 40) rotY = 40; if(rotY < -40) rotY = -40;
+          let scale = 1 - (Math.abs(pxVelocity) * 0.0001);
+          if(scale < 0.95) scale = 0.95;
+          
+          let applyRotY = data.dir === 'forward' ? -rotY : rotY;
+          for(let i=0; i<slides.length; i++) {
+             slides[i].style.transform = `perspective(1000px) rotateY(${applyRotY}deg) scale(${scale})`;
+          }
+        }
+        else if (id === 'short-thumbnails-wrapper') {
+          // Effect 3: Wave / Scissor Effect
+          // Odd cards go up, even cards go down when scrolling fast
+          let bob = Math.abs(pxVelocity) * 0.15;
+          if(bob > 40) bob = 40;
+          let scale = 1 - (Math.abs(pxVelocity) * 0.0001);
+          if(scale < 0.95) scale = 0.95;
+          
+          for(let i=0; i<slides.length; i++) {
+             let dir = i % 2 === 0 ? 1 : -1;
+             slides[i].style.transform = `translateY(${bob * dir}px) scale(${scale})`;
+          }
+        }
+
+      }
+    }
+  });
+  requestAnimationFrame(animateScroll);
+}
+
+// ---- TOGGLE LOGIC ----
+const scrollToggles = document.querySelectorAll('.scroll-checkbox');
+scrollToggles.forEach(toggle => {
+  toggle.addEventListener('change', (e) => {
+    const targetId = e.target.getAttribute('data-target');
+    const wrapper = document.getElementById(targetId);
+    if(e.target.checked) {
+       wrapper.classList.remove('scroll-off');
+       const rect = wrapper.getBoundingClientRect();
+       const scrollDistance = wrapper.offsetHeight - window.innerHeight;
+       let progress = -rect.top / scrollDistance;
+       const sData = scrollData.find(d => d.wrapper.id === targetId);
+       if(sData) {
+         sData.current = Math.max(0, Math.min(1, progress));
+         // Clear any native scroll built up while off
+         const stickyContainer = wrapper.querySelector('.sticky-container');
+         if (stickyContainer) stickyContainer.scrollLeft = 0;
+       }
+    } else {
+       wrapper.classList.add('scroll-off');
+       // Reset the inline transform so CSS native scrolling works seamlessly
+       const sData = scrollData.find(d => d.wrapper.id === targetId);
+       if(sData) sData.track.style.transform = `translate3d(0, 0, 0)`;
+    }
+    
+    // Fix jump bug: when height drastically changes, keep user locked to the section
+    setTimeout(() => {
+       wrapper.scrollIntoView({ behavior: 'auto', block: 'start' });
+    }, 10);
+  });
+});
+
+// Trigger one manual scroll calculation to set initial states
+// ---- CONTACT MODAL LOGIC ----
+let currentContactMethod = 'email';
+
+const galleryData = {
+  thumbnails: {
+    title: 'All <span style="color:var(--accent)">Thumbnails</span>',
+    label: 'YouTube Thumbnail Collection',
+    aspect: '16/9',
+    images: [
+      '../Thumbnail/1. kaur is live.jpg','../Thumbnail/1000270448.jpg.jpeg','../Thumbnail/1000274528.jpg.jpeg',
+      '../Thumbnail/1000280113.jpg.jpeg','../Thumbnail/1679977509692.jpg','../Thumbnail/1683345652287.jpg',
+      '../Thumbnail/1702091963120.jpg','../Thumbnail/1706155690658.jpg','../Thumbnail/20240227_131737.jpg',
+      '../Thumbnail/ANYAA.jpg','../Thumbnail/Cheery.jpg','../Thumbnail/GOD SCRPY SMILE TN.png',
+      '../Thumbnail/IMG_20240306_093957_087.jpg','../Thumbnail/SHODEN Thumbnail.jpg','../Thumbnail/cc venom.png',
+      '../Thumbnail/cc with.png','../Thumbnail/cc without  venom.jpg','../Thumbnail/fff buy now wait 2025 PT.jpg',
+      '../Thumbnail/madness of iphone 11.jpg','../Thumbnail/sonali.jpg','../Thumbnail/spirow thubnailks (1).jpg',
+      '../Thumbnail/unlimited client.png','../Thumbnail/vs thumbnail3.jpg','../Thumbnail/without cc crypto.jpg'
+    ]
+  },
+  logos: {
+    title: 'All <span style="color:var(--accent)">Gaming Logos</span>',
+    label: 'Esports & Channel Art Collection',
+    aspect: '1/1',
+    images: [
+      '../Gaming Logo/20240125_145311.png','../Gaming Logo/1706886604792.png','../Gaming Logo/1689302987456.jpg',
+      '../Gaming Logo/1689302980897.jpg','../Gaming Logo/1689302835102.jpg','../Gaming Logo/1689302833475.jpg',
+      '../Gaming Logo/1689302716997.jpg','../Gaming Logo/1689302715220.jpg','../Gaming Logo/1689302711323.jpg',
+      '../Gaming Logo/1689302707911.jpg','../Gaming Logo/1684789547326.jpg','../Gaming Logo/1679112389233.jpg',
+      '../Gaming Logo/1678816557550.jpg','../Gaming Logo/1676826926175.jpg'
+    ]
+  },
+  shorts: {
+    title: 'All <span style="color:var(--accent)">Short Thumbnails</span>',
+    label: 'Shorts & Reels Vertical Collection',
+    aspect: '9/16',
+    images: [
+      '../Short Thumbnails/1.jpg','../Short Thumbnails/3.jpg','../Short Thumbnails/4.jpg',
+      '../Short Thumbnails/5.jpg','../Short Thumbnails/6.jpg','../Short Thumbnails/7.jpg',
+      '../Short Thumbnails/8.jpg','../Short Thumbnails/13.jpg','../Short Thumbnails/14.jpg',
+      '../Short Thumbnails/15.jpg','../Short Thumbnails/16.jpg','../Short Thumbnails/19.jpg'
+    ]
+  }
+};
+
+function openGallery(type) {
+  const data = galleryData[type] || galleryData['thumbnails'];
+  const modal = document.getElementById('galleryModal');
+  const content = modal.querySelector('.modal-content');
+
+  // Update title and label
+  content.querySelector('.modal-title').innerHTML = data.title;
+  content.querySelector('.gallery-label').textContent = data.label;
+
+  // Rebuild the grid
+  const grid = content.querySelector('.gallery-grid');
+  grid.innerHTML = data.images.map(src =>
+    `<div class="gallery-item" style="aspect-ratio:${data.aspect}">
+      <img src="${src}" loading="lazy" alt="Portfolio image by Enough Editor">
+    </div>`
+  ).join('');
+
+  modal.classList.add('active');
+}
+function closeGallery() {
+  document.getElementById('galleryModal').classList.remove('active');
+}
+
+function openModal(method) {
+  currentContactMethod = method;
+  document.getElementById('contactModal').classList.add('active');
+}
+function closeModal() {
+  document.getElementById('contactModal').classList.remove('active');
+}
+
+// Direct contact — skips service selector, goes straight to channels
+function openContactDirect(service) {
+  const svc = service || 'Your Service';
+  const email = "enougheditor31@gmail.com";
+  const wa = "918962720522";
+  const ig = "https://www.instagram.com/enougheditor";
+  const subject = `Inquiry for ${svc} — Enough Editor`;
+  const body = `Hi Abhishek,\n\nI came across your portfolio and I'm interested in your ${svc} service.\n\nCould you please share more details about pricing and timeline?\n\nThank you!`;
+  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const waUrl = `https://wa.me/${wa}?text=${encodeURIComponent(body)}`;
+
+  // Build a mini contact sheet
+  const modal = document.getElementById('contactModal');
+  const box   = modal.querySelector('.modal-content');
+  box.innerHTML = `
+    <button class="modal-close" onclick="closeModal()" style="position:absolute;top:1rem;right:1rem;background:var(--glass);border:1px solid var(--glass-b);color:var(--muted);cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.2rem;">&#x2715;</button>
+    <h2 class="modal-title" style="margin-bottom:.3rem">${svc}</h2>
+    <p class="modal-desc" style="margin-bottom:1.5rem">Choose how you'd like to reach out:</p>
+    <div class="modal-options">
+      <a href="${gmailUrl}" target="_blank" onclick="closeModal()" class="modal-btn" style="text-decoration:none;color:inherit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:22px;height:22px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+      <a href="${waUrl}" target="_blank" onclick="closeModal()" class="modal-btn" style="text-decoration:none;color:inherit">
+        <svg viewBox="0 0 24 24" fill="currentColor" style="width:22px;height:22px;color:#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        WhatsApp
+      </a>
+      <a href="${ig}" target="_blank" onclick="closeModal()" class="modal-btn" style="text-decoration:none;color:inherit">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:22px;height:22px"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+    </div>`;
+  modal.classList.add('active');
+}
+
+let currentPillService = '';
+
+function sendContact(service) {
+  const email = "enougheditor31@gmail.com";
+  const wa = "918962720522";
+  
+  let subject = `Inquiry for ${service}`;
+  let body = `Hi Abhishek,\n\nI am interested in your ${service} service. Can we discuss further details?`;
+
+  if(currentContactMethod === 'email') {
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.open(gmailUrl, '_blank');
+  } else {
+    window.open(`https://wa.me/${wa}?text=${encodeURIComponent(body)}`, '_blank');
+  }
+  closeModal();
+}
+
+// Close modals when clicking outside
+document.getElementById('contactModal').addEventListener('click', (e) => {
+  if(e.target === document.getElementById('contactModal')) closeModal();
+});
+document.getElementById('galleryModal').addEventListener('click', (e) => {
+  if(e.target === document.getElementById('galleryModal')) closeGallery();
+});
+
+// ---- HAMBURGER NAV ----
+const hamburger = document.getElementById('hamburger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobClose = document.getElementById('mobClose');
+function closeMobileMenu(){
+  hamburger.classList.remove('open');
+  mobileMenu.classList.remove('open');
+}
+if(hamburger && mobileMenu) {
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  if(mobClose) mobClose.addEventListener('click', closeMobileMenu);
+  mobileMenu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeMobileMenu);
+  });
+}
+
+// Trigger one manual scroll calculation to set initial states
+window.dispatchEvent(new Event('scroll'));
+animateScroll();
+
+// ---- HIRE TOAST ----
+function showToast(){
+  const t = document.getElementById('hireToast');
+  if(!t) return;
+  t.classList.remove('hide');
+  t.classList.add('show');
+}
+function dismissToast(){
+  const t = document.getElementById('hireToast');
+  if(!t) return;
+  t.classList.remove('show');
+  t.classList.add('hide');
+}
+// Show after 1.5s — stays until user closes it
+setTimeout(showToast, 1500);
+
+// ---- PILL CARDS ----
+const pillData = [
+  { title:'YouTube Thumbnails', desc:'High-CTR thumbnail designs for YouTube that stop viewers mid-scroll. Bold, high-contrast, strategy-driven visuals built to maximise clicks.', tags:['YouTube','CTR Optimised','Photoshop'] },
+  { title:'Gaming Logos',       desc:'Fierce, unique gaming logos and mascots that make your channel or esports team stand out. Built for impact across all platforms.', tags:['Esports','Channel Art','Illustrator'] },
+  { title:'Short Thumbnails',   desc:'Vertical thumbnails optimised for YouTube Shorts, Instagram Reels, and TikTok — designed in 9:16 to maximise views and swipe-stops.', tags:['Shorts','Reels','9:16 Format'] },
+  { title:'Website Design',     desc:'Modern, fast, and conversion-focused websites for local businesses — bakeries, cafes, salons, jewellery stores and more.', tags:['HTML/CSS','Responsive','Figma'] },
+  { title:'Shopify Stores',     desc:'Beautiful, brand-aligned Shopify stores built for e-commerce success — jewellery, beauty, food, and retail businesses.', tags:['Shopify','E-commerce','Liquid'] },
+  { title:'Brand Identity',     desc:'Complete visual identity systems — logos, colour palettes, typography, and brand guidelines that make your business unforgettable.', tags:['Logo','Brand Kit','Style Guide'] },
+];
+
+const panel = document.getElementById('pillDetailPanel');
+const pdpTitle = document.getElementById('pdpTitle');
+const pdpDesc  = document.getElementById('pdpDesc');
+const pdpTags  = document.getElementById('pdpTags');
+
+document.querySelectorAll('.pill-card').forEach((card, i) => {
+  // Remove the inline onclick (prevents modal opening on mobile tap)
+  card.removeAttribute('onclick');
+
+  card.addEventListener('click', (e) => {
+    // If click came from pill-cta button, skip — let button's own onclick fire
+    if(e.target.classList.contains('pill-cta')) return;
+
+    const isMobile = window.innerWidth <= 600;
+    const isActive = card.classList.contains('active');
+
+    // Collapse all cards
+    document.querySelectorAll('.pill-card').forEach(c => c.classList.remove('active'));
+
+    if(!isActive){
+      card.classList.add('active');
+      if(isMobile && panel && pillData[i]){
+        currentPillService = pillData[i].title;
+        pdpTitle.textContent = pillData[i].title;
+        pdpDesc.textContent  = pillData[i].desc;
+        pdpTags.innerHTML    = pillData[i].tags.map(t=>`<span class="pdp-tag">${t}</span>`).join('');
+        panel.classList.add('open');
+        setTimeout(()=>panel.scrollIntoView({behavior:'smooth',block:'nearest'}), 300);
+      }
+    } else {
+      if(panel) panel.classList.remove('open');
+    }
+  });
+
+  // ---- Desktop hover (SHARED timer — fixes race condition) ----
+  card.addEventListener('mouseenter', () => {
+    if(window.innerWidth <= 600) return;
+    clearTimeout(sharedHoverTimer);      // cancel any pending close
+    if(!panel || !pillData[i]) return;
+    currentPillService   = pillData[i].title;
+    pdpTitle.textContent = pillData[i].title;
+    pdpDesc.textContent  = pillData[i].desc;
+    pdpTags.innerHTML    = pillData[i].tags.map(t=>`<span class="pdp-tag">${t}</span>`).join('');
+    panel.classList.add('open');         // open immediately — no delay needed
+  });
+
+  card.addEventListener('mouseleave', (e) => {
+    if(window.innerWidth <= 600) return;
+    const related = e.relatedTarget;
+    // If moving to another pill card, don't close — mouseenter of next card will update
+    if(related && related.closest && related.closest('.pill-card')) return;
+    // If moving onto the panel itself, keep it open
+    if(panel && panel.contains(related)) return;
+    // Otherwise schedule close
+    sharedHoverTimer = setTimeout(() => panel && panel.classList.remove('open'), 180);
+  });
+});
+
+// Shared timer for all pill cards
+let sharedHoverTimer = null;
+
+// Keep panel open on desktop when mousing over it
+if(panel){
+  panel.addEventListener('mouseenter', () => clearTimeout(sharedHoverTimer));
+  panel.addEventListener('mouseleave', (e) => {
+    if(window.innerWidth <= 600) return;
+    const related = e.relatedTarget;
+    if(related && related.closest && related.closest('.pill-card')) return;
+    sharedHoverTimer = setTimeout(() => panel.classList.remove('open'), 180);
+  });
+}
+
+// Hide detail panel on desktop resize
+window.addEventListener('resize', ()=>{
+  if(window.innerWidth > 600 && panel) panel.classList.remove('open');
+});
+
+// ================================================================
+// LIGHTBOX VIEWER
+// ================================================================
+(function(){
+  // Collect all p-card images (thumbnails, logos, shorts)
+  // We rebuild the list every time so it's always up to date
+  let lbImages = []; // [{src, alt, label}]
+  let lbIndex  = 0;
+  let touchStartX = 0;
+
+  // Build image list from all sections
+  function buildImageList(){
+    lbImages = [];
+    document.querySelectorAll('.work-slide .p-card, .logo-slide .p-card, .short-slide .p-card').forEach(card => {
+      const img   = card.querySelector('img');
+      const type  = card.querySelector('.p-card-type');
+      if(!img || !img.src) return;
+      // Skip 'View All' card (no overlay type usually means it's the CTA card)
+      if(card.querySelector('.p-card-title') && card.querySelector('.p-card-title').textContent.trim() === '') return;
+      lbImages.push({
+        src:   img.src,
+        alt:   img.alt || 'Portfolio Image',
+        label: type ? type.textContent.trim() : 'Portfolio'
+      });
+    });
+  }
+
+  // Open lightbox
+  function openLightbox(idx){
+    buildImageList();
+    if(!lbImages.length) return;
+    lbIndex = Math.max(0, Math.min(idx, lbImages.length - 1));
+    setLightboxImage(lbIndex, false);
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  // Close lightbox
+  function closeLightbox(){
+    document.getElementById('lightbox').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // Show image at index with optional switching animation
+  function setLightboxImage(idx, animate){
+    const item = lbImages[idx];
+    if(!item) return;
+    const wrap = document.getElementById('lbImgWrap');
+    const img  = document.getElementById('lbMainImg');
+    const counter = document.getElementById('lbCounter');
+    const label   = document.getElementById('lbLabel');
+    counter.textContent = (idx + 1) + ' / ' + lbImages.length;
+    label.textContent   = item.label;
+    if(animate){
+      wrap.classList.add('switching');
+      setTimeout(()=>{
+        img.src = item.src;
+        img.alt = item.alt;
+        wrap.classList.remove('switching');
+      }, 180);
+    } else {
+      img.src = item.src;
+      img.alt = item.alt;
+    }
+  }
+
+  // Navigate
+  function lbNext(){ lbIndex = (lbIndex + 1) % lbImages.length; setLightboxImage(lbIndex, true); }
+  function lbPrev(){ lbIndex = (lbIndex - 1 + lbImages.length) % lbImages.length; setLightboxImage(lbIndex, true); }
+
+  // Attach click to all p-cards (excluding the 'View All' card)
+  function attachCardClicks(){
+    buildImageList();
+    let globalIdx = 0;
+    document.querySelectorAll('.work-slide .p-card, .logo-slide .p-card, .short-slide .p-card').forEach(card => {
+      const img = card.querySelector('img');
+      if(!img || !img.src) return;
+      // Skip view-all card (it has onclick=openGallery)
+      if(card.getAttribute('onclick') && card.getAttribute('onclick').includes('openGallery')) return;
+      const capturedIdx = globalIdx;
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', (e) => {
+        // Don't intercept if clicking the overlay buttons (if any)
+        if(e.target.tagName === 'BUTTON' || e.target.closest('button')) return;
+        openLightbox(capturedIdx);
+      });
+      globalIdx++;
+    });
+  }
+
+  // Keyboard nav
+  document.addEventListener('keydown', (e) => {
+    const lb = document.getElementById('lightbox');
+    if(!lb.classList.contains('open')) return;
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown') lbNext();
+    if(e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   lbPrev();
+    if(e.key === 'Escape') closeLightbox();
+  });
+
+  // Touch swipe
+  document.getElementById('lightbox').addEventListener('touchstart', e => {
+    touchStartX = e.touches[0].clientX;
+  }, {passive:true});
+  document.getElementById('lightbox').addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if(Math.abs(dx) > 50){ dx < 0 ? lbNext() : lbPrev(); }
+  }, {passive:true});
+
+  // Close on backdrop click
+  document.getElementById('lightbox').addEventListener('click', (e) => {
+    if(e.target === document.getElementById('lightbox')) closeLightbox();
+  });
+
+  // Expose globally
+  window.openLightbox  = openLightbox;
+  window.closeLightbox = closeLightbox;
+  window.lbNext        = lbNext;
+  window.lbPrev        = lbPrev;
+
+  // Init after page ready
+  attachCardClicks();
+})();
+</script>
+</body>
+</html>
+

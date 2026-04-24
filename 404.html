@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 - Page Not Found | Enough Editor</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04040a;--surface:#0c0c16;--accent:#ff7300;--text:#f5f5f7;--muted:#8b8b99;}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html,body{height:100%;overflow:hidden;}
+body{
+  background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  position:relative;
+}
+body::after{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.028;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.grid-bg{
+  position:fixed;inset:0;z-index:0;
+  background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0));
+  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,1),rgba(0,0,0,0));
+}
+
+.container{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;align-items:center;text-align:center;
+  padding:2rem;
+}
+
+/* Big 404 number */
+.error-num{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(5rem,18vw,12rem);
+  line-height:1;letter-spacing:.06em;
+  color:var(--accent);
+  text-shadow:0 0 60px rgba(255,115,0,.4), 0 0 120px rgba(255,115,0,.15);
+  animation:pulse404 3s ease-in-out infinite;
+}
+@keyframes pulse404{
+  0%,100%{text-shadow:0 0 60px rgba(255,115,0,.4),0 0 120px rgba(255,115,0,.15)}
+  50%{text-shadow:0 0 80px rgba(255,115,0,.7),0 0 160px rgba(255,115,0,.3)}
+}
+
+/* Floating character */
+.char-404{
+  width:clamp(160px,30vw,250px);
+  animation:floatChar 3s ease-in-out infinite;
+  filter:drop-shadow(0 20px 30px rgba(0,0,0,0.5));
+  margin:0.5rem 0;
+}
+@keyframes floatChar{
+  0%,100%{transform:translateY(0) rotate(0deg);}
+  50%{transform:translateY(-20px) rotate(2deg);}
+}
+
+h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(2rem,8vw,4.5rem);
+  letter-spacing:.04em;color:var(--text);
+  margin-top:0.5rem;line-height:1;
+}
+p{
+  font-family:'Syne',sans-serif;font-size:1rem;
+  color:var(--muted);margin:1rem 0 2rem;
+  line-height:1.7;max-width:380px;
+}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  background:var(--accent);color:#fff;
+  font-family:'Bebas Neue',sans-serif;font-size:1.4rem;
+  padding:.8rem 2.4rem;border-radius:100px;
+  text-decoration:none;letter-spacing:.06em;
+  transition:all .3s;
+  box-shadow:0 4px 30px rgba(255,115,0,.35);
+}
+.btn:hover{
+  background:#fff;color:var(--bg);
+  transform:translateY(-4px) scale(1.04);
+  box-shadow:0 14px 40px rgba(255,115,0,.4);
+}
+
+@media(max-width:600px){
+  .error-num{font-size:clamp(4.5rem,28vw,8rem);}
+  .char-404{width:clamp(130px,55vw,200px);}
+  h1{font-size:clamp(1.6rem,10vw,3rem);}
+  p{font-size:.9rem;padding:0 .5rem;}
+  .container{padding:1.5rem 1rem;}
+  .btn{font-size:1.2rem;padding:.7rem 1.8rem;}
+}
+</style>
+</head>
+<body>
+  <div class="grid-bg"></div>
+
+  <div class="container">
+    <div class="error-num">404</div>
+    <img src="assets/characters/404_char.png" alt="404 Not Found character" class="char-404">
+    <h1>PAGE NOT FOUND</h1>
+    <p>The page you're looking for has floated off into space.</p>
+    <a href="index.html" class="btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="width:18px;height:18px;">
+        <path d="M19 12H5M12 19l-7-7 7-7"/>
+      </svg>
+      Return Home
+    </a>
+  </div>
+</body>
+</html>
