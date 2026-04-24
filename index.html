@@ -1605,10 +1605,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
           <div class="browser-url">www.sweetbakery.com</div>
         </div>
         <div class="w-screen">
-          <div class="w-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-            <span style="font-family:'Syne',sans-serif;font-size:.65rem;letter-spacing:.08em;color:var(--muted)">screenshots/bakery.jpg</span>
-          </div>
+          <img src="assets/screenshots/bakery.jpg" alt="Bakery Website Mockup" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
         </div>
       </div>
       <div class="w-overlay">
@@ -1622,10 +1619,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
           <div class="browser-url">www.cafemocha.com</div>
         </div>
         <div class="w-screen">
-          <div class="w-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-            <span style="font-family:'Syne',sans-serif;font-size:.65rem;letter-spacing:.08em;color:var(--muted)">screenshots/cafe.jpg</span>
-          </div>
+          <img src="assets/screenshots/cafe.jpg" alt="Cafe Website Mockup" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
         </div>
       </div>
       <div class="w-overlay">
@@ -1639,10 +1633,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
           <div class="browser-url">www.glamoursalon.com</div>
         </div>
         <div class="w-screen">
-          <div class="w-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-            <span style="font-family:'Syne',sans-serif;font-size:.65rem;letter-spacing:.08em;color:var(--muted)">screenshots/salon.jpg</span>
-          </div>
+          <img src="assets/screenshots/salon.jpg" alt="Salon Website Mockup" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
         </div>
       </div>
       <div class="w-overlay">
@@ -1656,10 +1647,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
           <div class="browser-url">luxejewels.myshopify.com</div>
         </div>
         <div class="w-screen">
-          <div class="w-placeholder">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.15)" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
-            <span style="font-family:'Syne',sans-serif;font-size:.65rem;letter-spacing:.08em;color:var(--muted)">screenshots/jewellery.jpg</span>
-          </div>
+          <img src="assets/screenshots/jewellery.jpg" alt="Jewellery Website Mockup" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
         </div>
       </div>
       <div class="w-overlay">
@@ -1912,6 +1900,9 @@ scrollToggles.forEach(toggle => {
   toggle.addEventListener('change', (e) => {
     const targetId = e.target.getAttribute('data-target');
     const wrapper = document.getElementById(targetId);
+    const stickyContainer = wrapper.querySelector('.sticky-container');
+    const stickyTopBefore = stickyContainer ? stickyContainer.getBoundingClientRect().top : 0;
+
     if(e.target.checked) {
        wrapper.classList.remove('scroll-off');
        const rect = wrapper.getBoundingClientRect();
@@ -1921,19 +1912,23 @@ scrollToggles.forEach(toggle => {
        if(sData) {
          sData.current = Math.max(0, Math.min(1, progress));
          // Clear any native scroll built up while off
-         const stickyContainer = wrapper.querySelector('.sticky-container');
          if (stickyContainer) stickyContainer.scrollLeft = 0;
        }
     } else {
        wrapper.classList.add('scroll-off');
        // Reset the inline transform so CSS native scrolling works seamlessly
        const sData = scrollData.find(d => d.wrapper.id === targetId);
-       if(sData) sData.track.style.transform = `translate3d(0, 0, 0)`;
+       if(sData && sData.track) sData.track.style.transform = `translate3d(0, 0, 0)`;
     }
     
-    // Fix jump bug: when height drastically changes, keep user locked to the section
+    // Fix jump bug: seamlessly maintain scroll position relative to the container
     setTimeout(() => {
-       wrapper.scrollIntoView({ behavior: 'auto', block: 'start' });
+       if (stickyContainer) {
+           const stickyTopAfter = stickyContainer.getBoundingClientRect().top;
+           window.scrollBy({ top: stickyTopAfter - stickyTopBefore, behavior: 'instant' });
+       } else {
+           wrapper.scrollIntoView({ behavior: 'instant', block: 'start' });
+       }
     }, 10);
   });
 });
