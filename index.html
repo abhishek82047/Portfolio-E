@@ -274,10 +274,11 @@ section{padding:8rem 3.5rem;position:relative}
 }
 .profile-3d-wrap:hover{transform:rotateY(0deg) rotateX(0deg)}
 .profile-img-box{
-  position:relative;border-radius:16px;overflow:hidden;
-  aspect-ratio:4/5;background:var(--surface);
-  border:1px solid var(--glass-b);
-  box-shadow:30px 30px 80px rgba(0,0,0,.6),-2px -2px 0 1px rgba(255,58,31,.2);
+  position:relative;border-radius:50%;overflow:hidden;
+  aspect-ratio:1/1;background:var(--surface);
+  border:3px solid var(--accent);
+  box-shadow:0 0 0 6px rgba(255,115,0,.15), 30px 30px 80px rgba(0,0,0,.6),-2px -2px 0 1px rgba(255,58,31,.2);
+  max-width:380px;
 }
 .profile-img-box img{width:100%;height:100%;object-fit:cover;display:block}
 
@@ -1218,7 +1219,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
 <div class="hire-toast" id="hireToast">
   <div class="toast-avatar-wrap">
     <div class="toast-avatar">
-      <img src="assets/avatar.png" alt="Abhishek Rajput" onerror="this.style.display='none';this.parentElement.innerHTML='EE'">
+      <img src="assets/Profile Pic/favicon.png" alt="Abhishek Rajput" onerror="this.style.display='none';this.parentElement.innerHTML='EE'">
     </div>
     <span class="online-dot"></span>
   </div>
@@ -1311,7 +1312,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
 <div id="about">
   <div class="about-visual reveal-left">
     <div class="profile-3d-wrap" id="profile3d">
-      <div class="profile-img-box"><img src="assets/Profile Pic/profile-pic.png" alt="Abhishek Rajput"></div>
+      <div class="profile-img-box"><img src="assets/Profile Pic/favicon.png" alt="Abhishek Rajput - Enough Editor Logo"></div>
       <div class="badge-float b2"><span class="b-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:1em;height:1em;vertical-align:middle"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/></svg></span><span class="b-txt">Available for hire</span></div>
     </div>
   </div>
