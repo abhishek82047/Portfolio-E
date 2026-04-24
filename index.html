@@ -2098,6 +2098,98 @@ if(hamburger && mobileMenu) {
 window.dispatchEvent(new Event('scroll'));
 animateScroll();
 
+// ---- HERO CHAR FLY TO ABOUT LOGO ----
+(function(){
+  const char = document.querySelector('.hero-char');
+  const target = document.querySelector('.profile-img-box');
+  const about = document.getElementById('about');
+  if(!char || !target || !about) return;
+
+  let sRect, tRect, endScroll;
+
+  function calc(){
+    if(window.innerWidth <= 600) return;
+    
+    // Temporarily reset char to get natural base values
+    char.style.cssText = '';
+    
+    const cR = char.getBoundingClientRect();
+    const tR = target.getBoundingClientRect();
+    
+    sRect = {
+      top: cR.top + window.scrollY,
+      left: cR.left + window.scrollX,
+      width: cR.width,
+      height: cR.height
+    };
+    tRect = {
+      top: tR.top + window.scrollY,
+      left: tR.left + window.scrollX,
+      width: tR.width,
+      height: tR.height
+    };
+    
+    // Animation finishes when target is 40% down the screen
+    endScroll = tRect.top - window.innerHeight * 0.4;
+  }
+
+  window.addEventListener('load', calc);
+  setTimeout(calc, 1000);
+  window.addEventListener('resize', calc);
+
+  window.addEventListener('scroll', () => {
+    if(window.innerWidth <= 600 || !sRect) return;
+    
+    const sy = window.scrollY;
+    const startScroll = 50; // Start animating shortly after scroll begins
+    
+    if(sy < startScroll) {
+      char.style.cssText = ''; // Reset to normal CSS
+      char.classList.add('float-char');
+      return;
+    }
+    
+    let p = (sy - startScroll) / (endScroll - startScroll);
+    p = Math.max(0, Math.min(1, p));
+    
+    if(p > 0 && p < 1) {
+      char.classList.remove('float-char'); // Disable CSS animation while travelling
+      char.style.position = 'fixed';
+      char.style.margin = '0';
+      char.style.transition = 'none';
+      char.style.zIndex = '9999';
+      
+      // Ease In Out
+      const ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+      
+      const sCenterY = sRect.top + sRect.height / 2;
+      const sCenterX = sRect.left + sRect.width / 2;
+      const tCenterY = tRect.top + tRect.height / 2;
+      const tCenterX = tRect.left + tRect.width / 2;
+
+      // Current center point
+      const cCenterY = sCenterY + (tCenterY - sCenterY) * ease - sy;
+      const cCenterX = sCenterX + (tCenterX - sCenterX) * ease;
+      
+      // Current dimensions
+      const cWidth = sRect.width + (tRect.width - sRect.width) * ease;
+      const cHeight = sRect.height * (cWidth / sRect.width); 
+      
+      char.style.top = (cCenterY - cHeight / 2) + 'px';
+      char.style.left = (cCenterX - cWidth / 2) + 'px';
+      char.style.right = 'auto';
+      char.style.width = cWidth + 'px';
+      
+      // Spin and fade out as it reaches the logo
+      char.style.transform = \`rotate(\${ease * 360}deg)\`;
+      char.style.opacity = 1 - Math.pow(ease, 4); // Fast fade out at the very end
+      
+    } else if (p === 1) {
+      char.style.opacity = '0'; // Fully hidden when reached
+    }
+  });
+})();
+
 // ---- HIRE TOAST ----
 function showToast(){
   const t = document.getElementById('hireToast');
