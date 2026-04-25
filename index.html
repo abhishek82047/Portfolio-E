@@ -2144,7 +2144,11 @@ function openContactDirect(service) {
   const ig = "https://www.instagram.com/enougheditor";
   const subject = `Inquiry for ${svc} — Enough Editor`;
   const body = `Hi Abhishek,\n\nI came across your portfolio and I'm interested in your ${svc} service.\n\nCould you please share more details about pricing and timeline?\n\nThank you!`;
-  const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+  const gmailUrl = isMobile 
+    ? `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    : `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  const mailTarget = isMobile ? '_self' : '_blank';
   const waUrl = `https://wa.me/${wa}?text=${encodeURIComponent(body)}`;
 
   // Build a mini contact sheet
@@ -2155,7 +2159,7 @@ function openContactDirect(service) {
     <h2 class="modal-title" style="margin-bottom:.3rem">${svc}</h2>
     <p class="modal-desc" style="margin-bottom:1.5rem">Choose how you'd like to reach out:</p>
     <div class="modal-options">
-      <a href="${gmailUrl}" target="_blank" onclick="closeModal()" class="modal-btn" style="text-decoration:none;color:inherit">
+      <a href="${gmailUrl}" target="${mailTarget}" onclick="closeModal()" class="modal-btn" style="text-decoration:none;color:inherit">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:22px;height:22px"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Email
       </a>
@@ -2186,8 +2190,13 @@ function sendContact(service) {
   let body = `Hi Abhishek,\n\nI am interested in your ${service} service. Can we discuss further details?`;
 
   if(currentContactMethod === 'email') {
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    window.open(gmailUrl, '_blank');
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobile) {
+      window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    } else {
+      const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.open(gmailUrl, '_blank');
+    }
   } else if (currentContactMethod === 'wa') {
     window.open(`https://wa.me/${wa}?text=${encodeURIComponent(body)}`, '_blank');
   }
