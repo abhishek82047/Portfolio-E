@@ -233,7 +233,7 @@ nav.scrolled{
   z-index:5;
   pointer-events:none;
 }
-.scroll-line{width:1px;height:50px;background:linear-gradient(var(--accent),transparent);animation:scrollLine 2s ease-in-out infinite}
+.scroll-line{width:2px;height:50px;background:linear-gradient(var(--accent),transparent);animation:scrollLine 1.5s ease-in-out infinite;box-shadow:0 0 8px rgba(255,115,0,0.6);}
 @keyframes scrollLine{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform:scaleY(1);transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 
@@ -393,10 +393,33 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
 .h-scroll-wrapper.scroll-off .h-scroll-track::-webkit-scrollbar-track { background: var(--surface); }
 .h-scroll-wrapper.scroll-off .h-scroll-track::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
 
+.mobile-swipe-indicator { display: none; }
 @media(max-width: 900px){
   .sticky-header { padding: 0 1.5rem; flex-direction: column; align-items: flex-start; }
   .h-scroll-track[data-dir="forward"], 
   .h-scroll-track[data-dir="reverse"] { padding: 0 1.5rem; gap: 1.5rem; }
+  
+  .mobile-swipe-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: 'Syne', sans-serif;
+    font-size: 0.65rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-top: 1.2rem;
+    width: 140px;
+    align-self: center;
+  }
+  .mobile-swipe-indicator .scroll-line {
+    height: 35px;
+  }
+  .h-scroll-wrapper.scroll-off .mobile-swipe-indicator {
+    display: none !important;
+  }
 }
 
 .work-slide { width: 30rem; flex-shrink: 0; }
@@ -484,17 +507,35 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
   user-select:none;pointer-events:none;
 }
 .services-grid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;
+  position:relative;display:flex;flex-direction:column;gap:4rem;padding:2rem 0;
+}
+.services-grid::before{
+  content:'';position:absolute;top:0;bottom:0;left:50%;width:2px;
+  background:linear-gradient(to bottom,transparent,rgba(255,115,0,.25) 15%,rgba(255,115,0,.25) 85%,transparent);
+  transform:translateX(-50%);z-index:0;
 }
 .s-card{
   background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%);
   border:1px solid rgba(255,255,255,.08);
   border-top-color:rgba(255,255,255,.14);
   border-radius:20px;padding:1.8rem 1.8rem 1.6rem;
-  transition:all .35s cubic-bezier(.2,.8,.3,1);
-  position:relative;overflow:hidden;cursor:default;
+  transition:border-color .35s, box-shadow .35s, transform .2s cubic-bezier(.2,.8,.3,1);
+  position:relative;overflow:visible;cursor:pointer;
   backdrop-filter:blur(8px);
+  width:calc(50% - 3rem);margin:0;z-index:1;
 }
+.s-card:nth-child(odd){align-self:flex-start;text-align:right;}
+.s-card:nth-child(even){align-self:flex-end;text-align:left;}
+.s-card:nth-child(odd) .s-tags{justify-content:flex-end;}
+.s-card:nth-child(odd) .s-icon{margin-left:auto;margin-right:0;}
+.s-card:nth-child(odd)::before{right:auto;left:1.2rem;}
+.timeline-dot{position:absolute;top:50%;width:16px;height:16px;background:var(--accent);border-radius:50%;z-index:10;opacity:0;box-shadow:0 0 0 0 rgba(255,115,0,0.6);}
+.s-card:nth-child(odd) .timeline-dot{right:-3rem;transform:translate(50%,-50%) scale(0);}
+.s-card:nth-child(even) .timeline-dot{left:-3rem;transform:translate(-50%,-50%) scale(0);}
+.s-card.active .timeline-dot{opacity:1;animation:pulseDot 2s infinite 0.6s;}
+.s-card.active:nth-child(odd) .timeline-dot{transform:translate(50%,-50%) scale(1);transition:opacity .5s .4s,transform .5s .4s cubic-bezier(.2,.8,.3,1);}
+.s-card.active:nth-child(even) .timeline-dot{transform:translate(-50%,-50%) scale(1);transition:opacity .5s .4s,transform .5s .4s cubic-bezier(.2,.8,.3,1);}
+@keyframes pulseDot{0%{box-shadow:0 0 0 0 rgba(255,115,0,0.6)}70%{box-shadow:0 0 0 15px rgba(255,115,0,0)}100%{box-shadow:0 0 0 0 rgba(255,115,0,0)}}
 /* Number watermark */
 .s-card::before{
   content:attr(data-num);
@@ -508,17 +549,18 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
 .s-card::after{
   content:'';
   position:absolute;inset:0;border-radius:20px;
-  background:radial-gradient(circle at 30% 30%,rgba(255,115,0,.1),transparent 65%);
+  background:radial-gradient(400px circle at var(--x, 50%) var(--y, 50%), rgba(255,115,0,.15), transparent 60%);
   opacity:0;transition:opacity .35s;
+  pointer-events:none;
 }
 .s-card:hover{
-  border-color:rgba(255,115,0,.3);
-  border-top-color:rgba(255,255,255,.2);
-  transform:translateY(-8px) scale(1.01);
+  border-color:rgba(255,115,0,.4);
+  border-top-color:rgba(255,255,255,.3);
+  transform:translateY(-8px) scale(1.02);
   box-shadow:
-    0 24px 60px rgba(0,0,0,.4),
-    0 0 0 1px rgba(255,115,0,.15),
-    inset 0 1px 0 rgba(255,255,255,.1);
+    0 30px 60px rgba(0,0,0,.5),
+    0 0 0 1px rgba(255,115,0,.2),
+    inset 0 1px 0 rgba(255,255,255,.15);
 }
 .s-card:hover::after{opacity:1}
 .s-card:hover::before{color:rgba(255,115,0,.06)}
@@ -641,7 +683,7 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
 .contact-item:hover{color:var(--text)}
 .contact-item svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:2}
 
-footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
+footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;}
 .footer-logo{font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.12em;color:var(--muted);}
 .footer-logo span{color:var(--accent)}
 .footer-copy{font-size:.75rem;color:var(--muted);font-family:'Syne',sans-serif;letter-spacing:.06em}
@@ -683,8 +725,19 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
 .mobile-menu.open{display:flex;opacity:1}
 .mobile-menu a{
   font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:.1em;
-  color:var(--text);text-decoration:none;transition:color .2s;
+  color:var(--text);text-decoration:none;
+  transform: translateY(30px); opacity: 0;
+  transition: transform 0.5s cubic-bezier(0.2,0.8,0.3,1), opacity 0.5s, color 0.2s;
 }
+.mobile-menu.open a {
+  transform: translateY(0); opacity: 1;
+}
+.mobile-menu.open a:nth-of-type(1) { transition-delay: 0.1s; }
+.mobile-menu.open a:nth-of-type(2) { transition-delay: 0.15s; }
+.mobile-menu.open a:nth-of-type(3) { transition-delay: 0.2s; }
+.mobile-menu.open a:nth-of-type(4) { transition-delay: 0.25s; }
+.mobile-menu.open a:nth-of-type(5) { transition-delay: 0.3s; }
+.mobile-menu.open a:nth-of-type(6) { transition-delay: 0.35s; }
 .mobile-menu a:hover,.mobile-menu a:active{color:var(--accent)}
 .mobile-menu .mob-hire{
   background:var(--accent);color:#fff!important;padding:.6rem 2.5rem;
@@ -711,12 +764,43 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
   section{padding:5rem 1.5rem}
   #hero{padding:6rem 1.5rem 3rem;}
   #about{grid-template-columns:1fr;gap:3rem}
-  .services-grid{grid-template-columns:1fr}
+  .profile-img-box{max-width:240px;margin:0 auto}
+  .about-text{text-align:center;display:flex;flex-direction:column;align-items:center}
+  .skills-grid{justify-content:center}
+  #services, #websites { overflow: visible !important; }
+  .services-inner-wrap .section-label, .services-inner-wrap .section-title {
+    margin-left: -1.5rem; margin-right: -1.5rem;
+    padding-left: 1.5rem; padding-right: 1.5rem;
+    width: auto;
+  }
+  .services-inner-wrap .section-label { position: sticky; z-index: 20; background: var(--surface); top: 55px; padding-top: 1rem; margin-bottom: 0; box-shadow: none; }
+  .services-inner-wrap .section-title { position: sticky; z-index: 20; background: var(--surface); top: 85px; padding-bottom: 1rem; }
+  .services-grid{gap:2rem;padding:1.5rem 0;}
+  .services-grid::before{left:10px;transform:none;}
+  .s-card{width:calc(100% - 30px);padding:1.2rem;align-self:flex-end !important;position:sticky;text-align:left !important;}
+  .s-card:nth-child(1){top:135px;z-index:1}
+  .s-card:nth-child(2){top:150px;z-index:2}
+  .s-card:nth-child(3){top:165px;z-index:3}
+  .s-card:nth-child(4){top:180px;z-index:4}
+  .s-card:nth-child(5){top:195px;z-index:5}
+  .s-card:nth-child(6){top:210px;z-index:6}
+  .s-card:nth-child(odd) .s-tags{justify-content:flex-start;}
+  .s-card:nth-child(odd) .s-icon{margin-left:0;margin-right:auto;}
+  .s-card:nth-child(odd)::before{right:0.5rem;left:auto;}
+  .s-card:nth-child(odd) .timeline-dot, .s-card:nth-child(even) .timeline-dot{left:-19px;right:auto;transform:translate(-50%,-50%) scale(0);}
+  .s-card.active:nth-child(odd) .timeline-dot, .s-card.active:nth-child(even) .timeline-dot{transform:translate(-50%,-50%) scale(1);}
+  .s-title{font-size:.9rem;margin-bottom:.4rem;}
+  .s-desc{font-size:.7rem;line-height:1.4;margin-bottom:.8rem;}
+  .s-icon{width:28px;height:28px;margin-bottom:.6rem;border-radius:8px;}
+  .s-icon svg{width:14px;height:14px;}
+  .s-tag{font-size:.45rem;padding:.2rem .4rem;}
+  .s-tags{gap:.3rem;flex-wrap:wrap;}
+  .s-card::before{font-size:2.5rem;top:-0.2rem;}
   .websites-grid{grid-template-columns:1fr}
   .hero-float-cards{flex-wrap:wrap;justify-content:center;gap:.8rem}
   .float-card{min-width:120px;padding:1rem 1.2rem}
   #hire{padding:6rem 1.5rem}
-  footer{padding:2rem 1.5rem;flex-direction:column;align-items:center;text-align:center}
+  footer{padding:2rem 1.5rem 6rem;flex-direction:column;align-items:center;text-align:center}
   .hero-char{width:180px;right:0;top:12%;opacity:0.55;}
   .hire-char{display:none}
   .scroll-toggle{scale:.85;transform-origin:right}
@@ -747,8 +831,26 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
 
   .about-stats{grid-template-columns:1fr 1fr}
   .s-card{padding:1.6rem}
-  .websites-grid{grid-template-columns:1fr}
-  .w-card{aspect-ratio:16/9}
+  #services{ z-index: 4; overflow: visible !important; }
+  .pills-section { z-index: 5; }
+  #websites{ z-index: 6; overflow:visible !important;}
+  #hire { z-index: 7; }
+  
+  #websites .section-label, #websites .section-title { 
+    position: sticky; z-index: 10; background: var(--bg); 
+    margin-left: -1.5rem; margin-right: -1.5rem;
+    padding-left: 1.5rem; padding-right: 1.5rem;
+    width: auto;
+  }
+  #websites .section-label { top: 55px; padding-top: 1rem; margin-bottom: 0; box-shadow: none; }
+  #websites .section-title { top: 85px; padding-bottom: 1rem; }
+  .websites-grid{grid-template-columns:1fr; gap:1.5rem;}
+  .w-card{aspect-ratio:16/9; position:sticky;}
+  .w-card:nth-child(1){top:135px; z-index:1}
+  .w-card:nth-child(2){top:160px; z-index:2}
+  .w-card:nth-child(3){top:185px; z-index:3}
+  .w-card:nth-child(4){top:210px; z-index:4}
+  .w-card:nth-child(5){top:235px; z-index:5}
 
   #hire{padding:4rem 1.2rem}
   .hire-title{font-size:clamp(2.5rem,13vw,5rem)}
@@ -757,7 +859,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
   .hire-contact-row{gap:1.2rem}
   .contact-item{font-size:.7rem}
 
-  footer{padding:1.5rem 1.2rem;gap:.8rem}
+  footer{padding:1.5rem 1.2rem 6rem;gap:.8rem}
   .footer-social{gap:.8rem}
 
   /* Modal full screen */
@@ -1349,6 +1451,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
           <span class="slider round"></span>
         </label>
       </div>
+      <div class="mobile-swipe-indicator reveal delay-2">Scroll<div class="scroll-line"></div></div>
     </div>
     <div class="h-scroll-track" data-dir="forward">
       <div class="work-slide"><div class="p-card"><img src="assets/Thumbnail/1. kaur is live.jpg" alt="High-converting YouTube thumbnail design by Enough Editor"><div class="p-card-overlay"><div class="p-card-type">Thumbnail</div><div class="p-card-title">YouTube Thumbnail</div></div></div></div>
@@ -1389,6 +1492,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
           <span class="slider round"></span>
         </label>
       </div>
+      <div class="mobile-swipe-indicator reveal delay-2">Scroll<div class="scroll-line"></div></div>
     </div>
     <!-- DOM order reversed for "Left to Right" entrance effect -->
     <div class="h-scroll-track" data-dir="reverse">
@@ -1468,6 +1572,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
   <div class="services-grid">
 
     <div class="s-card reveal delay-1" data-num="01">
+      <div class="timeline-dot"></div>
       <div class="s-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
       <div class="s-title">Thumbnail Design</div>
       <p class="s-desc">Eye-catching YouTube thumbnails that boost your CTR and stop viewers mid-scroll. Bold, high-contrast, strategy-driven.</p>
@@ -1475,6 +1580,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
     </div>
 
     <div class="s-card reveal delay-2" data-num="02">
+      <div class="timeline-dot"></div>
       <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
       <div class="s-title">Gaming Logo Design</div>
       <p class="s-desc">Fierce, unique gaming logos and mascots that make your channel or team stand out in the competitive gaming space.</p>
@@ -1482,6 +1588,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
     </div>
 
     <div class="s-card reveal delay-3" data-num="03">
+      <div class="timeline-dot"></div>
       <div class="s-icon"><svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M9 12h6M12 9v6"/></svg></div>
       <div class="s-title">Short / Reel Thumbnails</div>
       <p class="s-desc">Vertical thumbnails optimised for YouTube Shorts, Instagram Reels, and TikTok — designed to maximise views.</p>
@@ -1489,6 +1596,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
     </div>
 
     <div class="s-card reveal delay-1" data-num="04">
+      <div class="timeline-dot"></div>
       <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
       <div class="s-title">Website Design</div>
       <p class="s-desc">Modern, fast, and conversion-focused websites for local businesses — bakeries, cafes, salons, jewellery stores and more.</p>
@@ -1496,6 +1604,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
     </div>
 
     <div class="s-card reveal delay-2" data-num="05">
+      <div class="timeline-dot"></div>
       <div class="s-icon"><svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg></div>
       <div class="s-title">Shopify Store Design</div>
       <p class="s-desc">Beautiful, brand-aligned Shopify stores built for e-commerce success — jewellery, beauty, food, and retail businesses.</p>
@@ -1503,6 +1612,7 @@ footer{padding:2.5rem 3.5rem;border-top:1px solid var(--glass-b);display:flex;al
     </div>
 
     <div class="s-card reveal delay-3" data-num="06">
+      <div class="timeline-dot"></div>
       <div class="s-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
       <div class="s-title">Brand Identity</div>
       <p class="s-desc">Complete visual identity systems — logos, colour palettes, typography, and brand guidelines that make your business unforgettable.</p>
@@ -1766,11 +1876,17 @@ if(wrap){
 }
 
 // ---- 3D TILT on PORTFOLIO CARDS ----
-document.querySelectorAll('.p-card,.w-card').forEach(card=>{
+document.querySelectorAll('.p-card,.w-card,.s-card').forEach(card=>{
   card.addEventListener('mousemove',e=>{
     const r=card.getBoundingClientRect();
-    const x=((e.clientX-r.left)/r.width-.5)*18;
-    const y=((e.clientY-r.top)/r.height-.5)*-18;
+    const mx=e.clientX-r.left;
+    const my=e.clientY-r.top;
+    if(card.classList.contains('s-card')){
+      card.style.setProperty('--x', mx+'px');
+      card.style.setProperty('--y', my+'px');
+    }
+    const x=(mx/r.width-.5)*18;
+    const y=(my/r.height-.5)*-18;
     card.style.transform=`translateY(-12px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
   });
   card.addEventListener('mouseleave',()=>{
