@@ -523,12 +523,17 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
   transform:translateX(-50%);z-index:0;
 }
 .timeline-progress{
-  content:'';position:absolute;top:0;left:50%;width:2px;
-  background:linear-gradient(to bottom,rgba(255,115,0,.8),rgba(255,115,0,1));
+  content:'';position:absolute;top:0;left:50%;width:3px;
+  background:linear-gradient(to bottom,rgba(255,115,0,.5),#ff7300,#ffaa00);
   transform:translateX(-50%);z-index:1;
   height:0%;
-  box-shadow: 0 0 10px rgba(255,115,0,0.8);
-  transition: height 0.1s ease-out;
+  box-shadow:0 0 15px rgba(255,115,0,.9),0 0 30px rgba(255,115,0,.6),0 0 45px rgba(255,115,0,.4);
+  transition:height 0.1s ease-out;
+}
+.timeline-progress::after{
+  content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:12px;height:35px;background:#ffaa00;border-radius:50%;
+  filter:blur(6px);box-shadow:0 0 20px #ffaa00,0 0 40px #ff7300;
 }
 .s-card{
   background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%);
