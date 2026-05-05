@@ -515,29 +515,46 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
   user-select:none;pointer-events:none;
 }
 .services-grid{
-  position:relative;display:grid;grid-template-columns:repeat(3, 1fr);gap:2.5rem;padding:2rem 0;
+  position:relative;display:flex;flex-direction:column;gap:4rem;padding:2rem 0;
 }
 .services-grid::before{
-  display:none;content:'';position:absolute;top:0;bottom:0;left:50%;width:2px;
-  background:linear-gradient(to bottom,transparent,rgba(255,115,0,.25) 15%,rgba(255,115,0,.25) 85%,transparent);
+  content:'';position:absolute;top:0;bottom:0;left:50%;width:2px;
+  background:linear-gradient(to bottom,transparent,rgba(255,115,0,.15) 15%,rgba(255,115,0,.15) 85%,transparent);
   transform:translateX(-50%);z-index:0;
+}
+.timeline-progress{
+  content:'';position:absolute;top:0;left:50%;width:2px;
+  background:linear-gradient(to bottom,rgba(255,115,0,.8),rgba(255,115,0,1));
+  transform:translateX(-50%);z-index:1;
+  height:0%;
+  box-shadow: 0 0 10px rgba(255,115,0,0.8);
+  transition: height 0.1s ease-out;
 }
 .s-card{
   background:linear-gradient(135deg,rgba(255,255,255,.04) 0%,rgba(255,255,255,.015) 100%);
   border:1px solid rgba(255,255,255,.08);
   border-top-color:rgba(255,255,255,.14);
   border-radius:20px;padding:1.8rem 1.8rem 1.6rem;
-  transition:border-color .35s, box-shadow .35s, transform .2s cubic-bezier(.2,.8,.3,1);
+  transition:border-color .35s, box-shadow .35s, transform .2s cubic-bezier(.2,.8,.3,1), opacity .5s, filter .5s;
   position:relative;overflow:visible;cursor:pointer;
   backdrop-filter:blur(8px);
-  width:100%;margin:0;z-index:1;
+  width:calc(50% - 3rem);margin:0;z-index:2;
+  opacity: 0.3; filter: grayscale(1);
 }
-.s-card:nth-child(odd){align-self:stretch;text-align:left;}
-.s-card:nth-child(even){align-self:stretch;text-align:left;}
-.s-card:nth-child(odd) .s-tags{justify-content:flex-start;}
-.s-card:nth-child(odd) .s-icon{margin-left:0;margin-right:auto;}
-.s-card:nth-child(odd)::before{right:1.2rem;left:auto;}
-.timeline-dot{display:none;position:absolute;top:50%;width:16px;height:16px;background:var(--accent);border-radius:50%;z-index:10;opacity:0;box-shadow:0 0 0 0 rgba(255,115,0,0.6);}
+.s-card.active{
+  opacity: 1; filter: grayscale(0);
+}
+.s-card:nth-child(odd){align-self:flex-start;text-align:right;}
+.s-card:nth-child(even){align-self:flex-end;text-align:left;}
+.s-card:nth-child(odd) .s-tags{justify-content:flex-end;}
+.s-card:nth-child(odd) .s-icon{margin-left:auto;margin-right:0;}
+.s-card:nth-child(odd)::before{right:auto;left:1.2rem;}
+.timeline-dot{
+  position:absolute;top:50%;width:20px;height:20px;
+  background:var(--bg); border:3px solid var(--accent);
+  border-radius:50%;z-index:10;opacity:0;
+  box-shadow:0 0 0 0 rgba(255,115,0,0.6);
+}
 .s-card:nth-child(odd) .timeline-dot{right:-3rem;transform:translate(50%,-50%) scale(0);}
 .s-card:nth-child(even) .timeline-dot{left:-3rem;transform:translate(-50%,-50%) scale(0);}
 .s-card.active .timeline-dot{opacity:1;animation:pulseDot 2s infinite 0.6s;}
@@ -785,6 +802,7 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
   .services-inner-wrap .section-title { position: sticky; z-index: 20; background: var(--surface); top: 80px; padding-bottom: 1rem; }
   .services-grid{display:flex;flex-direction:column;gap:2rem;padding:1.5rem 0;}
   .services-grid::before{display:block;left:10px;transform:none;}
+  .timeline-progress{left:10px;transform:none;}
   .s-card{width:calc(100% - 30px);padding:1.2rem;align-self:flex-end !important;position:sticky;text-align:left !important;}
   .timeline-dot{display:block;}
   .s-card:nth-child(1){top:130px;z-index:1}
@@ -1579,6 +1597,7 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
   <div class="section-label reveal">How We Work</div>
   <h2 class="section-title reveal">Working <em>Process</em></h2>
   <div class="services-grid">
+    <div class="timeline-progress" id="timelineProgress"></div>
 
     <div class="s-card reveal delay-1" data-num="01">
       <div class="timeline-dot"></div>
@@ -2460,6 +2479,43 @@ window.addEventListener('resize', ()=>{
   // Init after page ready
   attachCardClicks();
 })();
+
+  // ---- PROCESS TIMELINE SCROLL LOGIC ----
+  window.addEventListener('scroll', () => {
+    const grid = document.querySelector('.services-grid');
+    const timelineProgress = document.getElementById('timelineProgress');
+    if(!grid || !timelineProgress) return;
+    
+    const rect = grid.getBoundingClientRect();
+    const windowH = window.innerHeight;
+    
+    // Line starts growing when top of grid hits the middle of the screen
+    const triggerPoint = windowH * 0.6; 
+    
+    if (rect.top > triggerPoint) {
+      timelineProgress.style.height = '0%';
+    } else {
+      let scrollPx = triggerPoint - rect.top;
+      // Grid total height
+      let maxScroll = rect.height;
+      let progress = (scrollPx / maxScroll) * 100;
+      progress = Math.max(0, Math.min(100, progress));
+      
+      timelineProgress.style.height = progress + '%';
+      
+      // Activate cards based on line reaching them
+      const cards = grid.querySelectorAll('.s-card');
+      cards.forEach(card => {
+        const cardRect = card.getBoundingClientRect();
+        const cardMid = cardRect.top + (cardRect.height / 2);
+        if(cardMid <= triggerPoint) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
+  });
 </script>
 </body>
 </html>
