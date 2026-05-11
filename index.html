@@ -721,7 +721,7 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
 }
 .w-card-back{
   background:linear-gradient(145deg, #0c0c16, #151525);
-  transform:rotateY(180deg);
+  transform:rotateY(180deg) translateZ(1px);
   padding:1.8rem;
   display:flex;
   flex-direction:column;
@@ -801,8 +801,9 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
   gap:.6rem;
   transition:all .3s cubic-bezier(.2,.8,.3,1);
   position:relative;
-  z-index:10;
+  z-index:100;
   pointer-events:auto;
+  transform:translateZ(20px);
 }
 .view-website-btn:hover{
   background:#fff;
@@ -1978,7 +1979,7 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
   <h2 class="section-title reveal">Websites We <em>Designed</em></h2>
   <div class="websites-grid">
     <!-- Project 1: Ecomtelco -->
-    <div class="w-card reveal delay-1" onclick="toggleFlip(this)">
+    <div class="w-card reveal delay-1" onclick="toggleFlip(event, this)">
       <div class="w-card-inner">
         <!-- Front -->
         <div class="w-card-front">
@@ -2016,7 +2017,7 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
     </div>
 
     <!-- Project 2: GMMLuxe -->
-    <div class="w-card reveal delay-2" onclick="toggleFlip(this)">
+    <div class="w-card reveal delay-2" onclick="toggleFlip(event, this)">
       <div class="w-card-inner">
         <!-- Front -->
         <div class="w-card-front">
@@ -2054,7 +2055,7 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
     </div>
 
     <!-- Project 3: Perfect Cutz -->
-    <div class="w-card reveal delay-3" onclick="toggleFlip(this)">
+    <div class="w-card reveal delay-3" onclick="toggleFlip(event, this)">
       <div class="w-card-inner">
         <!-- Front -->
         <div class="w-card-front">
@@ -2092,7 +2093,7 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
     </div>
 
     <!-- Project 4: Enough Editor Store -->
-    <div class="w-card reveal delay-4" onclick="toggleFlip(this)">
+    <div class="w-card reveal delay-4" onclick="toggleFlip(event, this)">
       <div class="w-card-inner">
         <!-- Front -->
         <div class="w-card-front">
@@ -2222,7 +2223,10 @@ const nav = document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40)});
 
 // ---- CARD FLIP ----
-function toggleFlip(card) {
+function toggleFlip(e, card) {
+  // Don't flip if we click the "View Website" button
+  if (e.target.closest('.view-website-btn')) return;
+  
   const isFlipped = card.classList.contains('flipped');
   
   // Close any other flipped cards first
