@@ -800,6 +800,9 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
   align-items:center;
   gap:.6rem;
   transition:all .3s cubic-bezier(.2,.8,.3,1);
+  position:relative;
+  z-index:10;
+  pointer-events:auto;
 }
 .view-website-btn:hover{
   background:#fff;
@@ -2264,6 +2267,7 @@ if(wrap){
 // ---- 3D TILT on PORTFOLIO CARDS ----
 document.querySelectorAll('.p-card,.w-card,.s-card').forEach(card=>{
   card.addEventListener('mousemove',e=>{
+    if(card.classList.contains('flipped')) return; // Don't tilt if flipped
     const r=card.getBoundingClientRect();
     const mx=e.clientX-r.left;
     const my=e.clientY-r.top;
@@ -2276,6 +2280,7 @@ document.querySelectorAll('.p-card,.w-card,.s-card').forEach(card=>{
     card.style.transform=`translateY(-12px) rotateX(${y}deg) rotateY(${x}deg) scale(1.02)`;
   });
   card.addEventListener('mouseleave',()=>{
+    if(card.classList.contains('flipped')) return; // Maintain flipped state
     card.style.transform='';
   });
 });
