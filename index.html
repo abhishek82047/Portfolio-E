@@ -680,58 +680,130 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
 #websites{background:var(--bg);padding:8rem 3.5rem;overflow:hidden;}
 .websites-inner{max-width:1200px;margin:0 auto}
 .websites-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:1rem;}
+/* ============================================================
+   WEBSITE CARDS - FLIP EFFECT
+============================================================ */
 .w-card{
-  position:relative;border-radius:16px;overflow:hidden;
-  border:1px solid var(--glass-b);background:var(--surface);
-  aspect-ratio:16/10;transition:transform .4s cubic-bezier(.2,.8,.3,1),box-shadow .4s;
+  position:relative;
+  aspect-ratio:16/10;
+  perspective:2000px;
+  cursor:pointer;
+  background:transparent;
+  border:none;
+}
+.w-card-inner{
+  position:relative;
+  width:100%;
+  height:100%;
+  transition:transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
   transform-style:preserve-3d;
 }
-.w-card:hover{transform:translateY(-10px) rotateX(4deg);box-shadow:0 40px 80px rgba(0,0,0,.5),0 0 0 1px rgba(255,140,0,.2);}
-.w-card img{width:100%;height:100%;object-fit:cover;display:block}
-.w-card .w-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;background:linear-gradient(135deg,var(--surface),#10101e);}
-.w-card .w-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(4,4,10,.95) 0%,rgba(4,4,10,.3) 40%,transparent 70%);display:flex;flex-direction:column;justify-content:flex-end;padding:1.5rem;}
-.w-label{font-family:'Syne',sans-serif;font-size:.62rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--accent2);margin-bottom:.3rem;}
-.w-name{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.06em;color:#fff}
-.w-platform{display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);padding:.3rem .8rem;border-radius:20px;font-family:'Syne',sans-serif;font-size:.6rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.6rem;width:fit-content;}
-.browser-bar{background:#1a1a28;padding:.5rem 1rem;display:flex;align-items:center;gap:.5rem;border-bottom:1px solid var(--glass-b);flex-shrink:0;}
-.browser-dot{width:8px;height:8px;border-radius:50%}
-.bd1{background:#ff5f56}.bd2{background:#ffbd2e}.bd3{background:#27c93f}
-.browser-url{flex:1;background:rgba(255,255,255,.06);border-radius:4px;padding:.22rem .8rem;font-size:.6rem;color:var(--muted);font-family:'DM Sans',sans-serif;letter-spacing:.02em;}
-.w-card-inner{display:flex;flex-direction:column;height:100%}
-.w-card-inner .w-screen{flex:1;overflow:hidden;position:relative}
+.w-card.flipped .w-card-inner{
+  transform:rotateY(180deg);
+}
+.w-card-front, .w-card-back{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  backface-visibility:hidden;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid var(--glass-b);
+  box-shadow:0 15px 35px rgba(0,0,0,0.3);
+}
+.w-card-front{
+  background:var(--surface);
+  display:flex;
+  flex-direction:column;
+}
+.w-card-back{
+  background:linear-gradient(145deg, #0c0c16, #151525);
+  transform:rotateY(180deg);
+  padding:1.8rem;
+  display:flex;
+  flex-direction:column;
+  border:1px solid rgba(255,115,0,0.2);
+}
+
+/* Front Side Overlays */
+.w-card .w-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to top, rgba(0,0,0,1) 0%, rgba(0,0,0,0.7) 35%, transparent 70%);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:1.5rem;
+  z-index:2;
+}
+
+/* Back Side Content */
+.back-header{
+  margin-bottom:1.2rem;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  padding-bottom:0.8rem;
+}
+.back-title{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:1.8rem;
+  color:var(--accent);
+  letter-spacing:1px;
+}
+.back-list{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:0.6rem;
+  overflow-y:auto;
+  padding-right:5px;
+}
+.back-list::-webkit-scrollbar{width:4px}
+.back-list::-webkit-scrollbar-thumb{background:var(--glass-b);border-radius:10px}
+
+.back-item{
+  display:flex;
+  gap:0.8rem;
+  font-size:0.78rem;
+  line-height:1.4;
+  color:rgba(255,255,255,0.8);
+}
+.back-item svg{
+  flex-shrink:0;
+  width:14px;
+  height:14px;
+  stroke:var(--accent);
+  margin-top:2px;
+}
+.back-item strong{
+  color:#fff;
+  font-weight:700;
+  margin-right:4px;
+}
 
 .view-website-btn{
-  margin-top:1.2rem;
-  padding:.5rem 1.2rem;
+  margin-top:auto;
+  padding:.6rem 1.4rem;
   background:var(--accent);
   color:#fff;
   text-decoration:none;
-  border-radius:4px;
+  border-radius:6px;
   font-family:'Syne',sans-serif;
-  font-size:.65rem;
+  font-size:.7rem;
   font-weight:800;
   text-transform:uppercase;
   letter-spacing:.12em;
   width:fit-content;
   display:flex;
   align-items:center;
-  gap:.5rem;
+  gap:.6rem;
   transition:all .3s cubic-bezier(.2,.8,.3,1);
-  border:1px solid transparent;
 }
 .view-website-btn:hover{
   background:#fff;
   color:var(--bg);
   transform:translateY(-3px);
   box-shadow:0 10px 20px rgba(255,115,0,0.3);
-}
-.view-website-btn::after{
-  content:'→';
-  font-size:.8rem;
-  transition:transform .3s;
-}
-.view-website-btn:hover::after{
-  transform:translateX(4px);
 }
 
 #hire{padding:10rem 3.5rem;position:relative;overflow:hidden;text-align:center;}
@@ -1780,78 +1852,138 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
   <h2 class="section-title reveal">Websites We <em>Designed</em></h2>
   <div class="websites-grid">
     <!-- Project 1: Ecomtelco -->
-    <div class="w-card reveal delay-1" onclick="window.open('https://ecomtelco.com', '_blank')">
+    <div class="w-card reveal delay-1" onclick="toggleFlip(this)">
       <div class="w-card-inner">
-        <div class="browser-bar">
-          <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
-          <div class="browser-url">www.ecomtelco.com</div>
+        <!-- Front -->
+        <div class="w-card-front">
+          <div class="browser-bar">
+            <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
+            <div class="browser-url">www.ecomtelco.com</div>
+          </div>
+          <div class="w-screen">
+            <img src="./assets/screenshots/ecomtelco.jpg?v=1.1" alt="Ecomtelco Website" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+          </div>
+          <div class="w-overlay">
+            <div class="w-label">Graphics Work</div>
+            <div class="w-name">Ecomtelco</div>
+            <div class="w-platform">🎨 UI/UX & Graphics</div>
+            <span class="flip-hint" style="font-size:0.6rem; color:var(--muted); margin-top:0.5rem; opacity:0.8;">Click to see details</span>
+          </div>
         </div>
-        <div class="w-screen">
-          <img src="./assets/screenshots/ecomtelco.jpg?v=1.1" alt="Ecomtelco Website" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+        <!-- Back -->
+        <div class="w-card-back">
+          <div class="back-header">
+            <div class="back-title">Ecomtelco</div>
+          </div>
+          <ul class="back-list">
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Banners:</strong> Designed high-impact promotional banners for the storefront.</span></li>
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Product Photography:</strong> Professionally edited and enhanced all product photos.</span></li>
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>UI Views:</strong> Created clean, modern views for a better shopping experience.</span></li>
+          </ul>
+          <a href="https://ecomtelco.com" target="_blank" class="view-website-btn" onclick="event.stopPropagation()">View Website</a>
         </div>
-      </div>
-      <div class="w-overlay">
-        <div class="w-label">Graphics Work</div>
-        <div class="w-name">Ecomtelco</div>
-        <div class="w-platform">🎨 UI/UX & Graphics</div>
-        <a href="https://ecomtelco.com" target="_blank" class="view-website-btn">View Website</a>
       </div>
     </div>
 
     <!-- Project 2: GMMLuxe -->
-    <div class="w-card reveal delay-2" onclick="window.open('https://gmmluxe.com', '_blank')">
+    <div class="w-card reveal delay-2" onclick="toggleFlip(this)">
       <div class="w-card-inner">
-        <div class="browser-bar">
-          <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
-          <div class="browser-url">www.gmmluxe.com</div>
+        <!-- Front -->
+        <div class="w-card-front">
+          <div class="browser-bar">
+            <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
+            <div class="browser-url">www.gmmluxe.com</div>
+          </div>
+          <div class="w-screen">
+            <img src="./assets/screenshots/gmmluxe.jpg?v=1.1" alt="GMM Luxe Shopify Store" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+          </div>
+          <div class="w-overlay">
+            <div class="w-label">Shopify Development</div>
+            <div class="w-name">GMM Luxe</div>
+            <div class="w-platform">🛍️ Shopify / Scratch Design</div>
+            <span class="flip-hint" style="font-size:0.6rem; color:var(--muted); margin-top:0.5rem; opacity:0.8;">Click to see details</span>
+          </div>
         </div>
-        <div class="w-screen">
-          <img src="./assets/screenshots/gmmluxe.jpg?v=1.1" alt="GMM Luxe Shopify Store" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+        <!-- Back -->
+        <div class="w-card-back">
+          <div class="back-header">
+            <div class="back-title">GMM Luxe</div>
+          </div>
+          <ul class="back-list">
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Scratch Build:</strong> Entire Shopify store setup from scratch with custom theme settings.</span></li>
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Custom Sections:</strong> Manually added Category and Sliding sections not available in default themes.</span></li>
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Full Graphics:</strong> Created all brand graphics, logos, and payment gateway assets.</span></li>
+          </ul>
+          <a href="https://gmmluxe.com" target="_blank" class="view-website-btn" onclick="event.stopPropagation()">View Website</a>
         </div>
-      </div>
-      <div class="w-overlay">
-        <div class="w-label">Shopify Development</div>
-        <div class="w-name">GMM Luxe</div>
-        <div class="w-platform">🛍️ Shopify / Scratch Design</div>
-        <a href="https://gmmluxe.com" target="_blank" class="view-website-btn">View Website</a>
       </div>
     </div>
 
     <!-- Project 3: Perfect Cutz -->
-    <div class="w-card reveal delay-3" onclick="window.open('https://perfectcutz.gt.tc/?i=1', '_blank')">
+    <div class="w-card reveal delay-3" onclick="toggleFlip(this)">
       <div class="w-card-inner">
-        <div class="browser-bar">
-          <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
-          <div class="browser-url">perfectcutz.gt.tc</div>
+        <!-- Front -->
+        <div class="w-card-front">
+          <div class="browser-bar">
+            <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
+            <div class="browser-url">perfectcutz.gt.tc</div>
+          </div>
+          <div class="w-screen">
+            <img src="./assets/screenshots/perfectcutz.jpg?v=1.1" alt="Perfect Cutz Salon Software" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+          </div>
+          <div class="w-overlay">
+            <div class="w-label">Software Development</div>
+            <div class="w-name">Perfect Cutz</div>
+            <div class="w-platform">💻 PHP / Booking / Admin</div>
+            <span class="flip-hint" style="font-size:0.6rem; color:var(--muted); margin-top:0.5rem; opacity:0.8;">Click to see details</span>
+          </div>
         </div>
-        <div class="w-screen">
-          <img src="./assets/screenshots/perfectcutz.jpg?v=1.1" alt="Perfect Cutz Salon Software" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+        <!-- Back -->
+        <div class="w-card-back">
+          <div class="back-header">
+            <div class="back-title">Perfect Cutz</div>
+          </div>
+          <ul class="back-list">
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>User App:</strong> Service selection, nearby store booking, and barber selection system.</span></li>
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Admin Panel:</strong> Manage bookings, manual entry, inventory, and detailed reports.</span></li>
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Automation:</strong> One-click Invoices & notifications sent via Email/WhatsApp instantly.</span></li>
+          </ul>
+          <a href="https://perfectcutz.gt.tc/?i=1" target="_blank" class="view-website-btn" onclick="event.stopPropagation()">View Website</a>
         </div>
-      </div>
-      <div class="w-overlay">
-        <div class="w-label">Software Development</div>
-        <div class="w-name">Perfect Cutz</div>
-        <div class="w-platform">💻 PHP / Booking / Admin</div>
-        <a href="https://perfectcutz.gt.tc/?i=1" target="_blank" class="view-website-btn">View Website</a>
       </div>
     </div>
 
     <!-- Project 4: Enough Editor Store -->
-    <div class="w-card reveal delay-4" onclick="window.open('https://www.enougheditor.shop/?m=1#home', '_blank')">
+    <div class="w-card reveal delay-4" onclick="toggleFlip(this)">
       <div class="w-card-inner">
-        <div class="browser-bar">
-          <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
-          <div class="browser-url">www.enougheditor.shop</div>
+        <!-- Front -->
+        <div class="w-card-front">
+          <div class="browser-bar">
+            <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
+            <div class="browser-url">www.enougheditor.shop</div>
+          </div>
+          <div class="w-screen">
+            <img src="./assets/screenshots/enougheditor_store.jpg?v=1.1" alt="Enough Editor Digital Store" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+          </div>
+          <div class="w-overlay">
+            <div class="w-label">Web Development</div>
+            <div class="w-name">Enough Editor Store</div>
+            <div class="w-platform">🚀 HTML / CSS / JS / Payment</div>
+            <span class="flip-hint" style="font-size:0.6rem; color:var(--muted); margin-top:0.5rem; opacity:0.8;">Click to see details</span>
+          </div>
         </div>
-        <div class="w-screen">
-          <img src="./assets/screenshots/enougheditor_store.jpg?v=1.1" alt="Enough Editor Digital Store" loading="lazy" decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+        <!-- Back -->
+        <div class="w-card-back">
+          <div class="back-header">
+            <div class="back-title">Enough Editor Store</div>
+          </div>
+          <ul class="back-list">
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Digital Store:</strong> Automated delivery system where users get links instantly after payment.</span></li>
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Features:</strong> Cart, Wishlist, Giveaways, Blogs, Login system, and Coupon codes.</span></li>
+            <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Admin Dashboard:</strong> Full control over products, orders, and site configurations.</span></li>
+          </ul>
+          <a href="https://www.enougheditor.shop/?m=1#home" target="_blank" class="view-website-btn" onclick="event.stopPropagation()">View Website</a>
         </div>
-      </div>
-      <div class="w-overlay">
-        <div class="w-label">Web Development</div>
-        <div class="w-name">Enough Editor Store</div>
-        <div class="w-platform">🚀 HTML / CSS / JS / Payment</div>
-        <a href="https://www.enougheditor.shop/?m=1#home" target="_blank" class="view-website-btn">View Website</a>
       </div>
     </div>
   </div>
@@ -1946,6 +2078,11 @@ document.querySelectorAll('a,button,.p-card,.w-card,.s-card').forEach(el=>{
 // ---- NAV SCROLL ----
 const nav = document.getElementById('nav');
 window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40)});
+
+// ---- CARD FLIP ----
+function toggleFlip(card) {
+  card.classList.toggle('flipped');
+}
 
 // ---- SCROLL REVEAL ----
 const reveals = document.querySelectorAll('.reveal,.reveal-left,.reveal-right');
