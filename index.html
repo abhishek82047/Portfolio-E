@@ -700,6 +700,40 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
 .w-card-inner{display:flex;flex-direction:column;height:100%}
 .w-card-inner .w-screen{flex:1;overflow:hidden;position:relative}
 
+.view-website-btn{
+  margin-top:1.2rem;
+  padding:.5rem 1.2rem;
+  background:var(--accent);
+  color:#fff;
+  text-decoration:none;
+  border-radius:4px;
+  font-family:'Syne',sans-serif;
+  font-size:.65rem;
+  font-weight:800;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  width:fit-content;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  transition:all .3s cubic-bezier(.2,.8,.3,1);
+  border:1px solid transparent;
+}
+.view-website-btn:hover{
+  background:#fff;
+  color:var(--bg);
+  transform:translateY(-3px);
+  box-shadow:0 10px 20px rgba(255,115,0,0.3);
+}
+.view-website-btn::after{
+  content:'→';
+  font-size:.8rem;
+  transition:transform .3s;
+}
+.view-website-btn:hover::after{
+  transform:translateX(4px);
+}
+
 #hire{padding:10rem 3.5rem;position:relative;overflow:hidden;text-align:center;}
 .hire-bg{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(255,58,31,.08),transparent);animation:hirePulse 6s ease-in-out infinite;}
 @keyframes hirePulse{0%,100%{opacity:.6}50%{opacity:1}}
@@ -1745,60 +1779,79 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
   <div class="section-label reveal">Web Design</div>
   <h2 class="section-title reveal">Websites We <em>Designed</em></h2>
   <div class="websites-grid">
-    <div class="w-card reveal delay-1">
+    <!-- Project 1: Ecomtelco -->
+    <div class="w-card reveal delay-1" onclick="window.open('https://ecomtelco.com', '_blank')">
       <div class="w-card-inner">
         <div class="browser-bar">
           <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
-          <div class="browser-url">www.sweetbakery.com</div>
+          <div class="browser-url">www.ecomtelco.com</div>
         </div>
         <div class="w-screen">
-          <img src="assets/screenshots/bakery.jpg" alt="Bakery Website Mockup" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+          <img src="assets/screenshots/ecomtelco.jpg" alt="Ecomtelco Website" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
         </div>
       </div>
       <div class="w-overlay">
-        <div class="w-label">Client Project</div><div class="w-name">Bakery Website</div><div class="w-platform">🍞 HTML / CSS / JS</div>
+        <div class="w-label">Graphics Work</div>
+        <div class="w-name">Ecomtelco</div>
+        <div class="w-platform">🎨 UI/UX & Graphics</div>
+        <a href="https://ecomtelco.com" target="_blank" class="view-website-btn">View Website</a>
       </div>
     </div>
-    <div class="w-card reveal delay-2">
+
+    <!-- Project 2: GMMLuxe -->
+    <div class="w-card reveal delay-2" onclick="window.open('https://gmmluxe.com', '_blank')">
       <div class="w-card-inner">
         <div class="browser-bar">
           <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
-          <div class="browser-url">www.cafemocha.com</div>
+          <div class="browser-url">www.gmmluxe.com</div>
         </div>
         <div class="w-screen">
-          <img src="assets/screenshots/cafe.jpg" alt="Cafe Website Mockup" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+          <img src="assets/screenshots/gmmluxe.jpg" alt="GMM Luxe Shopify Store" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
         </div>
       </div>
       <div class="w-overlay">
-        <div class="w-label">Client Project</div><div class="w-name">Cafe Website</div><div class="w-platform">☕ HTML / CSS / JS</div>
+        <div class="w-label">Shopify Development</div>
+        <div class="w-name">GMM Luxe</div>
+        <div class="w-platform">🛍️ Shopify / Scratch Design</div>
+        <a href="https://gmmluxe.com" target="_blank" class="view-website-btn">View Website</a>
       </div>
     </div>
-    <div class="w-card reveal delay-3">
+
+    <!-- Project 3: Perfect Cutz -->
+    <div class="w-card reveal delay-3" onclick="window.open('https://perfectcutz.gt.tc/?i=1', '_blank')">
       <div class="w-card-inner">
         <div class="browser-bar">
           <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
-          <div class="browser-url">www.glamoursalon.com</div>
+          <div class="browser-url">perfectcutz.gt.tc</div>
         </div>
         <div class="w-screen">
-          <img src="assets/screenshots/salon.jpg" alt="Salon Website Mockup" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+          <img src="assets/screenshots/perfectcutz.jpg" alt="Perfect Cutz Salon Software" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
         </div>
       </div>
       <div class="w-overlay">
-        <div class="w-label">Client Project</div><div class="w-name">Salon Website</div><div class="w-platform">💇 HTML / CSS / JS</div>
+        <div class="w-label">Software Development</div>
+        <div class="w-name">Perfect Cutz</div>
+        <div class="w-platform">💻 PHP / Booking / Admin</div>
+        <a href="https://perfectcutz.gt.tc/?i=1" target="_blank" class="view-website-btn">View Website</a>
       </div>
     </div>
-    <div class="w-card reveal delay-4">
+
+    <!-- Project 4: Enough Editor Store -->
+    <div class="w-card reveal delay-4" onclick="window.open('https://www.enougheditor.shop/?m=1#home', '_blank')">
       <div class="w-card-inner">
         <div class="browser-bar">
           <div class="browser-dot bd1"></div><div class="browser-dot bd2"></div><div class="browser-dot bd3"></div>
-          <div class="browser-url">luxejewels.myshopify.com</div>
+          <div class="browser-url">www.enougheditor.shop</div>
         </div>
         <div class="w-screen">
-          <img src="assets/screenshots/jewellery.jpg" alt="Jewellery Website Mockup" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+          <img src="assets/screenshots/enougheditor_store.jpg" alt="Enough Editor Digital Store" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
         </div>
       </div>
       <div class="w-overlay">
-        <div class="w-label">Shopify Store</div><div class="w-name">Jewellery Store</div><div class="w-platform">💎 Shopify</div>
+        <div class="w-label">Web Development</div>
+        <div class="w-name">Enough Editor Store</div>
+        <div class="w-platform">🚀 HTML / CSS / JS / Payment</div>
+        <a href="https://www.enougheditor.shop/?m=1#home" target="_blank" class="view-website-btn">View Website</a>
       </div>
     </div>
   </div>
