@@ -2237,14 +2237,6 @@ function toggleFlip(e, card) {
   });
 
   card.classList.toggle('flipped');
-  
-  // If flipping TO back side, lock body scroll
-  if (!isFlipped) {
-    document.body.style.overflow = 'hidden';
-  } else {
-    // If flipping BACK to front side, unlock body scroll
-    document.body.style.overflow = '';
-  }
 }
 
 // ---- SCROLL REVEAL ----
