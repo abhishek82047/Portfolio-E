@@ -31,6 +31,7 @@
 /* ============================================================
    ROOT & RESET
 ============================================================ */
+.no-scroll { overflow: hidden !important; }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#04040a;
@@ -1051,12 +1052,36 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
   #websites .section-label { top: 35px; padding-top: 2rem; margin-bottom: 0; box-shadow: none; }
   #websites .section-title { top: 80px; padding-bottom: 1rem; }
   .websites-grid{grid-template-columns:1fr; gap:1.5rem;}
-  .w-card{aspect-ratio:16/9; position:sticky;}
+  .w-card{aspect-ratio:16/10; position:sticky;} /* Adjusted for better content fit */
   .w-card:nth-child(1){top:130px; z-index:1}
   .w-card:nth-child(2){top:155px; z-index:2}
   .w-card:nth-child(3){top:180px; z-index:3}
   .w-card:nth-child(4){top:205px; z-index:4}
   .w-card:nth-child(5){top:230px; z-index:5}
+
+  .w-card-back{
+    padding:1.4rem;
+  }
+  .back-title{
+    font-size:1.5rem;
+    margin-bottom:0.8rem;
+  }
+  .back-list{
+    gap:0.4rem;
+    max-height:160px; /* Limit height for mobile */
+    overscroll-behavior:contain;
+  }
+  .back-item{
+    font-size:0.7rem;
+  }
+  .view-website-btn{
+    padding:0.5rem 1.2rem;
+    font-size:0.65rem;
+  }
+  .flip-hint{
+    bottom:1rem;
+    right:1.2rem;
+  }
 
   #hire{padding:4rem 1.2rem}
   .hire-title{font-size:clamp(2.5rem,13vw,5rem)}
@@ -2161,7 +2186,24 @@ window.addEventListener('scroll',()=>{nav.classList.toggle('scrolled',scrollY>40
 
 // ---- CARD FLIP ----
 function toggleFlip(card) {
+  const isFlipped = card.classList.contains('flipped');
+  
+  // Close any other flipped cards first
+  document.querySelectorAll('.w-card.flipped').forEach(otherCard => {
+    if (otherCard !== card) {
+      otherCard.classList.remove('flipped');
+    }
+  });
+
   card.classList.toggle('flipped');
+  
+  // If flipping TO back side, lock body scroll
+  if (!isFlipped) {
+    document.body.style.overflow = 'hidden';
+  } else {
+    // If flipping BACK to front side, unlock body scroll
+    document.body.style.overflow = '';
+  }
 }
 
 // ---- SCROLL REVEAL ----
