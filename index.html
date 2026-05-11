@@ -808,6 +808,33 @@ input:checked + .slider:before { transform: translateX(18px); background-color: 
   box-shadow:0 10px 20px rgba(255,115,0,0.3);
 }
 
+/* Browser Bar UI */
+.browser-bar{
+  background:#141420;
+  padding:.6rem 1rem;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  flex-shrink:0;
+}
+.browser-dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+}
+.bd1{background:#ff5f56; box-shadow: 0 0 5px rgba(255,95,86,0.3)}
+.bd2{background:#ffbd2e; box-shadow: 0 0 5px rgba(255,189,46,0.3)}
+.bd3{background:#27c93f; box-shadow: 0 0 5px rgba(39,201,63,0.3)}
+.browser-url{
+  flex:1;
+  background:rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.05);
+  border-radius:6px;
+  height:16px;
+  margin-left:0.5rem;
+}
+
 .w-label{
   font-family:'Syne',sans-serif;
   font-size:.62rem;
