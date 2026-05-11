@@ -1563,6 +1563,52 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
   letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.25);
   pointer-events:none;z-index:2;
 }
+/* ============================================================
+   TESTIMONIALS - MODERN GRID
+============================================================ */
+#testimonials{background:var(--bg);padding:6rem 3.5rem;position:relative;overflow:hidden;}
+.testimonials-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:1.5rem;margin-top:3rem;
+}
+.t-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:24px;padding:2rem;
+  transition:all .4s cubic-bezier(.2,.8,.3,1);
+  position:relative;overflow:hidden;
+}
+.t-card:hover{
+  background:rgba(255,255,255,0.05);
+  border-color:rgba(255,115,0,0.3);
+  transform:translateY(-10px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+.t-card::before{
+  content:'"';position:absolute;top:1rem;right:2rem;
+  font-family:'Bebas Neue',sans-serif;font-size:5rem;color:var(--accent);
+  opacity:0.1;line-height:1;
+}
+.t-user{display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;}
+.t-avatar{
+  width:50px;height:50px;border-radius:15px;
+  background:linear-gradient(135deg,var(--accent),#ffb347);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:1.2rem;color:#fff;
+  border:1px solid rgba(255,255,255,0.2);
+}
+.t-info h4{font-family:'Syne',sans-serif;font-size:1rem;font-weight:800;color:#fff;margin-bottom:0.2rem;}
+.t-info span{font-family:'DM Sans',sans-serif;font-size:0.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:0.05em;}
+.t-quote{
+  font-family:'DM Sans',sans-serif;font-size:0.95rem;color:var(--muted);
+  line-height:1.6;font-style:italic;
+}
+.t-stars{display:flex;gap:0.2rem;margin-top:1.2rem;color:var(--accent);}
+.t-stars svg{width:14px;height:14px;}
+
+@media(max-width:768px){
+  #testimonials{padding:4rem 1.5rem;}
+  .testimonials-grid{grid-template-columns:1fr;gap:1.2rem;}
+}
 </style>
 </head>
 <body>
@@ -2131,6 +2177,180 @@ footer{padding:2.5rem 3.5rem 7rem;border-top:1px solid var(--glass-b);display:fl
     </div>
   </div>
 </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="websites-inner">
+    <div style="text-align: center; margin-bottom: 3rem;">
+        <h2 class="section-title reveal" style="margin-bottom: 0.5rem;">What Our <em>Clients Say</em></h2>
+        <p class="reveal delay-1" style="color:var(--muted); font-family:'Syne',sans-serif; font-size:0.9rem; letter-spacing:0.05em;">Trusted by top gamers and businesses worldwide</p>
+    </div>
+    <div class="testimonials-grid">
+      <!-- T1 -->
+      <div class="t-card reveal delay-1">
+        <div class="t-user">
+          <div class="t-avatar">TG</div>
+          <div class="t-info">
+            <h4>Thaurain Gaming</h4>
+            <span>Thumbnail Design</span>
+          </div>
+        </div>
+        <p class="t-quote">"The thumbnails are pure fire! Best quality in the gaming community. CTR increased significantly."</p>
+        <div class="t-stars">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <!-- T2 -->
+      <div class="t-card reveal delay-2">
+        <div class="t-user">
+          <div class="t-avatar">IX</div>
+          <div class="t-info">
+            <h4>Infra X</h4>
+            <span>Thumbnail Design</span>
+          </div>
+        </div>
+        <p class="t-quote">"Incredible attention to detail. Professional and fast delivery every single time."</p>
+        <div class="t-stars">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <!-- T3 -->
+      <div class="t-card reveal delay-3">
+        <div class="t-user">
+          <div class="t-avatar">KG</div>
+          <div class="t-info">
+            <h4>Karry Gamer</h4>
+            <span>Thumbnail Design</span>
+          </div>
+        </div>
+        <p class="t-quote">"Always delivers with great creativity. Best in the business for gaming graphics."</p>
+        <div class="t-stars">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <!-- T4 -->
+      <div class="t-card reveal delay-1">
+        <div class="t-user">
+          <div class="t-avatar">KH</div>
+          <div class="t-info">
+            <h4>Khushi Gmr</h4>
+            <span>Thumbnail Design</span>
+          </div>
+        </div>
+        <p class="t-quote">"Stunning graphics that really capture the vibe of my channel. 10/10 work!"</p>
+        <div class="t-stars">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <!-- T5 -->
+      <div class="t-card reveal delay-2">
+        <div class="t-user">
+          <div class="t-avatar">GY</div>
+          <div class="t-info">
+            <h4>Guri YT</h4>
+            <span>Thumbnail Design</span>
+          </div>
+        </div>
+        <p class="t-quote">"Professional work at its best. The colors and effects are top-tier."</p>
+        <div class="t-stars">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <!-- T6 -->
+      <div class="t-card reveal delay-3">
+        <div class="t-user">
+          <div class="t-avatar">SB</div>
+          <div class="t-info">
+            <h4>Shadow Deadly Beast</h4>
+            <span>Thumbnail Design</span>
+          </div>
+        </div>
+        <p class="t-quote">"Exactly what I wanted. They understood my brand perfectly and delivered on time."</p>
+        <div class="t-stars">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <!-- T7 -->
+      <div class="t-card reveal delay-1">
+        <div class="t-user">
+          <div class="t-avatar">EC</div>
+          <div class="t-info">
+            <h4>Ecomtelco</h4>
+            <span>Graphics Design</span>
+          </div>
+        </div>
+        <p class="t-quote">"Stunning graphics that truly represent our brand. Their work is premium and clean."</p>
+        <div class="t-stars">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <!-- T8 -->
+      <div class="t-card reveal delay-2">
+        <div class="t-user">
+          <div class="t-avatar">GL</div>
+          <div class="t-info">
+            <h4>GMM Luxe</h4>
+            <span>Full Brand Identity</span>
+          </div>
+        </div>
+        <p class="t-quote">"They handled everything from design to implementation perfectly. A true one-stop shop."</p>
+        <div class="t-stars">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+      <!-- T9 -->
+      <div class="t-card reveal delay-3">
+        <div class="t-user">
+          <div class="t-avatar">PC</div>
+          <div class="t-info">
+            <h4>Perfect Cutz</h4>
+            <span>Full Website Build</span>
+          </div>
+        </div>
+        <p class="t-quote">"The booking software and website are seamless. Our business is much more efficient now."</p>
+        <div class="t-stars">
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+          <svg fill="currentColor" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- HIRE ME -->
