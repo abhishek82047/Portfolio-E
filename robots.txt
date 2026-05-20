@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://portfolio-ee.vercel.app/sitemap.xml
+Sitemap: https://enougheditorportfolio.vercel.app/sitemap.xml
