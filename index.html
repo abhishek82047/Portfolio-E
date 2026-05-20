@@ -45,6 +45,8 @@
     "priceRange": "$$"
   }
   </script>
+  <link rel="preload" href="css/style.css" as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -128,7 +130,10 @@
   <!-- HERO -->
   <section id="hero">
     <div class="grid-bg"></div>
-    <img src="assets/characters/hero_char.png" alt="3D floating character graphic" class="float-char hero-char reveal" fetchpriority="high">
+    <picture>
+      <source media="(max-width: 768px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
+      <img src="assets/characters/hero_char.png" alt="3D floating character graphic" class="float-char hero-char reveal" fetchpriority="high">
+    </picture>
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
     <div class="orb orb3"></div>
