@@ -70,14 +70,14 @@
     ]
   }
   </script>
-  <link rel="preload" href="css/style.css" as="style">
+  <link rel="preload" href="css/style.min.css" as="style">
   <link rel="preload" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" as="style">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
     href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.min.css">
   <link rel="preload" href="assets/characters/hero_char.webp" as="image">
 </head>
 
@@ -92,7 +92,7 @@
     <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
     <button class="lb-arrow lb-prev" onclick="lbPrev()" aria-label="Previous">&#8592;</button>
     <div class="lb-img-wrap" id="lbImgWrap">
-      <img loading="lazy" id="lbMainImg" src="" alt="Portfolio Image">
+      <img loading="lazy" id="lbMainImg" src="" alt="Portfolio Image" width="1280" height="720">
     </div>
     <button class="lb-arrow lb-next" onclick="lbNext()" aria-label="Next">&#8594;</button>
     <div class="lb-meta">
@@ -106,7 +106,7 @@
   <div class="hire-toast" id="hireToast">
     <div class="toast-avatar-wrap">
       <div class="toast-avatar">
-        <img src="assets/Profile Pic/favicon.png" alt="Abhishek Rajput"
+        <img loading="lazy" src="assets/Profile Pic/favicon.png" alt="Abhishek Rajput" width="100" height="100"
           onerror="this.style.display='none';this.parentElement.innerHTML='EE'">
       </div>
       <span class="online-dot"></span>
@@ -155,12 +155,13 @@
     <a href="#hire" class="mob-hire">Hire Us</a>
   </div>
 
+  <main id="main-content">
   <!-- HERO -->
   <section id="hero">
     <div class="grid-bg"></div>
     <picture>
       <source media="(max-width: 768px)" srcset="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==">
-      <img src="assets/characters/hero_char.webp" alt="3D floating character graphic" class="float-char hero-char reveal" fetchpriority="high">
+      <img src="assets/characters/hero_char.webp" alt="3D floating character graphic" class="float-char hero-char reveal" fetchpriority="high" width="800" height="800">
     </picture>
     <div class="orb orb1"></div>
     <div class="orb orb2"></div>
@@ -228,7 +229,7 @@
     <div id="about">
       <div class="about-visual reveal-left">
         <div class="profile-3d-wrap" id="profile3d">
-          <div class="profile-img-box"><img src="assets/Profile Pic/favicon.png"
+          <div class="profile-img-box"><img loading="lazy" src="assets/Profile Pic/favicon.png"
               alt="Abhishek Rajput - Enough Editor Logo"></div>
           <div class="badge-float b2"><span class="b-num"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
                 stroke-width="2" style="width:1em;height:1em;vertical-align:middle">
@@ -277,7 +278,7 @@
         <div class="scroll-toggle reveal">
           <span class="toggle-label">Auto Scroll</span>
           <label class="switch">
-            <input type="checkbox" checked class="scroll-checkbox" data-target="thumbnails-wrapper">
+            <input type="checkbox" checked class="scroll-checkbox" aria-label="Toggle auto scroll" data-target="thumbnails-wrapper">
             <span class="slider round"></span>
           </label>
         </div>
@@ -286,7 +287,7 @@
       </div>
       <div class="h-scroll-track" data-dir="forward">
         <div class="work-slide">
-          <div class="p-card"><img  decoding="async" width="1280" height="720" src="assets/Thumbnail/Bgmi Gaming thumbnail.jpg"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/Bgmi Gaming thumbnail.jpg"
               alt="YouTube gaming thumbnail design example">
             <div class="p-card-overlay">
               <div class="p-card-type">Thumbnail</div>
@@ -295,7 +296,7 @@
           </div>
         </div>
         <div class="work-slide">
-          <div class="p-card"><img  decoding="async" width="1280" height="720" src="assets/Thumbnail/Cheery.jpg"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/Cheery.jpg"
               alt="YouTube gaming thumbnail design example">
             <div class="p-card-overlay">
               <div class="p-card-type">Thumbnail</div>
@@ -304,7 +305,7 @@
           </div>
         </div>
         <div class="work-slide">
-          <div class="p-card"><img  decoding="async" width="1280" height="720" src="assets/Thumbnail/GOD SCRPY SMILE TN.jpg"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/GOD SCRPY SMILE TN.jpg"
               alt="YouTube gaming thumbnail design example">
             <div class="p-card-overlay">
               <div class="p-card-type">Thumbnail</div>
@@ -313,7 +314,7 @@
           </div>
         </div>
         <div class="work-slide">
-          <div class="p-card"><img  decoding="async" width="1280" height="720" src="assets/Thumbnail/Girl Gaming Thumbnail.jpg"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/Girl Gaming Thumbnail.jpg"
               alt="YouTube gaming thumbnail design example">
             <div class="p-card-overlay">
               <div class="p-card-type">Thumbnail</div>
@@ -322,7 +323,7 @@
           </div>
         </div>
         <div class="work-slide">
-          <div class="p-card"><img  decoding="async" width="1280" height="720" src="assets/Thumbnail/Girl gamer thumbnail.jpg"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/Girl gamer thumbnail.jpg"
               alt="YouTube gaming thumbnail design example">
             <div class="p-card-overlay">
               <div class="p-card-type">Thumbnail</div>
@@ -331,7 +332,7 @@
           </div>
         </div>
         <div class="work-slide">
-          <div class="p-card"><img  decoding="async" width="1280" height="720" src="assets/Thumbnail/IMG_20240306_093957_087.jpg"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/IMG_20240306_093957_087.jpg"
               alt="YouTube gaming thumbnail design example">
             <div class="p-card-overlay">
               <div class="p-card-type">Thumbnail</div>
@@ -340,7 +341,7 @@
           </div>
         </div>
         <div class="work-slide">
-          <div class="p-card"><img  decoding="async" width="1280" height="720" src="assets/Thumbnail/SHODEN Thumbnail.jpg"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/SHODEN Thumbnail.jpg"
               alt="YouTube gaming thumbnail design example">
             <div class="p-card-overlay">
               <div class="p-card-type">Thumbnail</div>
@@ -349,7 +350,7 @@
           </div>
         </div>
         <div class="work-slide">
-          <div class="p-card"><img  decoding="async" width="1280" height="720" src="assets/Thumbnail/bgmi game thubnail.jpg"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/bgmi game thubnail.jpg"
               alt="YouTube gaming thumbnail design example">
             <div class="p-card-overlay">
               <div class="p-card-type">Thumbnail</div>
@@ -358,7 +359,7 @@
           </div>
         </div>
         <div class="work-slide">
-          <div class="p-card"><img  decoding="async" width="1280" height="720" src="assets/Thumbnail/bgmi girl thumbnail.jpg"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/bgmi girl thumbnail.jpg"
               alt="YouTube gaming thumbnail design example">
             <div class="p-card-overlay">
               <div class="p-card-type">Thumbnail</div>
@@ -367,7 +368,7 @@
           </div>
         </div>
         <div class="work-slide">
-          <div class="p-card"><img  decoding="async" width="1280" height="720" src="assets/Thumbnail/bgmi thumbnail.jpg"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/bgmi thumbnail.jpg"
               alt="YouTube gaming thumbnail design example">
             <div class="p-card-overlay">
               <div class="p-card-type">Thumbnail</div>
@@ -409,7 +410,7 @@
         <div class="scroll-toggle reveal">
           <span class="toggle-label">Auto Scroll</span>
           <label class="switch">
-            <input type="checkbox" checked class="scroll-checkbox" data-target="gaming-logos-wrapper">
+            <input type="checkbox" checked class="scroll-checkbox" aria-label="Toggle auto scroll" data-target="gaming-logos-wrapper">
             <span class="slider round"></span>
           </label>
         </div>
@@ -437,7 +438,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/20240125_145311.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/20240125_145311.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -446,7 +447,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1706886604792.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1706886604792.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -455,7 +456,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302987456.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302987456.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -464,7 +465,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302980897.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302980897.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -473,7 +474,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302835102.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302835102.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -482,7 +483,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302833475.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302833475.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -491,7 +492,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302716997.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302716997.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -500,7 +501,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302715220.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302715220.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -509,7 +510,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302711323.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302711323.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -518,7 +519,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302707911.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1689302707911.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -527,7 +528,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1684789547326.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1684789547326.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -536,7 +537,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1679112389233.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1679112389233.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -545,7 +546,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1678816557550.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1678816557550.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -554,7 +555,7 @@
           </div>
         </div>
         <div class="logo-slide">
-          <div class="p-card"><img  decoding="async" width="800" height="800" src="assets/Gaming Logo/1676826926175.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/1676826926175.webp"
               alt="Custom gaming logo design and esports channel art">
             <div class="p-card-overlay">
               <div class="p-card-type">Gaming Logo</div>
@@ -577,14 +578,14 @@
         <div class="scroll-toggle reveal">
           <span class="toggle-label">Auto Scroll</span>
           <label class="switch">
-            <input type="checkbox" checked class="scroll-checkbox" data-target="short-thumbnails-wrapper">
+            <input type="checkbox" checked class="scroll-checkbox" aria-label="Toggle auto scroll" data-target="short-thumbnails-wrapper">
             <span class="slider round"></span>
           </label>
         </div>
       </div>
       <div class="h-scroll-track" data-dir="forward">
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/1.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/1.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -594,7 +595,7 @@
         </div>
 
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/3.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/3.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -603,7 +604,7 @@
           </div>
         </div>
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/4.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/4.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -612,7 +613,7 @@
           </div>
         </div>
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/5.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/5.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -621,7 +622,7 @@
           </div>
         </div>
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/6.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/6.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -630,7 +631,7 @@
           </div>
         </div>
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/7.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/7.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -639,7 +640,7 @@
           </div>
         </div>
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/8.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/8.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -648,7 +649,7 @@
           </div>
         </div>
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/13.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/13.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -657,7 +658,7 @@
           </div>
         </div>
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/14.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/14.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -666,7 +667,7 @@
           </div>
         </div>
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/15.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/15.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -675,7 +676,7 @@
           </div>
         </div>
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/16.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/16.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -685,7 +686,7 @@
         </div>
 
         <div class="short-slide">
-          <div class="p-card"><img  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/19.webp"
+          <div class="p-card"><img loading="lazy"  decoding="async" width="720" height="1280" src="assets/Short Thumbnails/19.webp"
               alt="YouTube Shorts and Instagram Reels vertical thumbnail design">
             <div class="p-card-overlay">
               <div class="p-card-type">Short Thumbnail</div>
@@ -813,7 +814,7 @@
     </div>
     <div class="pills-track">
       <div class="pill-card" onclick="openModal('email')">
-        <img  decoding="async" width="1280" height="720" src="assets/Thumbnail/1. kaur is live.webp"
+        <img loading="lazy"  decoding="async" width="1280" height="720" src="assets/Thumbnail/1. kaur is live.webp"
           alt="YouTube thumbnail design portfolio">
         <div class="pill-label">
           <div>
@@ -825,7 +826,7 @@
           Us</button>
       </div>
       <div class="pill-card" onclick="openModal('email')">
-        <img  decoding="async" width="800" height="800" src="assets/Gaming Logo/20240125_145311.webp"
+        <img loading="lazy"  decoding="async" width="800" height="800" src="assets/Gaming Logo/20240125_145311.webp"
           alt="Gaming logo design portfolio">
         <div class="pill-label">
           <div>
@@ -847,7 +848,7 @@
           Us</button>
       </div>
       <div class="pill-card" onclick="openModal('email')">
-        <img loading="lazy"  decoding="async" src="assets/website_pill.webp" alt="Website design portfolio">
+        <img loading="lazy"  decoding="async" src="assets/website_pill.webp" alt="Website design portfolio" width="400" height="150">
         <div class="pill-label">
           <div>
             <div class="pill-label-text">Website Design</div>
@@ -857,7 +858,7 @@
         <button class="pill-cta" onclick="event.stopPropagation();openContactDirect('Website Design')">Hire Us</button>
       </div>
       <div class="pill-card" onclick="openModal('email')">
-        <img loading="lazy"  decoding="async" src="assets/shopify_pill.webp" alt="Shopify store design">
+        <img loading="lazy"  decoding="async" src="assets/shopify_pill.webp" alt="Shopify store design" width="400" height="150">
         <div class="pill-label">
           <div>
             <div class="pill-label-text">Shopify Stores</div>
@@ -867,7 +868,7 @@
         <button class="pill-cta" onclick="event.stopPropagation();openContactDirect('Shopify Stores')">Hire Us</button>
       </div>
       <div class="pill-card" onclick="openModal('email')">
-        <img loading="lazy"  decoding="async" src="assets/brand_pill.webp" alt="Brand identity design">
+        <img loading="lazy"  decoding="async" src="assets/brand_pill.webp" alt="Brand identity design" width="400" height="150">
         <div class="pill-label">
           <div>
             <div class="pill-label-text">Brand Identity</div>
@@ -906,7 +907,7 @@
                 <div class="browser-url">https://ecomtelco.com</div>
               </div>
               <div class="w-screen">
-                <img src="./assets/screenshots/ecomtelco.webp?v=1.1" alt="Ecomtelco Website" 
+                <img loading="lazy" src="./assets/screenshots/ecomtelco.webp?v=1.1" alt="Ecomtelco Website" width="1280" height="720" 
                   decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
               </div>
               <div class="w-overlay">
@@ -982,7 +983,7 @@
                 <div class="browser-url">https://gmmluxe.com</div>
               </div>
               <div class="w-screen">
-                <img src="./assets/screenshots/gmmluxe.webp?v=1.1" alt="GMM Luxe Shopify Store" 
+                <img loading="lazy" src="./assets/screenshots/gmmluxe.webp?v=1.1" alt="GMM Luxe Shopify Store" width="1280" height="720" 
                   decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
               </div>
               <div class="w-overlay">
@@ -1056,7 +1057,7 @@
                 <div class="browser-url">https://perfectcutz.gt.tc</div>
               </div>
               <div class="w-screen">
-                <img src="./assets/screenshots/perfectcutz.webp?v=1.1" alt="Perfect Cutz Salon Software" 
+                <img loading="lazy" src="./assets/screenshots/perfectcutz.webp?v=1.1" alt="Perfect Cutz Salon Software" width="1280" height="720" 
                   decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
               </div>
               <div class="w-overlay">
@@ -1128,7 +1129,7 @@
                 <div class="browser-url">https://enougheditor.shop</div>
               </div>
               <div class="w-screen">
-                <img src="./assets/screenshots/enougheditor_store.webp?v=1.1" alt="Enough Editor Digital Store"
+                <img loading="lazy" src="./assets/screenshots/enougheditor_store.webp?v=1.1" alt="Enough Editor Digital Store" width="1280" height="720"
                    decoding="async"
                   style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
               </div>
@@ -1211,7 +1212,7 @@
           <div class="t-user">
             <div class="t-avatar">TG</div>
             <div class="t-info">
-              <h4>Thaurain Gaming</h4><span>Thumbnail Design</span>
+              <h3>Thaurain Gaming</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"The thumbnails are pure fire! Best quality in the gaming community. CTR increased
@@ -1238,7 +1239,7 @@
           <div class="t-user">
             <div class="t-avatar">IX</div>
             <div class="t-info">
-              <h4>Infra X</h4><span>Thumbnail Design</span>
+              <h3>Infra X</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"Incredible attention to detail. Professional and fast delivery every single time."</p>
@@ -1264,7 +1265,7 @@
           <div class="t-user">
             <div class="t-avatar">KG</div>
             <div class="t-info">
-              <h4>Karry Gamer</h4><span>Thumbnail Design</span>
+              <h3>Karry Gamer</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"Increased average YouTube CTR from 4.2% to 7.8%. Best in the business for gaming graphics."</p>
@@ -1290,7 +1291,7 @@
           <div class="t-user">
             <div class="t-avatar">KH</div>
             <div class="t-info">
-              <h4>Khushi Gmr</h4><span>Thumbnail Design</span>
+              <h3>Khushi Gmr</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"Stunning graphics that capture the vibe of my channel. Views jumped 40% after the rebrand. 10/10 work!"</p>
@@ -1316,7 +1317,7 @@
           <div class="t-user">
             <div class="t-avatar">GY</div>
             <div class="t-info">
-              <h4>Guri YT</h4><span>Thumbnail Design</span>
+              <h3>Guri YT</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"Professional work at its best. The colors and effects are top-tier and my click-through rate proved it."</p>
@@ -1342,7 +1343,7 @@
           <div class="t-user">
             <div class="t-avatar">SB</div>
             <div class="t-info">
-              <h4>Shadow Deadly Beast</h4><span>Thumbnail Design</span>
+              <h3>Shadow Deadly Beast</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"Exactly what I wanted. Understood my brand perfectly and delivered on time. Engagement is up 3x."</p>
@@ -1368,7 +1369,7 @@
           <div class="t-user">
             <div class="t-avatar">EC</div>
             <div class="t-info">
-              <h4>Ecomtelco</h4><span>Graphics Design</span>
+              <h3>Ecomtelco</h3><span>Graphics Design</span>
             </div>
           </div>
           <p class="t-quote">"Stunning graphics that truly represent our brand. Their work is premium, clean, and drove a 15% increase in conversion."</p>
@@ -1394,7 +1395,7 @@
           <div class="t-user">
             <div class="t-avatar">GL</div>
             <div class="t-info">
-              <h4>GMM Luxe</h4><span>Full Brand Identity</span>
+              <h3>GMM Luxe</h3><span>Full Brand Identity</span>
             </div>
           </div>
           <p class="t-quote">"Handled everything from design to implementation perfectly. A true one-stop shop that elevated our brand authority."
@@ -1421,7 +1422,7 @@
           <div class="t-user">
             <div class="t-avatar">PC</div>
             <div class="t-info">
-              <h4>Perfect Cutz</h4><span>Full Website Build</span>
+              <h3>Perfect Cutz</h3><span>Full Website Build</span>
             </div>
           </div>
           <p class="t-quote">"The booking software and website are seamless. Our business is much more efficient now, seeing 20% more online appointments."
@@ -1450,7 +1451,7 @@
           <div class="t-user">
             <div class="t-avatar">TG</div>
             <div class="t-info">
-              <h4>Thaurain Gaming</h4><span>Thumbnail Design</span>
+              <h3>Thaurain Gaming</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"The thumbnails are pure fire! Best quality in the gaming community. CTR increased
@@ -1477,7 +1478,7 @@
           <div class="t-user">
             <div class="t-avatar">IX</div>
             <div class="t-info">
-              <h4>Infra X</h4><span>Thumbnail Design</span>
+              <h3>Infra X</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"Incredible attention to detail. Professional and fast delivery every single time."</p>
@@ -1503,7 +1504,7 @@
           <div class="t-user">
             <div class="t-avatar">KG</div>
             <div class="t-info">
-              <h4>Karry Gamer</h4><span>Thumbnail Design</span>
+              <h3>Karry Gamer</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"Always delivers with great creativity. Best in the business for gaming graphics."</p>
@@ -1529,7 +1530,7 @@
           <div class="t-user">
             <div class="t-avatar">KH</div>
             <div class="t-info">
-              <h4>Khushi Gmr</h4><span>Thumbnail Design</span>
+              <h3>Khushi Gmr</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"Stunning graphics that really capture the vibe of my channel. 10/10 work!"</p>
@@ -1555,7 +1556,7 @@
           <div class="t-user">
             <div class="t-avatar">GY</div>
             <div class="t-info">
-              <h4>Guri YT</h4><span>Thumbnail Design</span>
+              <h3>Guri YT</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"Professional work at its best. The colors and effects are top-tier."</p>
@@ -1581,7 +1582,7 @@
           <div class="t-user">
             <div class="t-avatar">SB</div>
             <div class="t-info">
-              <h4>Shadow Deadly Beast</h4><span>Thumbnail Design</span>
+              <h3>Shadow Deadly Beast</h3><span>Thumbnail Design</span>
             </div>
           </div>
           <p class="t-quote">"Exactly what I wanted. They understood my brand perfectly and delivered on time."</p>
@@ -1607,7 +1608,7 @@
           <div class="t-user">
             <div class="t-avatar">EC</div>
             <div class="t-info">
-              <h4>Ecomtelco</h4><span>Graphics Design</span>
+              <h3>Ecomtelco</h3><span>Graphics Design</span>
             </div>
           </div>
           <p class="t-quote">"Stunning graphics that truly represent our brand. Their work is premium and clean."</p>
@@ -1633,7 +1634,7 @@
           <div class="t-user">
             <div class="t-avatar">GL</div>
             <div class="t-info">
-              <h4>GMM Luxe</h4><span>Full Brand Identity</span>
+              <h3>GMM Luxe</h3><span>Full Brand Identity</span>
             </div>
           </div>
           <p class="t-quote">"They handled everything from design to implementation perfectly. A true one-stop shop."
@@ -1660,7 +1661,7 @@
           <div class="t-user">
             <div class="t-avatar">PC</div>
             <div class="t-info">
-              <h4>Perfect Cutz</h4><span>Full Website Build</span>
+              <h3>Perfect Cutz</h3><span>Full Website Build</span>
             </div>
           </div>
           <p class="t-quote">"The booking software and website are seamless. Our business is much more efficient now."
@@ -1692,7 +1693,7 @@
     <div class="hire-bg"></div>
     <div class="hire-grid"></div>
     <div class="hire-inner" style="position:relative;">
-      <img loading="lazy" src="assets/characters/hire_char.webp" alt="3D rocket character" class="float-char hire-char reveal delay-2">
+      <img loading="lazy" src="assets/characters/hire_char.webp" alt="3D rocket character" class="float-char hire-char reveal delay-2" width="600" height="600">
       <div class="hire-avail">Available for new projects</div>
       <h2 class="hire-title reveal">Let's Create<span class="line2">Something Epic</span></h2>
       <p class="hire-sub reveal">Whether you need a fire thumbnail, a gaming logo that slaps, or a full website build —
@@ -1752,10 +1753,18 @@
 
         <h3 style="font-family: 'Syne', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">Do I get source files for logos?</h3>
         <p style="font-family: 'DM Sans', sans-serif; color: var(--muted); margin-bottom: 2rem;">Absolutely. All gaming logo packages include high-res files and vector sources (AI/EPS).</p>
+
+        <h3 style="font-family: 'Syne', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">What do you need to start a project?</h3>
+        <p style="font-family: 'DM Sans', sans-serif; color: var(--muted); margin-bottom: 2rem;">We usually need a brief description of your requirements, any brand assets (logos, colors), and some reference designs you like.</p>
+
+        <h3 style="font-family: 'Syne', sans-serif; font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--text);">Do you offer revisions?</h3>
+        <p style="font-family: 'DM Sans', sans-serif; color: var(--muted); margin-bottom: 2rem;">Yes! We provide revisions to ensure you are 100% satisfied with the final result before completion.</p>
       </div>
     </div>
   </section>
 
+
+  </main>
 
   <!-- FOOTER -->
   <footer>
@@ -1766,17 +1775,17 @@
 
     <div class="footer-copy">© 2025 Enough Editor · All Rights Reserved</div>
     <div class="footer-social">
-      <a href="https://www.instagram.com/enougheditor?igsh=ZXF5cmZpZmJmMDM3" target="_blank"><svg viewBox="0 0 24 24"
+      <a href="https://www.instagram.com/enougheditor?igsh=ZXF5cmZpZmJmMDM3" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"
           fill="none" stroke="currentColor" stroke-width="2">
           <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
           <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
           <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
         </svg></a>
-      <a href="https://www.behance.net/enougheditor" target="_blank"><svg viewBox="0 0 24 24" fill="currentColor">
+      <a href="https://www.behance.net/enougheditor" target="_blank" aria-label="Behance"><svg viewBox="0 0 24 24" fill="currentColor">
           <path
             d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.912 4.964 5.105 0 3.193-.057 2.146-.057 2.146h-7.661c.148 2.378 1.849 2.502 3.125 2.502 1.258 0 2.228-.403 2.656-1.158h2.172zm-7.663-3.324h5.201c-.131-2.457-1.89-2.529-2.592-2.529-1.258 0-2.441.564-2.609 2.529zm-7.618-9.06v14.384h-4.323v-14.384h4.323zm-5.122-3.616h6.55v2.859h-6.55v-2.859zm12.392 3.616v5.823c0 2.529 1.442 3.42 2.946 3.42 1.378 0 2.247-.456 2.654-1.07v1.07h4.095v-9.243h-4.095v5.185c-.321.464-1.026.963-1.83.963-1.096 0-1.428-.845-1.428-1.928v-4.22h-2.342z" />
         </svg></a>
-      <a href="javascript:void(0)" onclick="openModal('wa')"><svg viewBox="0 0 24 24" fill="currentColor">
+      <a href="javascript:void(0)" onclick="openModal('wa')" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor">
           <path
             d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
         </svg></a>
@@ -1842,7 +1851,7 @@
   <!-- ============================================================
    JAVASCRIPT
 ============================================================ -->
-  <script src="js/script.js" defer></script>
+  <script src="js/script.min.js" defer></script>
 </body>
 
 </html>

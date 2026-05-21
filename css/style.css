@@ -16,11 +16,11 @@
     :root {
       --bg: #04040a;
       --surface: #0c0c16;
-      --accent: #ff7300;
-      --accent2: #ff8c00;
+      --accent: #e65c00;
+      --accent2: #f97316;
       --gold: #ffc846;
       --text: #f2f0ea;
-      --muted: #a1a1aa;
+      --muted: #b3b3ba;
       --glass: rgba(255, 255, 255, 0.03);
       --glass-b: rgba(255, 255, 255, 0.07);
     }
