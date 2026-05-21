@@ -244,14 +244,14 @@
         label: 'YouTube Thumbnail Collection',
         aspect: '16/9',
         images: [
-          'assets/Thumbnail/1. kaur is live.jpg', 'assets/Thumbnail/1000270448.jpg.jpeg', 'assets/Thumbnail/1000274528.jpg.jpeg',
-          'assets/Thumbnail/1000280113.jpg.jpeg', 'assets/Thumbnail/1679977509692.jpg', 'assets/Thumbnail/1683345652287.jpg',
-          'assets/Thumbnail/1702091963120.jpg', 'assets/Thumbnail/1706155690658.jpg', 'assets/Thumbnail/20240227_131737.jpg',
-          'assets/Thumbnail/ANYAA.jpg', 'assets/Thumbnail/Cheery.jpg', 'assets/Thumbnail/GOD SCRPY SMILE TN.png',
-          'assets/Thumbnail/IMG_20240306_093957_087.jpg', 'assets/Thumbnail/SHODEN Thumbnail.jpg', 'assets/Thumbnail/cc venom.png',
-          'assets/Thumbnail/cc with.png', 'assets/Thumbnail/cc without  venom.jpg', 'assets/Thumbnail/fff buy now wait 2025 PT.jpg',
-          'assets/Thumbnail/madness of iphone 11.jpg', 'assets/Thumbnail/sonali.jpg', 'assets/Thumbnail/spirow thubnailks (1).jpg',
-          'assets/Thumbnail/unlimited client.png', 'assets/Thumbnail/vs thumbnail3.jpg', 'assets/Thumbnail/without cc crypto.jpg'
+          'assets/Thumbnail/Bgmi Gaming thumbnail.jpg', 'assets/Thumbnail/Cheery.jpg', 'assets/Thumbnail/GOD SCRPY SMILE TN.jpg',
+          'assets/Thumbnail/Girl Gaming Thumbnail.jpg', 'assets/Thumbnail/Girl gamer thumbnail.jpg', 'assets/Thumbnail/IMG_20240306_093957_087.jpg',
+          'assets/Thumbnail/SHODEN Thumbnail.jpg', 'assets/Thumbnail/bgmi game thubnail.jpg', 'assets/Thumbnail/bgmi girl thumbnail.jpg',
+          'assets/Thumbnail/bgmi thumbnail.jpg', 'assets/Thumbnail/cc venom.jpg', 'assets/Thumbnail/cc with.jpg',
+          'assets/Thumbnail/fff buy now wait 2025 PT.jpg', 'assets/Thumbnail/girl thumnnail.jpg', 'assets/Thumbnail/girl youtube thubnail.jpg',
+          'assets/Thumbnail/madness of iphone 11.jpg', 'assets/Thumbnail/pubg game thumbnail.jpg', 'assets/Thumbnail/pubg thumbnail.jpg',
+          'assets/Thumbnail/sonali.jpg', 'assets/Thumbnail/spirow thubnailks (1).jpg', 'assets/Thumbnail/trading thumbnail.jpg',
+          'assets/Thumbnail/unlimited client.jpg', 'assets/Thumbnail/vs thumbnail3.jpg'
         ]
       },
       logos: {
