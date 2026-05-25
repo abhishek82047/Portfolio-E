@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Custom Web Solutions & App Development | Enough Editor</title>
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="favicon.png">
+
+  <!-- SEO Meta Tags -->
+  <link rel="canonical" href="https://enougheditorportfolio.vercel.app/website.html">
+  <meta name="description"
+    content="Custom web applications, dashboards, management systems, and Shopify e-commerce stores designed and developed by Enough Editor. Check out our customized systems.">
+  <meta name="keywords"
+    content="Custom Web Apps, Portal Developer, Invoice Manager, GST Billing, Attendance Tracker, Dashboard Designer, Enough Editor, Abhishek Rajput">
+  <meta name="author" content="Abhishek Rajput (Enough Editor)">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://enougheditorportfolio.vercel.app/website.html">
+  <meta property="og:title" content="Websites & Custom Applications | Enough Editor">
+  <meta property="og:description"
+    content="Custom dashboards, billing systems, portals and e-commerce solutions built from scratch. Explore our extensive application systems.">
+  <meta property="og:image" content="https://enougheditorportfolio.vercel.app/assets/Thumbnail/1.%20kaur%20is%20live.webp">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="preload" href="css/style.css" as="style">
+  <link rel="stylesheet" href="css/style.css">
+
+  <style>
+    /* Custom style overrides for website.html */
+    .filter-tab {
+      background: var(--glass);
+      border: 1px solid var(--glass-b);
+      padding: 0.6rem 1.4rem;
+      border-radius: 30px;
+      font-family: 'Syne', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .filter-tab:hover {
+      border-color: var(--accent);
+      color: var(--text);
+      background: rgba(255, 115, 0, 0.05);
+    }
+    .filter-tab.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 15px rgba(255, 115, 0, 0.3);
+    }
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+    .app-showcase-card {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+      border-radius: 16px;
+      padding: 1.8rem;
+      display: flex;
+      flex-direction: column;
+      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      opacity: 1;
+    }
+    .app-showcase-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, rgba(255, 115, 0, 0.5), transparent);
+      transform: scaleX(0);
+      transition: transform 0.5s ease;
+    }
+    .app-showcase-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(255, 115, 0, 0.35);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.015) 100%);
+    }
+    .app-showcase-card:hover::before {
+      transform: scaleX(1);
+    }
+    .app-card-icon-wrap {
+      width: 46px;
+      height: 46px;
+      background: linear-gradient(135deg, rgba(255, 115, 0, 0.12), rgba(255, 58, 31, 0.04));
+      border: 1px solid rgba(255, 115, 0, 0.3);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+      transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+      box-shadow: 0 4px 12px rgba(255, 115, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+    .app-showcase-card:hover .app-card-icon-wrap {
+      background: linear-gradient(135deg, rgba(255, 115, 0, 0.22), rgba(255, 58, 31, 0.08));
+      border-color: rgba(255, 115, 0, 0.6);
+      box-shadow: 0 8px 24px rgba(255, 115, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+      transform: scale(1.08) rotate(-3deg);
+    }
+    .app-card-icon-wrap svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent);
+      fill: none;
+      stroke-width: 2;
+      filter: drop-shadow(0 2px 4px rgba(255, 115, 0, 0.2));
+    }
+    .app-card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 0.6rem;
+      letter-spacing: 0.01em;
+    }
+    .app-card-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .app-card-tags {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      margin-top: auto;
+    }
+    .app-card-tag {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.55rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 0.2rem 0.6rem;
+      border-radius: 100px;
+      color: rgba(255, 255, 255, 0.5);
+      transition: all 0.25s ease;
+    }
+    .app-showcase-card:hover .app-card-tag {
+      border-color: rgba(255, 115, 0, 0.2);
+      color: var(--accent);
+      background: rgba(255, 115, 0, 0.04);
+    }
+
+    /* Swipe layout on mobile devices with centered snap and symmetric left/right card peeks */
+    @media (max-width: 768px) {
+      .apps-grid {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 1.2rem;
+        padding: 1rem 12.5vw 2.5rem; /* Symmetric centering padding */
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+        width: auto;
+        margin-left: -1.5rem; /* Match mobile padding offset */
+        margin-right: -1.5rem;
+        scroll-padding: 0 12.5vw; /* Align snap positions symmetrically */
+      }
+      .apps-grid::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for Chrome/Safari */
+      }
+      .app-showcase-card {
+        flex: 0 0 75vw; /* Active card centered, leaves exactly 12.5vw of space on each side for adjacent peeks */
+        scroll-snap-align: center;
+        height: auto;
+        margin-bottom: 0;
+      }
+      .swipe-helper {
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        gap: 0.6rem;
+        font-family: 'Syne', sans-serif;
+        font-size: 0.65rem;
+        font-weight: 700;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--accent);
+        margin-top: -1rem;
+        margin-bottom: 2rem;
+        opacity: 0.8;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- CUSTOM CURSOR -->
+  <div id="cur"></div>
+  <div id="cur-ring"></div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+    <button class="lb-close" onclick="closeLightbox()" aria-label="Close">&#x2715;</button>
+    <button class="lb-arrow lb-prev" onclick="lbPrev()" aria-label="Previous">&#8592;</button>
+    <div class="lb-img-wrap" id="lbImgWrap">
+      <img loading="lazy" id="lbMainImg" src="" alt="Portfolio Image" width="1280" height="720">
+    </div>
+    <button class="lb-arrow lb-next" onclick="lbNext()" aria-label="Next">&#8594;</button>
+    <div class="lb-meta">
+      <span class="lb-label" id="lbLabel"></span>
+      <span class="lb-counter" id="lbCounter"></span>
+    </div>
+    <div class="lb-hint">← Swipe or use arrow keys →</div>
+  </div>
+
+  <!-- HIRE TOAST -->
+  <div class="hire-toast" id="hireToast">
+    <div class="toast-avatar-wrap">
+      <div class="toast-avatar">
+        <img loading="lazy" src="assets/Profile Pic/favicon.png" alt="Abhishek Rajput" width="100" height="100"
+          onerror="this.style.display='none';this.parentElement.innerHTML='EE'">
+      </div>
+      <span class="online-dot"></span>
+    </div>
+    <div class="toast-text">
+      <span>The Enough Editor Team</span> is available for hire
+      <em class="toast-status">● Online — Ready to work</em>
+    </div>
+    <button class="toast-btn" onclick="openModal('all')">Hire Us</button>
+    <button class="toast-close" onclick="dismissToast()" aria-label="Close">&#x2715;</button>
+  </div>
+
+  <!-- NAV -->
+  <nav id="nav">
+    <a href="index.html" class="logo">Enough<span>.</span>Editor</a>
+    <ul class="nav-links">
+      <li><a href="about-us.html">About Us</a></li>
+      <li><a href="index.html#work">Work</a></li>
+      <li><a href="index.html#process">Process</a></li>
+      <li><a href="index.html#services">Services</a></li>
+      <li><a href="website.html">Websites</a></li>
+      <li><a href="faq.html">FAQ</a></li>
+      <li><a href="index.html#hire" class="nav-hire">Hire Us</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Open Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mob-close" id="mobClose" aria-label="Close Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+        style="width:28px;height:28px;">
+        <line x1="18" y1="6" x2="6" y2="18" />
+        <line x1="6" y1="6" x2="18" y2="18" />
+      </svg>
+    </button>
+    <a href="index.html" class="mob-link">Home</a>
+    <a href="about-us.html" class="mob-link">About Us</a>
+    <a href="index.html#work" class="mob-link">Work</a>
+    <a href="index.html#process" class="mob-link">Process</a>
+    <a href="index.html#services" class="mob-link">Services</a>
+    <a href="website.html" class="mob-link">Websites</a>
+    <a href="faq.html" class="mob-link">FAQ</a>
+    <a href="index.html#hire" class="mob-hire">Hire Us</a>
+  </div>
+
+  <main id="main-content" style="padding-top: 90px;">
+    <!-- HERO SECTION -->
+    <section id="hero" style="min-height: 50vh; padding: 6rem 3.5rem 3rem;">
+      <div class="grid-bg"></div>
+      <div class="orb orb1"></div>
+      <div class="orb orb2"></div>
+      <div class="orb orb3"></div>
+      <div class="hero-scene" style="max-width: 950px; margin: 0 auto;">
+        <div class="hero-tag">Custom Portals &amp; Systems</div>
+        <h1 class="hero-name" style="font-size: clamp(3rem, 7vw, 6.5rem); line-height: 1;">
+          Custom Web<br><span class="stroke">Solutions</span>
+        </h1>
+        <p class="hero-desc" style="max-width: 650px; margin-top: 1.5rem;">
+          Stunning frontend designs, smooth animations, and complex custom logic. We specialize in building responsive e-commerce storefronts, SaaS dashboards, and advanced management portals tailored to your operational needs.
+        </p>
+      </div>
+    </section>
+
+    <!-- FEATURED WEBSITES SHOWCASE -->
+    <section id="websites" style="padding: 4rem 3.5rem 6rem; background: var(--surface);">
+      <div class="websites-inner">
+        <div class="section-label reveal">Featured Projects</div>
+        <h2 class="section-title reveal">Websites We <em>Designed</em></h2>
+        <div class="websites-grid">
+          <!-- Project 1: Ecomtelco -->
+          <div class="w-card reveal delay-1" onclick="toggleFlip(event, this)">
+            <div class="w-card-inner">
+              <div class="w-card-front">
+                <div class="browser-bar">
+                  <div class="browser-dot bd1"></div>
+                  <div class="browser-dot bd2"></div>
+                  <div class="browser-dot bd3"></div>
+                  <div class="browser-url">https://ecomtelco.com</div>
+                </div>
+                <div class="w-screen">
+                  <img loading="lazy" src="./assets/screenshots/ecomtelco.webp?v=1.1" alt="Ecomtelco Website" width="1280" height="720"
+                    decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                </div>
+                <div class="w-overlay">
+                  <div class="w-label">Graphics Work</div>
+                  <div class="w-name">Ecomtelco</div>
+                  <div class="w-platform">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                      stroke-linejoin="round" style="width:12px;height:12px;">
+                      <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                      <line x1="3" y1="9" x2="21" y2="9" />
+                      <line x1="9" y1="21" x2="9" y2="9" />
+                    </svg>
+                    UI/UX & Graphics
+                  </div>
+                  <span class="flip-hint">Details <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                      stroke-width="3">
+                      <path d="M7 17l9.2-9.2M17 17V7H7" />
+                    </svg></span>
+                </div>
+              </div>
+              <div class="w-card-back">
+                <div class="back-header">
+                  <div class="back-title">Ecomtelco</div>
+                </div>
+                <ul class="back-list">
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="9" y1="21" x2="9" y2="9" /></svg>
+                    <span><strong>Banners:</strong> Designed high-impact, conversion-focused promotional banners.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z" /><circle cx="12" cy="13" r="4" /></svg>
+                    <span><strong>Photography:</strong> Professionally color-graded and enhanced 50+ product photos.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><path d="M12 21V12" /><path d="M12 12V3" /><path d="M20 12h-8" /><path d="M12 12H4" /></svg>
+                    <span><strong>UI Views:</strong> Designed custom product grid views and navigation elements.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                    <span><strong>Identity:</strong> Maintained brand consistency across all digital assets.</span>
+                  </li>
+                </ul>
+                <a href="https://ecomtelco.com" target="_blank" class="view-website-btn"
+                  onclick="event.stopPropagation()">View Website <svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3" style="width:12px;height:12px;">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2: GMMLuxe -->
+          <div class="w-card reveal delay-2" onclick="toggleFlip(event, this)">
+            <div class="w-card-inner">
+              <div class="w-card-front">
+                <div class="browser-bar">
+                  <div class="browser-dot bd1"></div>
+                  <div class="browser-dot bd2"></div>
+                  <div class="browser-dot bd3"></div>
+                  <div class="browser-url">https://gmmluxe.com</div>
+                </div>
+                <div class="w-screen">
+                  <img loading="lazy" src="./assets/screenshots/gmmluxe.webp?v=1.1" alt="GMM Luxe Shopify Store" width="1280" height="720"
+                    decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                </div>
+                <div class="w-overlay">
+                  <div class="w-label">Shopify Development</div>
+                  <div class="w-name">GMM Luxe</div>
+                  <div class="w-platform">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                      stroke-linejoin="round" style="width:12px;height:12px;">
+                      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+                      <line x1="3" y1="6" x2="21" y2="6" />
+                      <path d="M16 10a4 4 0 0 1-8 0" />
+                    </svg>
+                    Shopify / Scratch Design
+                  </div>
+                  <span class="flip-hint">Click to see details</span>
+                </div>
+              </div>
+              <div class="w-card-back">
+                <div class="back-header">
+                  <div class="back-title">GMM Luxe</div>
+                </div>
+                <ul class="back-list">
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6" /><polyline points="8 6 2 12 8 18" /></svg>
+                    <span><strong>Manual Setup:</strong> Entire Shopify store built from scratch with custom Liquid coding.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="9" y1="21" x2="9" y2="9" /></svg>
+                    <span><strong>Custom Sections:</strong> Added unique Category and Sliders not available in default themes.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2" /><line x1="1" y1="10" x2="23" y2="10" /></svg>
+                    <span><strong>Payment Flow:</strong> Integrated secure gateways and optimized the checkout conversion.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="2" /><path d="M12 19l7-7 3 3-7 7-3-3z" /><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z" /><path d="M2 2l7.586 7.586" /></svg>
+                    <span><strong>Full Graphics:</strong> Designed all banners, collection icons, and brand identity elements.</span>
+                  </li>
+                </ul>
+                <a href="https://gmmluxe.com" target="_blank" class="view-website-btn"
+                  onclick="event.stopPropagation()">View Website <svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3" style="width:12px;height:12px;">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3: Perfect Cutz -->
+          <div class="w-card reveal delay-3" onclick="toggleFlip(event, this)">
+            <div class="w-card-inner">
+              <div class="w-card-front">
+                <div class="browser-bar">
+                  <div class="browser-dot bd1"></div>
+                  <div class="browser-dot bd2"></div>
+                  <div class="browser-dot bd3"></div>
+                  <div class="browser-url">https://perfectcutz.gt.tc</div>
+                </div>
+                <div class="w-screen">
+                  <img loading="lazy" src="./assets/screenshots/perfectcutz.webp?v=1.1" alt="Perfect Cutz Salon Software" width="1280" height="720"
+                    decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                </div>
+                <div class="w-overlay">
+                  <div class="w-label">Software Development</div>
+                  <div class="w-name">Perfect Cutz</div>
+                  <div class="w-platform">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                      stroke-linejoin="round" style="width:12px;height:12px;">
+                      <polyline points="16 18 22 12 16 6" />
+                      <polyline points="8 6 2 12 8 18" />
+                    </svg>
+                    PHP / Booking / Admin
+                  </div>
+                  <span class="flip-hint">Click to see details</span>
+                </div>
+              </div>
+              <div class="w-card-back">
+                <div class="back-header">
+                  <div class="back-title">Perfect Cutz</div>
+                </div>
+                <ul class="back-list">
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2" /><line x1="16" y1="2" x2="16" y2="6" /><line x1="8" y1="2" x2="8" y2="6" /><line x1="3" y1="10" x2="21" y2="10" /></svg>
+                    <span><strong>Booking System:</strong> Advanced scheduling with barber, service, and location selection.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                    <span><strong>Admin Logic:</strong> Inventory management, report generation (Daily/Weekly), and manual entries.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><path d="M22 2L11 13" /><path d="M22 2l-7 20-4-9-9-4 20-7z" /></svg>
+                    <span><strong>Notifications:</strong> Automated booking confirmations and PDF invoices via Email & WhatsApp.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3" /><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" /><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" /></svg>
+                    <span><strong>Database:</strong> Scalable MySQL architecture for handling high volumes of appointment data.</span>
+                  </li>
+                </ul>
+                <a href="https://perfectcutz.gt.tc/?i=1" target="_blank" class="view-website-btn"
+                  onclick="event.stopPropagation()">View Website <svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3" style="width:12px;height:12px;">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 4: Enough Editor Store -->
+          <div class="w-card reveal delay-4" onclick="toggleFlip(event, this)">
+            <div class="w-card-inner">
+              <div class="w-card-front">
+                <div class="browser-bar">
+                  <div class="browser-dot bd1"></div>
+                  <div class="browser-dot bd2"></div>
+                  <div class="browser-dot bd3"></div>
+                  <div class="browser-url">https://enougheditor.shop</div>
+                </div>
+                <div class="w-screen">
+                  <img loading="lazy" src="./assets/screenshots/enougheditor_store.webp?v=1.1" alt="Enough Editor Digital Store" width="1280" height="720"
+                    decoding="async" style="width:100%;height:100%;object-fit:cover;object-position:top;display:block;">
+                </div>
+                <div class="w-overlay">
+                  <div class="w-label">Web Development</div>
+                  <div class="w-name">Enough Editor Store</div>
+                  <div class="w-platform">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                      stroke-linejoin="round" style="width:12px;height:12px;">
+                      <circle cx="12" cy="12" r="10" />
+                      <line x1="2" y1="12" x2="22" y2="12" />
+                      <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                    </svg>
+                    HTML / CSS / JS / Payment
+                  </div>
+                  <span class="flip-hint" style="font-size:0.6rem; color:var(--muted); margin-top:0.5rem; opacity:0.8;">Click to see details</span>
+                </div>
+              </div>
+              <div class="w-card-back">
+                <div class="back-header">
+                  <div class="back-title">Enough Editor Store</div>
+                </div>
+                <ul class="back-list">
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" /></svg>
+                    <span><strong>Automation:</strong> Instant download links sent to users immediately after successful payment.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg>
+                    <span><strong>Engagement:</strong> Integrated Blogs, Giveaways, Wishlist, and Coupon code systems.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" /><circle cx="12" cy="7" r="4" /></svg>
+                    <span><strong>User Auth:</strong> Secure login/register methods for personalized user accounts and order history.</span>
+                  </li>
+                  <li class="back-item"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                      stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" /><line x1="3" y1="9" x2="21" y2="9" /><line x1="9" y1="21" x2="9" y2="9" /></svg>
+                    <span><strong>Admin:</strong> Full dashboard for product management, inventory tracking, and sales analytics.</span>
+                  </li>
+                </ul>
+                <a href="https://www.enougheditor.shop/?m=1#home" target="_blank" class="view-website-btn"
+                  onclick="event.stopPropagation()">View Website <svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="3" style="width:12px;height:12px;">
+                    <line x1="7" y1="17" x2="17" y2="7" />
+                    <polyline points="7 7 17 7 17 17" />
+                  </svg></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CUSTOM APP SCHEMAS AND PORTALS -->
+    <section id="custom-apps" style="background: var(--bg); padding: 7rem 3.5rem;">
+      <div style="max-width: 1200px; margin: 0 auto;">
+        <div class="section-label reveal">Custom Software &amp; Portals</div>
+        <h2 class="section-title reveal">Dashboard &amp; <em>Management Systems</em></h2>
+        <p class="reveal delay-1" style="color: var(--muted); font-size: 0.95rem; line-height: 1.7; max-width: 700px; margin-bottom: 3.5rem;">
+          Take a look at the custom management dashboards, utility portals, and administrative software solutions we specialize in building. Tap any tab to filter by category.
+        </p>
+
+        <!-- Category Filter Tabs -->
+        <div class="apps-filter-tabs reveal delay-1" style="display: flex; gap: 0.8rem; margin-bottom: 3.5rem; flex-wrap: wrap;">
+          <button class="filter-tab active" onclick="filterApps('all')">All Solutions</button>
+          <button class="filter-tab" onclick="filterApps('billing')">Billing &amp; Invoices</button>
+          <button class="filter-tab" onclick="filterApps('management')">Management &amp; CRM</button>
+          <button class="filter-tab" onclick="filterApps('booking')">Booking &amp; Services</button>
+        </div>
+
+        <!-- Systems Grid -->
+        <div class="apps-grid reveal delay-2">
+          
+          <!-- ================= BILLING CATEGORY ================= -->
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><path d="M15 15H12a2 2 0 0 1 0-4h3"/></svg>
+            </div>
+            <h3 class="app-card-title">Smart Invoice Maker</h3>
+            <p class="app-card-desc">Generate instant, professional PDF invoices with automated multi-currency support, custom fields, and real-time calculations.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">PDF Builder</span>
+              <span class="app-card-tag">Fast Invoicing</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><circle cx="12" cy="14" r="4"/><polyline points="12 12 12 14 13.5 15"/></svg>
+            </div>
+            <h3 class="app-card-title">Invoice Tracker Pro</h3>
+            <p class="app-card-desc">Keep track of paid, unpaid, and overdue client invoices. Includes automated email alerts, aging reports, and transaction charts.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Aged Debts</span>
+              <span class="app-card-tag">Dues Alerts</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 7 18 5 15 5C14.5 5 14 4.5 14 4C14 2.5 12.5 2 11 2C6 2 2 6 2 11C2 17 6.47715 22 12 22Z"/><circle cx="7.5" cy="10.5" r="1"/><circle cx="11.5" cy="7.5" r="1"/><circle cx="16.5" cy="9.5" r="1"/></svg>
+            </div>
+            <h3 class="app-card-title">Custom Invoice Studio</h3>
+            <p class="app-card-desc">Tailor invoice layout designs, upload brand elements, configure dynamic taxes, and print/share receipts directly via link.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Branded layouts</span>
+              <span class="app-card-tag">Studio Tools</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><line x1="9" y1="17" x2="15" y2="11"/><circle cx="10" cy="12" r="1.5"/><circle cx="14" cy="16" r="1.5"/></svg>
+            </div>
+            <h3 class="app-card-title">GST Billing Software</h3>
+            <p class="app-card-desc">Fully compliant Indian GST billing portal supporting CGST, SGST, IGST taxes, custom HSN/SAC codes, and GSTR report exports.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">GST Ready</span>
+              <span class="app-card-tag">HSN Database</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="8" rx="2"/><rect x="6" y="12" width="12" height="8" rx="2"/><path d="M12 12v3M9 12v1M15 12v1"/></svg>
+            </div>
+            <h3 class="app-card-title">Retail Billing System</h3>
+            <p class="app-card-desc">Fast point-of-sale billing software supporting barcode scanners, thermal bill printers, cash drawers, and daily sales summaries.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">POS System</span>
+              <span class="app-card-tag">Hardware Sync</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2" ry="2"/><line x1="12" y1="18" x2="12.01" y2="18"/><rect x="8" y="5" width="8" height="9" rx="1"/></svg>
+            </div>
+            <h3 class="app-card-title">Mobile Store Billing System</h3>
+            <p class="app-card-desc">Track device IMEIs, warranties, customer mobile sales histories, trade-ins, and accessory inventories in one panel.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">IMEI Logs</span>
+              <span class="app-card-tag">Warranty Tracking</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="10" x2="16" y2="10"/><line x1="8" y1="14" x2="16" y2="14"/><line x1="8" y1="18" x2="16" y2="18"/></svg>
+            </div>
+            <h3 class="app-card-title">Invoice &amp; Tax Calculator</h3>
+            <p class="app-card-desc">A calculator tool for quick computations of net values, tax rates, total deductions, and custom discount schemes.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Tax Tool</span>
+              <span class="app-card-tag">Split Taxes</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/><path d="M6 12h.01M18 12h.01"/></svg>
+            </div>
+            <h3 class="app-card-title">Shop Expense Manager</h3>
+            <p class="app-card-desc">Log your daily petty-cash and overhead expenses. Categories overheads, stores receipts, and analyzes net income reports.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Cash Book</span>
+              <span class="app-card-tag">Expense Logs</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18.7 8l-5.1 5.2-2.8-2.7L7 14.3"/></svg>
+            </div>
+            <h3 class="app-card-title">Daily Expense Tracker</h3>
+            <p class="app-card-desc">A lightweight ledger panel designed to log immediate cash flows, balance sheets, and monthly category limits.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Micro Ledger</span>
+              <span class="app-card-tag">Daily Sync</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/><path d="M6 16h4M14 16h4"/></svg>
+            </div>
+            <h3 class="app-card-title">Employee Salary Manager</h3>
+            <p class="app-card-desc">Manage employee salary payouts, pay structures, advances, bonuses, and generates formatted salary receipts.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Staff Salary</span>
+              <span class="app-card-tag">Advances Tracker</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="billing">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><path d="M9 14h6M9 18h6"/></svg>
+            </div>
+            <h3 class="app-card-title">Payroll Tracker System</h3>
+            <p class="app-card-desc">Enterprise-ready payroll software supporting automated monthly payouts, payslips generation, deductions, and tax forms.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Payroll Auto</span>
+              <span class="app-card-tag">Tax Slips</span>
+            </div>
+          </div>
+
+
+          <!-- ================= MANAGEMENT CATEGORY ================= -->
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M17 11l2 2 4-4"/></svg>
+            </div>
+            <h3 class="app-card-title">Labour Attendance Manager</h3>
+            <p class="app-card-desc">Monitor daily labour attendance logs, calculate shifts, overtime hours, and map out automated payouts based on attendance rates.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Labour logs</span>
+              <span class="app-card-tag">Wage Calculations</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
+            <h3 class="app-card-title">Inventory Management Panel</h3>
+            <p class="app-card-desc">Advanced inventory logs supporting multi-warehouse syncing, stock level alerts, barcode generation, and vendor logs.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Inventory Sync</span>
+              <span class="app-card-tag">Stock Alerts</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            </div>
+            <h3 class="app-card-title">Customer CRM Dashboard</h3>
+            <p class="app-card-desc">Organize client contacts, sales opportunities, history details, lead follow-ups, and customer metrics in one centralized dashboard.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">CRM Pipeline</span>
+              <span class="app-card-tag">Lead logs</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+            </div>
+            <h3 class="app-card-title">Sales Tracking System</h3>
+            <p class="app-card-desc">Visual pipelines for tracking deals, quotas, team performance, win rates, conversion funnels, and sales analytics charts.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Sales Pipeline</span>
+              <span class="app-card-tag">Target Tracking</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="M8 14l2 2 4-4"/></svg>
+            </div>
+            <h3 class="app-card-title">Staff Attendance Tracker</h3>
+            <p class="app-card-desc">Attendance tracking panel supporting QR-code entries, leaves balances, dynamic shift rosters, and attendance reports.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">QR Check-in</span>
+              <span class="app-card-tag">Leaves Ledger</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9"/><rect x="14" y="3" width="7" height="5"/><rect x="14" y="12" width="7" height="9"/><rect x="3" y="16" width="7" height="5"/></svg>
+            </div>
+            <h3 class="app-card-title">Warehouse Management System</h3>
+            <p class="app-card-desc">Manage batch numbers, shelf layouts, dispatches, packing lists, and warehouse shipments sync.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Batches Logs</span>
+              <span class="app-card-tag">Dispatch Desk</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <h3 class="app-card-title">Courier Tracking Dashboard</h3>
+            <p class="app-card-desc">Track shipments across shipping carriers, sync statuses via API, and display active routes to clients.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Carrier APIs</span>
+              <span class="app-card-tag">Live Status Feed</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+            </div>
+            <h3 class="app-card-title">Vendor Management System</h3>
+            <p class="app-card-desc">Track supplier listings, purchase logs, vendor due alerts, agreements, and credit balance sheets.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Suppliers Log</span>
+              <span class="app-card-tag">Vendor Credits</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+            </div>
+            <h3 class="app-card-title">Multi-Shop Admin Panel</h3>
+            <p class="app-card-desc">Centralized portal to monitor inventories, sales records, billing, and staff schedules across multiple shops.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Central Control</span>
+              <span class="app-card-tag">Branch Sync</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            </div>
+            <h3 class="app-card-title">Business Analytics Dashboard</h3>
+            <p class="app-card-desc">Aggregate all your business logs, revenue figures, inventory speeds, and client analytics into visual charts.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Visual Charts</span>
+              <span class="app-card-tag">Metrics Agg</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </div>
+            <h3 class="app-card-title">Complaint Management Portal</h3>
+            <p class="app-card-desc">Support tickets management tool. Log issues, assign handlers, configure SLAs, and track feedback surveys.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Help Desk</span>
+              <span class="app-card-tag">SLA Tracking</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="app-card-title">Society Maintenance System</h3>
+            <p class="app-card-desc">Manage flat owners billing logs, maintenance dues reminders, visitor gate logs, and announcements board.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Resident Portal</span>
+              <span class="app-card-tag">Dues reminders</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 12l2 2 4-4"/></svg>
+            </div>
+            <h3 class="app-card-title">Task Management Board</h3>
+            <p class="app-card-desc">Collaborative task spaces featuring Kanban boards, deadline logs, project milestones, and assignments updates.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Kanban Board</span>
+              <span class="app-card-tag">Team Tasks</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            </div>
+            <h3 class="app-card-title">Repair Shop Management</h3>
+            <p class="app-card-desc">Log customer devices for repairs, spares used, repair status updates, automated bill estimates, and pickup codes.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Job Cards</span>
+              <span class="app-card-tag">Spares logs</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="management">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+            </div>
+            <h3 class="app-card-title">E-commerce Admin Dashboard</h3>
+            <p class="app-card-desc">Product listings editor, order processing, shipping logs, customer profiles, and analytics integrations in one console.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Orders Desk</span>
+              <span class="app-card-tag">Catalog Editor</span>
+            </div>
+          </div>
+
+
+          <!-- ================= BOOKING CATEGORY ================= -->
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="9.8" y1="8.2" x2="20" y2="17"/><line x1="9.8" y1="15.8" x2="20" y2="7"/></svg>
+            </div>
+            <h3 class="app-card-title">Barber Booking System</h3>
+            <p class="app-card-desc">Responsive customer booking slots, stylist schedules, service checkouts, and email booking updates.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Stylist slots</span>
+              <span class="app-card-tag">Appointments</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 6.5h11M6.5 17.5h11M12 4v16M3 9h4v6H3zm14 0h4v6h-4z"/></svg>
+            </div>
+            <h3 class="app-card-title">Gym Management Portal</h3>
+            <p class="app-card-desc">Manage gym memberships, trainer schedules, subscription terms, entry QR check-ins, and renewals due logs.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Membership logs</span>
+              <span class="app-card-tag">QR checkin</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 2 2.5 3 6 3s6-1 6-3v-5"/></svg>
+            </div>
+            <h3 class="app-card-title">School Fee Manager</h3>
+            <p class="app-card-desc">Log student enrollment data, track monthly fee structures, automatically calculate fines, and generate receipts.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Student Fees</span>
+              <span class="app-card-tag">Receipts Desk</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            </div>
+            <h3 class="app-card-title">Digital Product Store</h3>
+            <p class="app-card-desc">Host and sell digital files, tutorials, design items, and templates with secure instant delivery after pay.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Inst Downloads</span>
+              <span class="app-card-tag">Auto Delivery</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6M18 9h1.5a2.5 2.5 0 0 0 0-5H18M4 22h16M10 14.66V17c0 .55-.45 1-1 1H4v2h16v-2h-5c-.55 0-1-.45-1-1v-2.34M12 2a7 7 0 0 0-7 7v4.66a7 7 0 0 0 14 0V9a7 7 0 0 0-7-7z"/></svg>
+            </div>
+            <h3 class="app-card-title">Tournament Management System</h3>
+            <p class="app-card-desc">Esports tournament bracket manager. Register teams, generate seeding grids, log scores, and display ladders.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Esports brackets</span>
+              <span class="app-card-tag">Seeding Grids</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v3zm-11-5v14m-4-14l2 4m6-4l-2 4"/></svg>
+            </div>
+            <h3 class="app-card-title">Grocery Price Tracker</h3>
+            <p class="app-card-desc">A portal comparing daily grocery item rates across local vendors, listing store routes, and displaying graphs.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Rate Compare</span>
+              <span class="app-card-tag">Trends Chart</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c5.523 0 10 4.477 10 10s-4.477 10-10 10S2 17.523 2 12 6.477 2 12 2zm0 4v6l4 2"/></svg>
+            </div>
+            <h3 class="app-card-title">Tiffin Subscription Manager</h3>
+            <p class="app-card-desc">Meal plans booking panel. Customers can pause days, select items, select timings, and track subscriptions.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Meal Sub</span>
+              <span class="app-card-tag">Pause Calendars</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16M2 11h20M22 4v16M2 17h20M12 11v6"/></svg>
+            </div>
+            <h3 class="app-card-title">Hotel Booking Dashboard</h3>
+            <p class="app-card-desc">Interactive room availability grid, booking forms, check-in log, customer files, and final invoice calculations.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Rooms Grid</span>
+              <span class="app-card-tag">Guest Profiles</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18.8 19.72c.4-.4.4-1.03 0-1.42l-9.9-9.9c-.39-.39-1.02-.39-1.41 0a.996.996 0 0 0 0 1.41l9.9 9.9c.39.4 1.02.4 1.41 0z"/><path d="M10.66 4.34a2 2 0 0 0-2.83 0L3.5 8.68a2 2 0 0 0 0 2.83M12.78 12.78l6.88-6.88a2 2 0 0 1 2.83 0l.35.35a2 2 0 0 1 0 2.83l-6.88 6.88"/></svg>
+            </div>
+            <h3 class="app-card-title">Restaurant Billing Panel</h3>
+            <p class="app-card-desc">Table orders tracking, KOT kitchen displays feed, items modifier log, splits bills, and POS checkout desks.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Table orders</span>
+              <span class="app-card-tag">KOT Screen</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 5h-4V1H9v4H5v6h4v4h6v-4h4z"/></svg>
+            </div>
+            <h3 class="app-card-title">Medical Store Management</h3>
+            <p class="app-card-desc">Medicine batch codes logs, expiry checks, drug lists, prescription builders, and fast retail checkout.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Medicine Exp</span>
+              <span class="app-card-tag">Batches list</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="5" x2="5" y2="19"/><circle cx="6.5" cy="6.5" r="2.5"/><circle cx="17.5" cy="17.5" r="2.5"/></svg>
+            </div>
+            <h3 class="app-card-title">Loan EMI Tracker</h3>
+            <p class="app-card-desc">Calculate amortization schedules, interest curves, partial pre-payments impact, and tracks due schedules.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Amortization</span>
+              <span class="app-card-tag">EMI Calc</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+            </div>
+            <h3 class="app-card-title">Property Rent Manager</h3>
+            <p class="app-card-desc">Tenant profiles logs, lease term alerts, automated rent receipts, deposit logs, and agreements checklists.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Leases Desk</span>
+              <span class="app-card-tag">Tenant Billing</span>
+            </div>
+          </div>
+
+          <div class="app-showcase-card" data-category="booking">
+            <div class="app-card-icon-wrap">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 7l-7 5 7 5V7z"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            </div>
+            <h3 class="app-card-title">Online Appointment System</h3>
+            <p class="app-card-desc">General consulting booking calendars, sync video links (Google Meet/Zoom), maps checkout forms, and logs payments.</p>
+            <div class="app-card-tags">
+              <span class="app-card-tag">Consulting</span>
+              <span class="app-card-tag">Video Meeting</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Swipe Helper (visible on mobile only) -->
+        <div class="swipe-helper" style="display: none;">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:12px;height:12px;"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 5 12 12 19"/></svg>
+          Swipe Left or Right
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:12px;height:12px;"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </div>
+
+        <!-- Bespoke CTA banner -->
+        <div class="bespoke-banner reveal delay-3" style="margin-top: 5.5rem; padding: 3rem 2rem; background: linear-gradient(135deg, rgba(255,115,0,0.1) 0%, rgba(255,58,31,0.03) 100%); border: 1px solid rgba(255,115,0,0.25); border-radius: 20px; text-align: center;">
+          <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: 2.8rem; letter-spacing: 0.05em; color: #fff; margin-bottom: 1rem;">Need an even more custom system?</h3>
+          <p style="font-family: 'DM Sans', sans-serif; font-size: 1rem; color: var(--muted); max-width: 650px; margin: 0 auto 2.2rem; line-height: 1.6;">
+            Have a unique business model, special automation needs, or a new SaaS idea? We can design, architect, and deploy completely customized software panels, database engines, and frontend workflows tailored exactly to your vision.
+          </p>
+          <a href="#hire" onclick="openContactDirect('Custom Portal Development'); return false;" class="btn-primary" style="text-decoration: none;">Discuss Your Project <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="width:14px;height:14px;"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HIRE ME -->
+    <section id="hire">
+      <div class="hire-bg"></div>
+      <div class="hire-grid"></div>
+      <div class="hire-inner" style="position:relative;">
+        <img loading="lazy" src="assets/characters/hire_char.webp" alt="3D rocket character" class="float-char hire-char reveal delay-2">
+        <div class="hire-avail">Available for new projects</div>
+        <h2 class="hire-title reveal">Let's Create<span class="line2">Something Epic</span></h2>
+        <p class="hire-sub reveal">Whether you need a fire thumbnail, a gaming logo that slaps, or a full website build — we're your team. Let's make something your audience won't forget.</p>
+        <div class="hire-btns reveal">
+          <a href="#contact-email" onclick="openModal('email'); return false;" class="btn-primary"><svg viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="width:16px;height:16px;">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg> Email Us</a>
+          <a href="#contact-wa" onclick="openModal('wa'); return false;" class="btn-outline"><svg viewBox="0 0 24 24"
+              fill="currentColor" style="width:16px;height:16px;">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+            </svg> WhatsApp</a>
+        </div>
+        <div class="hire-contact-row reveal">
+          <a href="#contact-email" onclick="openModal('email'); return false;" class="contact-item"><svg viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+              <polyline points="22,6 12,13 2,6" />
+            </svg>enougheditor31@gmail.com</a>
+          <a href="https://www.instagram.com/enougheditor?igsh=ZXF5cmZpZmJmMDM3" class="contact-item" target="_blank"><svg
+              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+            </svg>@EnoughEditor</a>
+          <a href="https://www.behance.net/enougheditor" class="contact-item" target="_blank"><svg viewBox="0 0 24 24"
+              fill="var(--accent)" stroke="none">
+              <path
+                d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.912 4.964 5.105 0 3.193-.057 2.146-.057 2.146h-7.661c.148 2.378 1.849 2.502 3.125 2.502 1.258 0 2.228-.403 2.656-1.158h2.172zm-7.663-3.324h5.201c-.131-2.457-1.89-2.529-2.592-2.529-1.258 0-2.441.564-2.609 2.529zm-7.618-9.06v14.384h-4.323v-14.384h4.323zm-5.122-3.616h6.55v2.859h-6.55v-2.859zm12.392 3.616v5.823c0 2.529 1.442 3.42 2.946 3.42 1.378 0 2.247-.456 2.654-1.07v1.07h4.095v-9.243h-4.095v5.185c-.321.464-1.026.963-1.83.963-1.096 0-1.428-.845-1.428-1.928v-4.22h-2.342z" />
+            </svg>Behance</a>
+          <a href="https://www.linkedin.com/in/enougheditor" class="contact-item" target="_blank"><svg viewBox="0 0 24 24"
+              fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+              <rect x="2" y="9" width="4" height="12" />
+              <circle cx="4" cy="4" r="2" />
+            </svg>LinkedIn</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <a href="#top" class="footer-logo" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;"
+      style="text-decoration:none;">Enough<span>.</span>Editor</a>
+    <div class="footer-copy">© 2025 Enough Editor · All Rights Reserved</div>
+    <div class="footer-social">
+      <a href="https://www.instagram.com/enougheditor?igsh=ZXF5cmZpZmJmMDM3" target="_blank" aria-label="Instagram"><svg viewBox="0 0 24 24"
+          fill="none" stroke="currentColor" stroke-width="2">
+          <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+          <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+          <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+        </svg></a>
+      <a href="https://www.behance.net/enougheditor" target="_blank" aria-label="Behance"><svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M22 7h-7v-2h7v2zm1.726 10c-.442 1.297-2.029 3-5.101 3-3.074 0-5.564-1.729-5.564-5.675 0-3.91 2.325-5.92 5.466-5.92 3.082 0 4.964 1.912 4.964 5.105 0 3.193-.057 2.146-.057 2.146h-7.661c.148 2.378 1.849 2.502 3.125 2.502 1.258 0 2.228-.403 2.656-1.158h2.172zm-7.663-3.324h5.201c-.131-2.457-1.89-2.529-2.592-2.529-1.258 0-2.441.564-2.609 2.529zm-7.618-9.06v14.384h-4.323v-14.384h4.323zm-5.122-3.616h6.55v2.859h-6.55v-2.859zm12.392 3.616v5.823c0 2.529 1.442 3.42 2.946 3.42 1.378 0 2.247-.456 2.654-1.07v1.07h4.095v-9.243h-4.095v5.185c-.321.464-1.026.963-1.83.963-1.096 0-1.428-.845-1.428-1.928v-4.22h-2.342z" />
+        </svg></a>
+      <a href="#contact-wa" onclick="openModal('wa'); return false;" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z" />
+        </svg></a>
+    </div>
+  </footer>
+
+  <!-- CONTACT MODAL -->
+  <div class="modal-overlay" id="contactModal">
+    <div class="modal-content">
+      <div id="modalStep1">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <h3 class="modal-title">What do you need?</h3>
+        <p class="modal-desc">Select a service and we'll generate a quick message for you.</p>
+        <div class="modal-options">
+          <button class="modal-btn" onclick="sendContact('YouTube Thumbnails')"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="width:20px;height:20px;stroke:var(--accent);">
+              <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+              <circle cx="8.5" cy="8.5" r="1.5" />
+              <polyline points="21 15 16 10 5 21" />
+            </svg> YouTube Thumbnails</button>
+          <button class="modal-btn" onclick="sendContact('Website Design')"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="width:20px;height:20px;stroke:var(--accent);">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg> Website Design</button>
+          <button class="modal-btn" onclick="sendContact('Short Thumbnails')"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="width:20px;height:20px;stroke:var(--accent);">
+              <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
+              <line x1="12" y1="18" x2="12.01" y2="18" />
+            </svg> Short Thumbnails</button>
+          <button class="modal-btn" onclick="sendContact('Other Work')"><svg viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+              style="width:20px;height:20px;stroke:var(--accent);">
+              <polygon
+                points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg> Other Work</button>
+        </div>
+      </div>
+      <div id="modalStep2" style="display: none;"></div>
+    </div>
+  </div>
+
+  <!-- GALLERY MODAL -->
+  <div class="modal-overlay" id="galleryModal" style="z-index: 10005;">
+    <div class="modal-content gallery-content">
+      <button class="modal-close" onclick="closeGallery()">×</button>
+      <div style="margin-bottom: 2.5rem; text-align: center;">
+        <h3 class="modal-title"
+          style="font-family:'Bebas Neue',sans-serif; font-size:3.5rem; letter-spacing:0.04em; margin-bottom:0.5rem; color:#fff;">
+          All <span style="color:var(--accent)">Thumbnails</span></h3>
+        <p class="gallery-label"
+          style="color:var(--muted); font-family:'Syne',sans-serif; letter-spacing:0.1em; font-size:0.85rem; text-transform:uppercase;">
+          Complete Collection</p>
+      </div>
+      <div class="gallery-grid"></div>
+    </div>
+  </div>
+
+  <!-- JAVASCRIPT -->
+  <script src="js/script.js" defer></script>
+  
+  <!-- Interactive custom scripts for website.html filtering -->
+  <script>
+    function filterApps(category) {
+      // Update active tab styling
+      const tabs = document.querySelectorAll('.filter-tab');
+      tabs.forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.getAttribute('onclick').includes("'" + category + "'")) {
+          tab.classList.add('active');
+        }
+      });
+
+      // Filter grid cards
+      const cards = document.querySelectorAll('.app-showcase-card');
+      cards.forEach(card => {
+        if (category === 'all' || card.getAttribute('data-category') === category) {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          setTimeout(() => {
+            card.style.opacity = '1';
+          }, 50);
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      // Reset horizontal scroll position on mobile when filtering
+      const grid = document.querySelector('.apps-grid');
+      if (grid) {
+        grid.scrollTo({ left: 0, behavior: 'smooth' });
+      }
+    }
+  </script>
+</body>
+
+</html>
