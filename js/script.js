@@ -16,6 +16,7 @@ const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', scrollY > 40) });
 function toggleFlip(e, card) {
 if (e.target.closest('.view-website-btn')) return;
+if (card.classList.contains('flipped') && e.target.closest('.back-list')) return;
 const isFlipped = card.classList.contains('flipped');
 document.querySelectorAll('.w-card.flipped').forEach(otherCard => {
 if (otherCard !== card) {
