@@ -72,6 +72,20 @@ const t = document.querySelector(a.getAttribute('href'));
 if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
 });
 });
+
+// Intercept click on Home link to smooth scroll when on the home page
+document.querySelectorAll('a[href="index.html"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const isHomePage = window.location.pathname.endsWith('index.html') || 
+                       window.location.pathname.endsWith('/') || 
+                       window.location.pathname === '';
+    if (isHomePage) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      if (typeof closeMobileMenu === 'function') closeMobileMenu();
+    }
+  });
+});
 const hScrollWrappers = document.querySelectorAll('.h-scroll-wrapper');
 let scrollData = [];
 hScrollWrappers.forEach((wrapper) => {
@@ -251,7 +265,7 @@ function openContactDirect(service) {
 const svc = service || 'Your Service';
 const email = "enougheditor31@gmail.com";
 const wa = "918962720522";
-const ig = "https://www.instagram.com/enougheditor";
+const ig = "https://www.instagram.com/enough.editor/";
 const subject = `Inquiry for ${svc} — Enough Editor`;
 const body = `Hi Abhishek,\n\nI came across your portfolio and I'm interested in your ${svc} service.\n\nCould you please share more details about pricing and timeline?\n\nThank you!`;
 const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
