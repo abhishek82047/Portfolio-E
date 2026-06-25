@@ -33,7 +33,8 @@
     'height:100vh',
     'pointer-events:none',
     'z-index:199999',
-    'display:block'
+    'display:block',
+    'opacity:0.6'
   ].join(';');
   document.body.appendChild(canvas);
 
@@ -683,10 +684,10 @@
 
   function clickSplat(pointer) {
     const color = generateColor();
-    color.r *= 10; color.g *= 10; color.b *= 10;
+    color.r *= 3.0; color.g *= 3.0; color.b *= 3.0;
     splat(pointer.texcoordX, pointer.texcoordY,
-      10 * (Math.random() - 0.5),
-      30 * (Math.random() - 0.5),
+      4 * (Math.random() - 0.5),
+      12 * (Math.random() - 0.5),
       color);
   }
 
