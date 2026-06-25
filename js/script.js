@@ -24,14 +24,6 @@ otherCard.classList.remove('flipped');
 }
 });
 card.classList.toggle('flipped');
-
-// Toggle no-scroll class on body to block background page scrolling while a card is flipped
-const hasFlippedCard = document.querySelector('.w-card.flipped') !== null;
-if (hasFlippedCard) {
-document.body.classList.add('no-scroll');
-} else {
-document.body.classList.remove('no-scroll');
-}
 }
 
 // Close flipped card when clicking anywhere outside of it
@@ -40,7 +32,6 @@ const activeCard = document.querySelector('.w-card.flipped');
 if (activeCard) {
 if (!activeCard.contains(e.target)) {
 activeCard.classList.remove('flipped');
-document.body.classList.remove('no-scroll');
 }
 }
 });
