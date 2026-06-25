@@ -2,18 +2,62 @@ if (history.scrollRestoration) {
 history.scrollRestoration = 'manual';
 }
 window.scrollTo(0, 0);
-const cur = document.getElementById('cur');
-const curRing = document.getElementById('cur-ring');
-let mx = 0, my = 0, rx = 0, ry = 0;
-document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cur.style.left = mx + 'px'; cur.style.top = my + 'px' });
-function animateRing() { rx += (mx - rx) * .15; ry += (my - ry) * .15; curRing.style.left = rx + 'px'; curRing.style.top = ry + 'px'; requestAnimationFrame(animateRing) }
-animateRing();
-document.querySelectorAll('a,button,.p-card,.w-card,.s-card').forEach(el => {
-el.addEventListener('mouseenter', () => { cur.style.width = '20px'; cur.style.height = '20px'; cur.style.background = 'rgba(255,58,31,.4)'; curRing.style.width = '60px'; curRing.style.height = '60px'; curRing.style.borderColor = 'rgba(255,58,31,.8)' });
-el.addEventListener('mouseleave', () => { cur.style.width = '10px'; cur.style.height = '10px'; cur.style.background = 'var(--accent)'; curRing.style.width = '36px'; curRing.style.height = '36px'; curRing.style.borderColor = 'rgba(255,58,31,.5)' });
-});
+
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => { nav.classList.toggle('scrolled', scrollY > 40) });
+
+// ── macOS Dock magnification for desktop nav ─────────────────────────────────
+(function () {
+  // Only run on desktop
+  if (window.innerWidth <= 900) return;
+
+  // Inject CSS — overflow visible so scaled items aren't clipped,
+  // plus a smooth transition for the transform
+  const dockStyle = document.createElement('style');
+  dockStyle.textContent = [
+    '.nav-links { overflow: visible !important; }',
+    '.nav-links li { overflow: visible; list-style: none; }',
+    '.nav-links a, a.nav-hire {',
+    '  display: inline-block;',
+    '  transform-origin: bottom center;',
+    '  transition: transform 0.18s cubic-bezier(0.2, 0.8, 0.3, 1), color 0.2s !important;',
+    '  will-change: transform;',
+    '}'
+  ].join('\n');
+  document.head.appendChild(dockStyle);
+
+  // Smoothstep bell-curve: returns a scale value based on horizontal distance
+  const MAX_SCALE = 1.6;   // peak magnification of hovered item
+  const RANGE     = 120;   // px of horizontal influence radius
+
+  function dockScale(dist) {
+    if (dist >= RANGE) return 1;
+    const t = 1 - dist / RANGE;
+    // Smoothstep: 3t² − 2t³  →  smooth bell falloff
+    const smooth = t * t * (3 - 2 * t);
+    return 1 + (MAX_SCALE - 1) * smooth;
+  }
+
+  function getNavItems() {
+    return [...document.querySelectorAll('.nav-links a, a.nav-hire')];
+  }
+
+  nav.addEventListener('mousemove', function (e) {
+    getNavItems().forEach(function (el) {
+      const rect = el.getBoundingClientRect();
+      const cx   = rect.left + rect.width / 2;
+      const dist = Math.abs(e.clientX - cx);
+      el.style.transform = 'scale(' + dockScale(dist).toFixed(3) + ')';
+    });
+  });
+
+  nav.addEventListener('mouseleave', function () {
+    getNavItems().forEach(function (el) {
+      el.style.transform = 'scale(1)';
+    });
+  });
+})();
+
 function toggleFlip(e, card) {
 if (e.target.closest('.view-website-btn')) return;
 if (card.classList.contains('flipped') && e.target.closest('.back-list')) return;
